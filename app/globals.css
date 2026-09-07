@@ -9605,3 +9605,72 @@ section {
 .site-footer {
   width: 100%;
 }
+/* =========================================
+   BIHAR HERO BUTTON FIX
+========================================= */
+
+.bihar-hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.bihar-hero-actions .primary-content-button,
+.bihar-hero-actions .secondary-content-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Bihar DA Updates */
+.bihar-hero-actions .primary-content-button {
+  background: #2563eb;
+  border: 1px solid #2563eb;
+  color: #ffffff;
+}
+
+.bihar-hero-actions .primary-content-button:hover {
+  background: #1d4ed8;
+  border-color: #1d4ed8;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Salary Calculator */
+.bihar-hero-actions .secondary-content-button {
+  background: #ffffff;
+  border: 1px solid #2563eb;
+  color: #2563eb;
+}
+
+.bihar-hero-actions .secondary-content-button:hover {
+  background: #eff6ff;
+  color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .bihar-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bihar-hero-actions .primary-content-button,
+  .bihar-hero-actions .secondary-content-button {
+    width: 100%;
+  }
+}
