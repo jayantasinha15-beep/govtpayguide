@@ -1,49 +1,9315 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  background: #f8fafc;
+  color: #162033;
+  line-height: 1.6;
 }
 
 a {
+  text-decoration: none;
   color: inherit;
+}
+
+.container {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* =================================
+   HEADER
+================================= */
+
+.site-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-inner {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 800;
+  color: #0f172a;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: #2563eb;
+}
+/* Desktop nav */
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-menu a {
+  display: inline-flex;
+  align-items: center;
+  color: #334155;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+  color: #2563eb;
+}
+/* Hamburger */
+
+.menu-button {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.menu-button span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #0f172a;
+  margin: 5px auto;
+  border-radius: 20px;
+}
+
+
+/* HERO */
+
+.hero {
+  background:
+    radial-gradient(circle at 85% 25%, #dbeafe 0, transparent 30%),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  padding: 90px 0 95px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.hero-content {
+  max-width: 850px;
+}
+
+.eyebrow {
+  display: inline-block;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 13px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  color: #0f172a;
+  max-width: 950px;
+}
+
+.hero p {
+  max-width: 720px;
+  margin-top: 25px;
+  font-size: 18px;
+  color: #64748b;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.btn {
+  padding: 13px 21px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.btn.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.btn.primary:hover {
+  background: #1d4ed8;
+}
+
+.btn.secondary {
+  border: 1px solid #cbd5e1;
+  background: white;
+}
+
+.btn.secondary:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+/* FEATURE CARDS */
+
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: -38px;
+  position: relative;
+}
+
+.feature-card {
+  background: white;
+  padding: 25px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+  transition: 0.2s;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.09);
+}
+
+.icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 9px;
+  background: #eff6ff;
+  color: #2563eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 19px;
+  margin-bottom: 18px;
+}
+
+.feature-card h2 {
+  font-size: 19px;
+  margin-bottom: 9px;
+}
+
+.feature-card p {
+  color: #64748b;
+  font-size: 14px;
+  min-height: 88px;
+}
+
+.feature-card span {
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* UPDATES */
+
+.updates-section {
+  padding: 90px 0;
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.section-heading h2 {
+  font-size: 32px;
+  color: #0f172a;
+  letter-spacing: -0.6px;
+}
+
+.section-label {
+  font-size: 12px;
+  color: #2563eb;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.section-heading > a {
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.updates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.update-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 27px;
+}
+
+.category {
+  display: inline-block;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.update-card h3 {
+  font-size: 21px;
+  line-height: 1.3;
+  margin-bottom: 13px;
+}
+
+.update-card p {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.update-card a {
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* TOOLS */
+
+.tools-section {
+  padding: 0 0 90px;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.tool-card {
+  background: #172554;
+  color: white;
+  padding: 26px;
+  border-radius: 11px;
+  min-height: 145px;
+  transition: 0.2s;
+}
+
+.tool-card:hover {
+  transform: translateY(-3px);
+}
+
+.tool-card h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.tool-card p {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+/* DISCLAIMER */
+
+.disclaimer-box {
+  margin-bottom: 60px;
+  padding: 20px 24px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  color: #7c2d12;
+  font-size: 13px;
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+  .menu-button {
+    display: block;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 74px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px 20px 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+  }
+
+  .nav-menu.nav-open {
+    display: flex;
+  }
+
+  .nav-menu a {
+    padding: 13px 4px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .nav-menu a:last-child {
+    border-bottom: 0;
+  }
+}
+/* =================================
+   CONTENT / DA PAGE
+================================= */
+
+.page-hero {
+  padding: 65px 0;
+  background: linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.page-hero .container {
+  max-width: 1180px;
+}
+
+.page-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #dbeafe;
+  color: #1d4ed8;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.page-hero h1 {
+  font-size: 44px;
+  line-height: 1.15;
+  color: #0f172a;
+  letter-spacing: -1px;
+  max-width: 800px;
+}
+
+.page-hero p {
+  margin-top: 17px;
+  max-width: 720px;
+  color: #64748b;
+  font-size: 17px;
+}
+
+.content-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 40px;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.main-content {
+  min-width: 0;
+}
+
+.info-card {
+  padding: 30px;
+  background: white;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  margin-bottom: 35px;
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.04);
+}
+
+.info-label {
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.info-card h2 {
+  margin-top: 7px;
+  font-size: 27px;
+}
+
+.muted {
+  color: #64748b;
+  margin-top: 8px;
+}
+
+.da-highlight {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 25px;
+  background: #eff6ff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.da-highlight div {
+  padding: 20px;
+}
+
+.da-highlight div + div {
+  border-left: 1px solid #bfdbfe;
+}
+
+.da-highlight span {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 5px;
+}
+
+.da-highlight strong {
+  font-size: 18px;
+  color: #172554;
+}
+
+.source-note {
+  margin-top: 15px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.article-section {
+  margin-bottom: 42px;
+}
+
+.article-section h2 {
+  font-size: 27px;
+  color: #0f172a;
+  margin-bottom: 15px;
+}
+
+.article-section h3 {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.article-section p {
+  color: #475569;
+  margin-bottom: 14px;
+}
+
+.formula-box {
+  padding: 20px;
+  background: #172554;
+  color: white;
+  border-radius: 9px;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.example-box {
+  padding: 18px 20px;
+  background: #f0fdf4;
+  border-left: 4px solid #16a34a;
+  border-radius: 6px;
+  margin: 15px 0;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.da-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border: 1px solid #e2e8f0;
+}
+
+.da-table th,
+.da-table td {
+  text-align: left;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.da-table th {
+  background: #f8fafc;
+  color: #334155;
+  font-size: 13px;
+}
+
+.da-table td {
+  color: #475569;
+  font-size: 14px;
+}
+
+.content-button {
+  display: inline-block;
+  margin-top: 7px;
+  padding: 12px 18px;
+  background: #2563eb;
+  color: white;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.faq-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.faq-item h3 {
+  margin: 0 0 7px;
+}
+
+/* SIDEBAR */
+
+.sidebar-card,
+.sidebar-warning {
+  padding: 22px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.sidebar-card h3 {
+  margin-bottom: 13px;
+}
+
+.sidebar-card > a {
+  display: block;
+  padding: 9px 0;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar-card p {
+  color: #64748b;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.sidebar-warning {
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.sidebar-warning strong {
+  color: #9a3412;
+}
+
+.sidebar-warning p {
+  color: #7c2d12;
+  font-size: 12px;
+  margin-top: 7px;
+}
+
+@media (max-width: 900px) {
+  .content-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .sidebar-card,
+  .sidebar-warning {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-hero {
+    padding: 45px 0;
+  }
+
+  .page-hero h1 {
+    font-size: 34px;
+  }
+
+  .content-layout {
+    padding-top: 35px;
+  }
+
+  .da-highlight {
+    grid-template-columns: 1fr;
+  }
+
+  .da-highlight div + div {
+    border-left: 0;
+    border-top: 1px solid #bfdbfe;
+  }
+
+  .sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .info-card {
+    padding: 22px;
+  }
+}
+/* =================================
+   DA CALCULATOR
+================================= */
+
+.calculator-page {
+  max-width: 900px;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.calculator-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+.calculator-heading {
+  margin-bottom: 28px;
+}
+
+.calculator-heading > span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.calculator-heading h2 {
+  font-size: 29px;
+  margin-top: 4px;
+  color: #0f172a;
+}
+
+.calculator-heading p {
+  color: #64748b;
+  margin-top: 6px;
+}
+
+.calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 8px;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.input-wrap:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.input-wrap span {
+  padding: 0 14px;
+  color: #64748b;
+  font-weight: 700;
+}
+
+.input-wrap input {
+  width: 100%;
+  padding: 14px 14px;
+  border: 0;
+  outline: 0;
+  font-size: 16px;
+  background: transparent;
+  color: #0f172a;
+}
+
+.result-section {
+  margin-top: 30px;
+}
+
+.result-main {
+  background: #172554;
+  color: white;
+  padding: 25px;
+  border-radius: 11px;
+}
+
+.result-main span {
+  display: block;
+  font-size: 13px;
+  color: #bfdbfe;
+  margin-bottom: 4px;
+}
+
+.result-main strong {
+  display: block;
+  font-size: 35px;
+  line-height: 1.2;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.result-box {
+  padding: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+}
+
+.result-box span {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.result-box strong {
+  color: #0f172a;
+  font-size: 18px;
+}
+
+.calculator-note {
+  margin-top: 20px;
+  padding: 15px 18px;
+  background: #eff6ff;
+  color: #1e3a8a;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.calculator-content {
+  margin-top: 45px;
+}
+
+.calculator-content h2 {
+  font-size: 26px;
+  color: #0f172a;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+
+.calculator-content p {
+  color: #475569;
+  margin-bottom: 14px;
+}
+
+.calculator-disclaimer {
+  margin-top: 30px;
+  padding: 18px 20px;
+  border: 1px solid #fed7aa;
+  background: #fff7ed;
+  color: #7c2d12;
+  border-radius: 9px;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .calculator-card {
+    padding: 22px;
+  }
+
+  .calculator-grid,
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-main strong {
+    font-size: 30px;
+  }
+
+  .calculator-heading h2 {
+    font-size: 25px;
+  }
+}
+/* =================================
+   PAY COMMISSION
+================================= */
+
+.pay-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.pay-feature-grid div {
+  padding: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+}
+
+.pay-feature-grid span {
+  display: block;
+  color: #64748b;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.pay-feature-grid strong {
+  color: #172554;
+  font-size: 15px;
+}
+
+.revision-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.revision-card {
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.revision-card > span {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff;
+  color: #2563eb;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.revision-card h3 {
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.revision-card p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.official-update-box {
+  padding: 22px;
+  margin-top: 18px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+}
+
+.official-update-box strong {
+  color: #1d4ed8;
+}
+
+.official-update-box p {
+  margin-top: 7px;
+  margin-bottom: 0;
+}
+
+.tools-link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.tools-link-grid a {
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.tools-link-grid a:hover {
+  border-color: #93c5fd;
+  transform: translateY(-2px);
+}
+
+.tools-link-grid strong {
+  display: block;
+  color: #0f172a;
+  margin-bottom: 5px;
+}
+
+.tools-link-grid span {
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 750px) {
+  .pay-feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .revision-grid,
+  .tools-link-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 450px) {
+  .pay-feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =================================
+   PAY MATRIX
+================================= */
+
+.pay-matrix-section {
+  margin-bottom: 45px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.matrix-heading {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.matrix-heading > div > span {
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.matrix-heading h2 {
+  margin-top: 4px;
+  font-size: 24px;
+}
+
+.matrix-count {
+  padding: 6px 11px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pay-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.pay-matrix-table th {
+  text-align: left;
+  padding: 14px 20px;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.pay-matrix-table td {
+  padding: 16px 20px;
+  border-top: 1px solid #f1f5f9;
+  color: #475569;
+  font-size: 14px;
+}
+
+.pay-matrix-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.pay-matrix-table td strong {
+  color: #0f172a;
+}
+
+.pay-matrix-table .basic-pay {
+  color: #172554;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.pay-matrix-table a {
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pay-matrix-section .source-note {
+  padding: 0 20px 20px;
+}
+
+.matrix-explain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 22px;
+}
+
+.matrix-explain-grid > div {
+  padding: 20px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.matrix-explain-grid > div > span {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff;
+  color: #2563eb;
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.matrix-explain-grid h3 {
+  margin: 12px 0 6px;
+}
+
+.matrix-explain-grid p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.level-example {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 20px 0;
+  background: #172554;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.level-example div {
+  padding: 22px;
+}
+
+.level-example div + div {
+  border-left: 1px solid #334155;
+}
+
+.level-example span {
+  display: block;
+  color: #93c5fd;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.level-example strong {
+  color: white;
+  font-size: 22px;
+}
+
+.salary-components {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin: 20px 0;
+}
+
+.salary-components div {
+  padding: 11px 14px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.salary-components span {
+  color: #94a3b8;
+  font-weight: 800;
+}
+
+.salary-components .total {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+}
+
+@media (max-width: 700px) {
+  .matrix-explain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .level-example {
+    grid-template-columns: 1fr;
+  }
+
+  .level-example div + div {
+    border-left: 0;
+    border-top: 1px solid #334155;
+  }
+
+  .matrix-heading {
+    align-items: flex-start;
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .pay-matrix-table th,
+  .pay-matrix-table td {
+    padding: 13px 14px;
+    white-space: nowrap;
+  }
+}
+/* =================================
+   GOVERNMENT SALARY CALCULATOR
+================================= */
+
+.salary-calculator-page {
+  max-width: 950px;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.salary-calculator-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+}
+
+.salary-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.salary-input-grid select {
+  width: 100%;
+  height: 50px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  outline: none;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.salary-input-grid select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.salary-result {
+  margin-top: 32px;
+}
+
+.salary-result-main {
+  padding: 28px;
+  border-radius: 12px;
+  background: #172554;
+  color: #ffffff;
+}
+
+.salary-result-main span {
+  display: block;
+  color: #bfdbfe;
+  font-size: 13px;
+  margin-bottom: 5px;
+}
+
+.salary-result-main strong {
+  font-size: 37px;
+  line-height: 1.2;
+}
+
+.salary-breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+  margin-top: 14px;
+}
+
+.salary-breakdown > div {
+  padding: 18px;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  background: #f8fafc;
+}
+
+.salary-breakdown span {
+  display: block;
+  color: #64748b;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.salary-breakdown strong {
+  color: #0f172a;
+  font-size: 18px;
+}
+
+.salary-breakdown .gross-box {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.salary-breakdown .gross-box strong {
+  color: #1d4ed8;
+}
+
+.salary-breakdown .take-home-box {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.salary-breakdown .take-home-box strong {
+  color: #15803d;
+}
+
+.annual-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.annual-summary > div {
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+}
+
+.annual-summary span {
+  display: block;
+  color: #64748b;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.annual-summary strong {
+  font-size: 20px;
+  color: #172554;
+}
+
+@media (max-width: 650px) {
+  .salary-calculator-card {
+    padding: 22px;
+  }
+
+  .salary-input-grid,
+  .salary-breakdown,
+  .annual-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: auto;
+  }
+
+  .salary-result-main strong {
+    font-size: 30px;
+  }
+}
+/* =================================
+   DA ARREARS CALCULATOR
+================================= */
+
+.arrears-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.arrears-warning {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .arrears-input-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =================================
+   STATE GOVERNMENT PAGES
+================================= */
+
+.state-page,
+.wb-page {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.section-kicker {
+  display: block;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 7px;
+}
+
+.state-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.state-card {
+  display: flex;
+  gap: 15px;
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: 0.2s ease;
+}
+
+.state-card:hover {
+  transform: translateY(-3px);
+  border-color: #bfdbfe;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+}
+
+.state-card-icon {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.state-card h3 {
+  color: #0f172a;
+  margin-bottom: 7px;
+}
+
+.state-card p {
+  color: #64748b;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.state-card span {
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.state-info-box {
+  margin-top: 45px;
+  padding: 30px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.state-info-box h2 {
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+.state-info-box p {
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+
+/* WEST BENGAL */
+
+.wb-hero {
+  padding: 75px 0;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.14), transparent 35%),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.wb-hero h1 {
+  max-width: 760px;
+  margin-top: 12px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.wb-hero p {
+  max-width: 700px;
+  margin-top: 16px;
+  color: #475569;
+  font-size: 17px;
+}
+
+.wb-hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 45px;
+  padding: 0 18px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.wb-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.wb-feature-card {
+  display: block;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  transition: 0.2s ease;
+}
+
+.wb-feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.07);
+}
+
+.wb-feature-label {
+  display: inline-block;
+  padding: 5px 9px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 13px;
+}
+
+.wb-feature-card h2 {
+  color: #0f172a;
+  font-size: 22px;
+  margin-bottom: 9px;
+}
+
+.wb-feature-card p {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.wb-feature-card strong {
+  color: #2563eb;
+  font-size: 13px;
+}
+
+.wb-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.wb-topic-grid > div {
+  padding: 22px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.wb-topic-grid h3 {
+  color: #0f172a;
+  margin-bottom: 7px;
+}
+
+.wb-topic-grid p {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.official-source-box {
+  margin: 45px 0;
+  padding: 28px;
+  border-radius: 14px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+}
+
+.official-source-box span {
+  display: block;
+  color: #92400e;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 7px;
+}
+
+.official-source-box h2 {
+  color: #78350f;
+  margin-bottom: 8px;
+}
+
+.official-source-box p {
+  color: #92400e;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .state-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .state-grid,
+  .wb-quick-grid,
+  .wb-topic-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-hero {
+    padding: 55px 0;
+  }
+
+  .wb-hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* =================================
+   CENTRAL GOVERNMENT HUB
+================================= */
+
+.central-page {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.central-hero {
+  padding: 75px 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.14),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.central-hero h1 {
+  max-width: 780px;
+  margin-top: 12px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.central-hero p {
+  max-width: 720px;
+  margin-top: 16px;
+  color: #475569;
+  font-size: 17px;
+}
+
+.central-hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 26px;
+}
+
+.central-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.central-feature-card {
+  display: block;
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 13px;
+  transition: 0.2s ease;
+}
+
+.central-feature-card:hover {
+  transform: translateY(-3px);
+  border-color: #bfdbfe;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.07);
+}
+
+.central-card-label {
+  display: inline-block;
+  margin-bottom: 13px;
+  padding: 5px 9px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.central-feature-card h2 {
+  margin-bottom: 8px;
+  color: #0f172a;
+  font-size: 20px;
+}
+
+.central-feature-card p {
+  min-height: 63px;
+  margin-bottom: 14px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.central-feature-card strong {
+  color: #2563eb;
+  font-size: 13px;
+}
+
+.central-salary-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-top: 22px;
+}
+
+.central-salary-flow > div {
+  padding: 21px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.central-salary-flow span {
+  display: block;
+  margin-bottom: 12px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.central-salary-flow h3 {
+  margin-bottom: 7px;
+  color: #0f172a;
+}
+
+.central-salary-flow p {
+  color: #64748b;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .central-quick-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .central-salary-flow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .central-quick-grid,
+  .central-salary-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .central-hero {
+    padding: 55px 0;
+  }
+
+  .central-hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .central-feature-card p {
+    min-height: auto;
+  }
+}
+/* =================================
+   CALCULATORS HUB
+================================= */
+
+.calculators-hub {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.calculators-hub > section > h2 {
+  margin-bottom: 22px;
+  color: #0f172a;
+}
+
+.calculators-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.calculator-hub-card {
+  display: block;
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 13px;
+  transition: 0.2s ease;
+}
+
+.calculator-hub-card:hover {
+  transform: translateY(-3px);
+  border-color: #bfdbfe;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.07);
+}
+
+.calculator-hub-tag {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.calculator-hub-card h3 {
+  margin-bottom: 8px;
+  color: #0f172a;
+  font-size: 20px;
+}
+
+.calculator-hub-card p {
+  margin-bottom: 14px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.calculator-hub-card strong {
+  color: #2563eb;
+  font-size: 13px;
+}
+
+.calculator-type-section {
+  margin-top: 55px;
+}
+
+.calculator-type-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.calculator-type-card {
+  padding: 28px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.calculator-type-card > span {
+  display: block;
+  margin-bottom: 8px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.calculator-type-card h3 {
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.calculator-type-card p {
+  margin-bottom: 14px;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.calculator-type-card strong {
+  color: #2563eb;
+  font-size: 13px;
+}
+
+@media (max-width: 650px) {
+  .calculators-hub-grid,
+  .calculator-type-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =================================
+   WEST BENGAL DA PAGE
+================================= */
+
+.wb-da-hero {
+  padding: 70px 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.13),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.wb-da-hero h1 {
+  max-width: 760px;
+  margin-top: 12px;
+  color: #0f172a;
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 1.08;
+}
+
+.wb-da-hero p {
+  max-width: 720px;
+  margin-top: 15px;
+  color: #475569;
+  font-size: 17px;
+}
+
+.wb-da-page {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.wb-da-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 35px;
+  align-items: start;
+}
+
+.wb-da-main {
+  min-width: 0;
+}
+
+.wb-da-current-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  padding: 30px;
+  background: #172554;
+  color: #ffffff;
+  border-radius: 14px;
+}
+
+.wb-da-small-label {
+  display: block;
+  margin-bottom: 6px;
+  color: #bfdbfe;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.wb-da-current-card h2 {
+  margin: 0;
+  font-size: 42px;
+  color: #ffffff;
+}
+
+.wb-da-current-card p {
+  margin-top: 4px;
+  color: #cbd5e1;
+  font-size: 13px;
+}
+
+.wb-da-effective {
+  min-width: 180px;
+  padding-left: 25px;
+  border-left: 1px solid #334155;
+}
+
+.wb-da-effective span {
+  display: block;
+  margin-bottom: 5px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.wb-da-effective strong {
+  font-size: 17px;
+}
+
+.wb-da-order-note {
+  margin-top: 12px;
+  padding: 13px 16px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  color: #1e40af;
+  font-size: 13px;
+}
+
+.status-current {
+  display: inline-block;
+  padding: 4px 8px;
+  background: #dcfce7;
+  color: #166534;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.wb-arrears-info {
+  margin: 18px 0 22px;
+  padding: 20px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+}
+
+.wb-arrears-info h3 {
+  margin-bottom: 7px;
+  color: #9a3412;
+}
+
+.wb-arrears-info p {
+  margin: 0;
+  color: #7c2d12;
+  font-size: 14px;
+}
+
+.wb-da-sidebar {
+  position: sticky;
+  top: 95px;
+}
+
+.wb-da-sidebar .sidebar-card {
+  margin-bottom: 18px;
+}
+
+.wb-da-sidebar .sidebar-card a {
+  display: block;
+  padding: 8px 0;
+  color: #475569;
+  font-size: 13px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.wb-da-sidebar .sidebar-card a:last-child {
+  border-bottom: 0;
+}
+
+.wb-da-sidebar .sidebar-card a:hover {
+  color: #2563eb;
+}
+
+.text-link {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+@media (max-width: 850px) {
+  .wb-da-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-da-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .wb-da-hero {
+    padding: 52px 0;
+  }
+
+  .wb-da-current-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .wb-da-effective {
+    width: 100%;
+    padding-left: 0;
+    padding-top: 18px;
+    border-left: 0;
+    border-top: 1px solid #334155;
+  }
+
+  .wb-da-current-card h2 {
+    font-size: 35px;
+  }
+}
+/* =================================
+   WEST BENGAL PAY STRUCTURE
+================================= */
+
+.wb-pay-hero {
+  padding: 70px 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.13),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.wb-pay-hero h1 {
+  max-width: 780px;
+  margin-top: 12px;
+  color: #0f172a;
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 1.08;
+}
+
+.wb-pay-hero p {
+  max-width: 700px;
+  margin-top: 15px;
+  color: #475569;
+  font-size: 17px;
+}
+
+.wb-pay-page {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.wb-pay-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 35px;
+  align-items: start;
+}
+
+.wb-pay-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 35px;
+}
+
+.wb-pay-summary > div {
+  padding: 24px;
+  background: #172554;
+  border-radius: 12px;
+}
+
+.wb-pay-summary span {
+  display: block;
+  margin-bottom: 6px;
+  color: #93c5fd;
+  font-size: 12px;
+}
+
+.wb-pay-summary strong {
+  color: #ffffff;
+  font-size: 21px;
+}
+
+.wb-pay-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.wb-pay-feature-grid > div {
+  padding: 22px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.wb-pay-feature-grid span {
+  display: block;
+  margin-bottom: 10px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.wb-pay-feature-grid h3 {
+  margin-bottom: 7px;
+  color: #0f172a;
+}
+
+.wb-pay-feature-grid p {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.wb-pay-update-box {
+  margin-top: 20px;
+  padding: 20px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+}
+
+.wb-pay-update-box span {
+  display: block;
+  margin-bottom: 6px;
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.wb-pay-update-box p {
+  margin: 0;
+  color: #1e3a8a;
+  font-size: 14px;
+}
+
+.wb-pay-sidebar {
+  position: sticky;
+  top: 95px;
+}
+
+.wb-pay-sidebar .sidebar-card {
+  margin-bottom: 18px;
+}
+
+.wb-pay-sidebar .sidebar-card a {
+  display: block;
+  padding: 8px 0;
+  color: #475569;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+}
+
+.wb-pay-sidebar .sidebar-card a:last-child {
+  border-bottom: 0;
+}
+
+.wb-pay-sidebar .sidebar-card a:hover {
+  color: #2563eb;
+}
+
+@media (max-width: 850px) {
+  .wb-pay-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-pay-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .wb-pay-summary,
+  .wb-pay-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-pay-hero {
+    padding: 52px 0;
+  }
+}
+/* =================================
+   WEST BENGAL PAY MATRIX
+================================= */
+
+.wb-matrix-hero {
+  padding: 70px 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.13),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.wb-matrix-hero h1 {
+  max-width: 760px;
+  margin-top: 12px;
+  color: #0f172a;
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 1.08;
+}
+
+.wb-matrix-hero p {
+  max-width: 720px;
+  margin-top: 15px;
+  color: #475569;
+  font-size: 17px;
+}
+
+.wb-matrix-page {
+  max-width: 1050px;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.matrix-info-banner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.matrix-info-banner > div {
+  padding: 20px;
+  background: #172554;
+  border-radius: 10px;
+}
+
+.matrix-info-banner span {
+  display: block;
+  margin-bottom: 5px;
+  color: #93c5fd;
+  font-size: 11px;
+}
+
+.matrix-info-banner strong {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.wb-matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+
+.wb-matrix-table th {
+  padding: 14px 16px;
+  text-align: left;
+  background: #172554;
+  color: #ffffff;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.wb-matrix-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 13px;
+}
+
+.wb-matrix-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.wb-matrix-table td strong {
+  color: #0f172a;
+}
+
+.matrix-calc-link {
+  color: #2563eb;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.special-level-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.special-level-card {
+  padding: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.special-level-card > span {
+  display: block;
+  margin-bottom: 8px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.special-level-card strong {
+  display: block;
+  color: #0f172a;
+  font-size: 19px;
+}
+
+.special-level-card p {
+  margin: 4px 0 8px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.special-level-card small {
+  color: #94a3b8;
+}
+
+.matrix-step-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.matrix-step-grid > div {
+  padding: 22px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.matrix-step-grid span {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 12px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 800;
+}
+
+.matrix-step-grid h3 {
+  margin-bottom: 7px;
+  color: #0f172a;
+}
+
+.matrix-step-grid p {
+  color: #64748b;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .special-level-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .matrix-info-banner,
+  .matrix-step-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .special-level-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .special-level-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =================================
+   ROPA PDF DOWNLOAD
+================================= */
+
+.ropa-download-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 30px 0 45px;
+  padding: 28px 30px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 14px;
+}
+
+.ropa-download-content {
+  max-width: 650px;
+}
+
+.ropa-download-label {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ropa-download-content h2 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 22px;
+}
+
+.ropa-download-content p {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.ropa-document-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.ropa-document-info span {
+  padding: 5px 9px;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 6px;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.ropa-download-button {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 18px;
+  background: #2563eb;
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.ropa-download-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+  .ropa-download-box {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px;
+  }
+
+  .ropa-download-button {
+    width: 100%;
+  }
+}
+/* =================================
+   WEST BENGAL SALARY CALCULATOR
+================================= */
+
+.wb-salary-hero {
+  padding: 70px 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.13),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.wb-salary-hero h1 {
+  max-width: 800px;
+  margin-top: 12px;
+  color: #0f172a;
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 1.08;
+}
+
+.wb-salary-hero p {
+  max-width: 720px;
+  margin-top: 15px;
+  color: #475569;
+  font-size: 17px;
+}
+
+.wb-salary-page {
+  max-width: 1050px;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.wb-salary-calculator {
+  padding: 32px;
+  margin-bottom: 50px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+}
+
+.wb-salary-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.wb-salary-input-grid select {
+  width: 100%;
+  height: 48px;
+  padding: 0 13px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #0f172a;
+  font-size: 14px;
+  outline: none;
+}
+
+.wb-salary-input-grid select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.wb-salary-input-grid .form-group small {
+  display: block;
+  margin-top: 6px;
+  color: #94a3b8;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.wb-salary-results {
+  margin-top: 32px;
+}
+
+.wb-salary-main-result {
+  padding: 28px;
+  background: #172554;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.wb-salary-main-result span {
+  display: block;
+  color: #bfdbfe;
+  font-size: 13px;
+}
+
+.wb-salary-main-result strong {
+  display: block;
+  margin: 8px 0 3px;
+  color: #ffffff;
+  font-size: clamp(30px, 5vw, 42px);
+}
+
+.wb-salary-main-result small {
+  color: #94a3b8;
+}
+
+.wb-salary-result-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.wb-salary-result-grid > div {
+  padding: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+}
+
+.wb-salary-result-grid span {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.wb-salary-result-grid strong {
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.wb-annual-result {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.wb-annual-result > div {
+  padding: 20px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 9px;
+}
+
+.wb-annual-result span {
+  display: block;
+  margin-bottom: 6px;
+  color: #1e40af;
+  font-size: 11px;
+}
+
+.wb-annual-result strong {
+  color: #172554;
+  font-size: 18px;
+}
+
+.wb-salary-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.secondary-content-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 17px;
+  background: #ffffff;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.secondary-content-button:hover {
+  background: #eff6ff;
+}
+
+@media (max-width: 800px) {
+  .wb-salary-result-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .wb-salary-hero {
+    padding: 52px 0;
+  }
+
+  .wb-salary-calculator {
+    padding: 22px;
+  }
+
+  .wb-salary-input-grid,
+  .wb-annual-result {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 450px) {
+  .wb-salary-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-salary-actions {
+    flex-direction: column;
+  }
+
+  .wb-salary-actions a {
+    width: 100%;
+  }
+}
+/* =================================
+   WEST BENGAL DA ARREARS CALCULATOR
+================================= */
+
+.wb-arrears-hero {
+  padding: 70px 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.13),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.wb-arrears-hero h1 {
+  max-width: 800px;
+  margin-top: 12px;
+  color: #0f172a;
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 1.08;
+}
+
+.wb-arrears-hero p {
+  max-width: 720px;
+  margin-top: 15px;
+  color: #475569;
+  font-size: 17px;
+}
+
+.wb-arrears-page {
+  max-width: 1000px;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.wb-arrears-calculator {
+  padding: 32px;
+  margin-bottom: 50px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+}
+
+.wb-arrears-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.wb-arrears-results {
+  margin-top: 30px;
+}
+
+.wb-arrears-main-result {
+  padding: 28px;
+  background: #172554;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.wb-arrears-main-result span {
+  display: block;
+  color: #bfdbfe;
+  font-size: 13px;
+}
+
+.wb-arrears-main-result strong {
+  display: block;
+  margin: 8px 0 4px;
+  color: #ffffff;
+  font-size: clamp(30px, 5vw, 42px);
+}
+
+.wb-arrears-main-result small {
+  color: #94a3b8;
+}
+
+.wb-arrears-result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.wb-arrears-result-grid > div {
+  padding: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+}
+
+.wb-arrears-result-grid span {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.wb-arrears-result-grid strong {
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.wb-arrears-warning {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  color: #9a3412;
+  font-size: 13px;
+}
+
+.wb-arrears-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 700px) {
+  .wb-arrears-hero {
+    padding: 52px 0;
+  }
+
+  .wb-arrears-calculator {
+    padding: 22px;
+  }
+
+  .wb-arrears-input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-arrears-result-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .wb-arrears-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-arrears-actions {
+    flex-direction: column;
+  }
+
+  .wb-arrears-actions a {
+    width: 100%;
+  }
+}
+/* =================================
+   WEST BENGAL PENSION PAGE
+================================= */
+
+.wb-pension-hero {
+  padding: 70px 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.13),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.wb-pension-hero h1 {
+  max-width: 820px;
+  margin-top: 12px;
+  color: #0f172a;
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 1.08;
+}
+
+.wb-pension-hero p {
+  max-width: 720px;
+  margin-top: 15px;
+  color: #475569;
+  font-size: 17px;
+}
+
+.wb-pension-page {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.wb-pension-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 35px;
+  align-items: start;
+}
+
+.wb-pension-main {
+  min-width: 0;
+}
+
+.wb-pension-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 35px;
+}
+
+.wb-pension-summary > div {
+  padding: 22px;
+  background: #172554;
+  border-radius: 11px;
+}
+
+.wb-pension-summary span {
+  display: block;
+  margin-bottom: 6px;
+  color: #93c5fd;
+  font-size: 11px;
+}
+
+.wb-pension-summary strong {
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.wb-dr-difference {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.wb-dr-difference > div {
+  padding: 22px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.wb-dr-difference span {
+  display: block;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.wb-dr-difference strong {
+  display: block;
+  margin: 5px 0;
+  color: #2563eb;
+  font-size: 25px;
+}
+
+.wb-dr-difference p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.wb-pension-note {
+  margin-top: 20px;
+  padding: 18px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 9px;
+}
+
+.wb-pension-note strong {
+  color: #9a3412;
+}
+
+.wb-pension-note p {
+  margin: 5px 0 0;
+  color: #7c2d12;
+  font-size: 13px;
+}
+
+.wb-pension-arrears-box {
+  margin: 20px 0;
+  padding: 22px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+}
+
+.wb-pension-arrears-box > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.wb-pension-arrears-box h3 {
+  margin-bottom: 7px;
+  color: #172554;
+}
+
+.wb-pension-arrears-box p {
+  margin: 0;
+  color: #475569;
+  font-size: 13px;
+}
+
+.wb-pension-component-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.wb-pension-component-grid > div {
+  padding: 22px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.wb-pension-component-grid span {
+  display: block;
+  margin-bottom: 9px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.wb-pension-component-grid h3 {
+  margin-bottom: 7px;
+  color: #0f172a;
+}
+
+.wb-pension-component-grid p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.wb-pension-sidebar {
+  position: sticky;
+  top: 95px;
+}
+
+.wb-pension-sidebar .sidebar-card {
+  margin-bottom: 18px;
+}
+
+.wb-pension-sidebar .sidebar-card a {
+  display: block;
+  padding: 8px 0;
+  color: #475569;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+}
+
+.wb-pension-sidebar .sidebar-card a:last-child {
+  border-bottom: 0;
+}
+
+.wb-pension-sidebar .sidebar-card a:hover {
+  color: #2563eb;
+}
+
+@media (max-width: 850px) {
+  .wb-pension-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-pension-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 650px) {
+  .wb-pension-hero {
+    padding: 52px 0;
+  }
+
+  .wb-pension-summary,
+  .wb-dr-difference,
+  .wb-pension-component-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =================================
+   WEST BENGAL PENSION CALCULATOR
+================================= */
+
+.wb-pension-calc-hero {
+  padding: 70px 0;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.13),
+      transparent 35%
+    ),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.wb-pension-calc-hero h1 {
+  max-width: 820px;
+  margin-top: 12px;
+  color: #0f172a;
+  font-size: clamp(36px, 5vw, 54px);
+  line-height: 1.08;
+}
+
+.wb-pension-calc-hero p {
+  max-width: 720px;
+  margin-top: 15px;
+  color: #475569;
+  font-size: 17px;
+}
+
+.wb-pension-calc-page {
+  max-width: 1000px;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.wb-pension-calc-card {
+  padding: 32px;
+  margin-bottom: 50px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+}
+
+.wb-pension-calc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 28px;
+}
+
+.wb-pension-calc-grid .form-group small {
+  display: block;
+  margin-top: 6px;
+  color: #94a3b8;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.wb-pension-calc-results {
+  margin-top: 32px;
+}
+
+.wb-pension-calc-main {
+  padding: 28px;
+  background: #172554;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.wb-pension-calc-main span {
+  display: block;
+  color: #bfdbfe;
+  font-size: 13px;
+}
+
+.wb-pension-calc-main strong {
+  display: block;
+  margin: 8px 0 4px;
+  color: #ffffff;
+  font-size: clamp(30px, 5vw, 42px);
+}
+
+.wb-pension-calc-main small {
+  color: #94a3b8;
+}
+
+.wb-pension-calc-result-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.wb-pension-calc-result-grid > div {
+  padding: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+}
+
+.wb-pension-calc-result-grid span {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.wb-pension-calc-result-grid strong {
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.wb-pension-calc-annual {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.wb-pension-calc-annual > div {
+  padding: 20px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 9px;
+}
+
+.wb-pension-calc-annual span {
+  display: block;
+  margin-bottom: 6px;
+  color: #1e40af;
+  font-size: 11px;
+}
+
+.wb-pension-calc-annual strong {
+  color: #172554;
+  font-size: 18px;
+}
+
+.wb-pension-calc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+@media (max-width: 800px) {
+  .wb-pension-calc-result-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .wb-pension-calc-hero {
+    padding: 52px 0;
+  }
+
+  .wb-pension-calc-card {
+    padding: 22px;
+  }
+
+  .wb-pension-calc-grid,
+  .wb-pension-calc-annual {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 450px) {
+  .wb-pension-calc-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-pension-calc-actions {
+    flex-direction: column;
+  }
+
+  .wb-pension-calc-actions a {
+    width: 100%;
+  }
+}
+/* =================================
+   WEST BENGAL MAIN HUB
+================================= */
+
+.wb-hub-page {
+  background: #ffffff;
+}
+
+.wb-hub-hero {
+  padding: 82px 0;
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(37, 99, 235, 0.14),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #eff6ff 0%, #ffffff 60%);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.wb-hub-hero h1 {
+  max-width: 880px;
+  margin: 14px 0 0;
+  color: #0f172a;
+  font-size: clamp(38px, 5.5vw, 60px);
+  line-height: 1.06;
+  letter-spacing: -1.5px;
+}
+
+.wb-hub-hero p {
+  max-width: 760px;
+  margin-top: 18px;
+  color: #475569;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.wb-hub-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.wb-hub-container {
+  padding-top: 65px;
+  padding-bottom: 85px;
+}
+
+.wb-hub-section {
+  margin-bottom: 75px;
+}
+
+.wb-hub-section-heading {
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+
+.wb-hub-section-heading > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.wb-hub-section-heading h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(27px, 4vw, 36px);
+  line-height: 1.2;
+}
+
+.wb-hub-section-heading p {
+  margin: 10px 0 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* Main resource cards */
+
+.wb-hub-resource-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wb-hub-resource-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 250px;
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.04);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.wb-hub-resource-card:hover {
+  transform: translateY(-4px);
+  border-color: #93c5fd;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+}
+
+.wb-hub-card-label {
+  display: block;
+  margin-bottom: 9px;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.wb-hub-resource-card h3 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 19px;
+}
+
+.wb-hub-resource-card p {
+  margin: 11px 0 20px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.wb-hub-resource-card strong {
+  margin-top: auto;
+  color: #2563eb;
+  font-size: 12px;
+}
+
+/* Calculators */
+
+.wb-hub-calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wb-hub-calculator-card {
+  padding: 24px;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.wb-hub-calculator-card:hover {
+  transform: translateY(-4px);
+  background: #172554;
+}
+
+.wb-hub-tool-number {
+  margin-bottom: 25px;
+  color: #60a5fa;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.wb-hub-calculator-card h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.wb-hub-calculator-card p {
+  min-height: 68px;
+  margin: 10px 0 20px;
+  color: #94a3b8;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.wb-hub-calculator-card > span {
+  color: #bfdbfe;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Salary structure */
+
+.wb-hub-salary-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.wb-hub-salary-flow > div {
+  padding: 24px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.wb-hub-salary-flow span {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.wb-hub-salary-flow h3 {
+  margin: 0 0 7px;
+  color: #0f172a;
+  font-size: 17px;
+}
+
+.wb-hub-salary-flow p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+/* ROPA section */
+
+.wb-hub-ropa-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 270px;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 75px;
+  padding: 38px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+}
+
+.wb-hub-ropa-content h2 {
+  margin: 0 0 10px;
+  color: #172554;
+  font-size: 30px;
+}
+
+.wb-hub-ropa-content p {
+  max-width: 680px;
+  margin: 0;
+  color: #475569;
+  line-height: 1.75;
+}
+
+.wb-hub-ropa-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.wb-hub-ropa-stat {
+  padding: 32px 24px;
+  background: #172554;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.wb-hub-ropa-stat span {
+  display: block;
+  color: #93c5fd;
+  font-size: 12px;
+}
+
+.wb-hub-ropa-stat strong {
+  display: block;
+  margin: 7px 0;
+  color: #ffffff;
+  font-size: 25px;
+}
+
+.wb-hub-ropa-stat small {
+  color: #94a3b8;
+}
+
+/* DA + pension panels */
+
+.wb-hub-two-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-bottom: 75px;
+}
+
+.wb-hub-info-panel {
+  padding: 30px;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+  background: #ffffff;
+}
+
+.wb-hub-info-panel h2 {
+  margin: 0 0 9px;
+  color: #0f172a;
+  font-size: 24px;
+}
+
+.wb-hub-info-panel p {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.wb-hub-panel-links {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.wb-hub-panel-links a {
+  padding: 11px 0;
+  color: #2563eb;
+  border-top: 1px solid #f1f5f9;
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.wb-hub-panel-links a:hover {
+  color: #1d4ed8;
+}
+
+/* Official source */
+
+.wb-hub-official {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 75px;
+  padding: 30px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 14px;
+}
+
+.wb-hub-official > div {
+  max-width: 700px;
+}
+
+.wb-hub-official h2 {
+  margin: 0 0 8px;
+  color: #7c2d12;
+  font-size: 23px;
+}
+
+.wb-hub-official p {
+  margin: 0;
+  color: #9a3412;
+  line-height: 1.65;
+}
+
+/* Bottom navigation */
+
+.wb-hub-bottom-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.wb-hub-bottom-links a {
+  padding: 22px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.wb-hub-bottom-links a:hover {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.wb-hub-bottom-links span {
+  display: block;
+  margin-bottom: 7px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.wb-hub-bottom-links strong {
+  color: #0f172a;
+  font-size: 14px;
+}
+
+/* Responsive */
+
+@media (max-width: 1000px) {
+  .wb-hub-resource-grid,
+  .wb-hub-calculator-grid,
+  .wb-hub-salary-flow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .wb-hub-hero {
+    padding: 58px 0;
+  }
+
+  .wb-hub-hero h1 {
+    letter-spacing: -0.8px;
+  }
+
+  .wb-hub-ropa-box {
+    grid-template-columns: 1fr;
+    padding: 26px;
+  }
+
+  .wb-hub-ropa-stat {
+    max-width: 100%;
+  }
+
+  .wb-hub-two-column,
+  .wb-hub-bottom-links {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-hub-official {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .wb-hub-resource-grid,
+  .wb-hub-calculator-grid,
+  .wb-hub-salary-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .wb-hub-resource-card {
+    min-height: auto;
+  }
+
+  .wb-hub-calculator-card p {
+    min-height: auto;
+  }
+
+  .wb-hub-hero-actions,
+  .wb-hub-ropa-actions {
+    flex-direction: column;
+  }
+
+  .wb-hub-hero-actions a,
+  .wb-hub-ropa-actions a {
+    width: 100%;
+  }
+}
+/* =================================
+   LEGAL / CONTACT PAGES
+================================= */
+
+.legal-hero {
+  padding: 68px 0;
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(37, 99, 235, 0.12),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #eff6ff, #ffffff);
+  border-bottom: 1px solid #dbeafe;
+}
+
+.legal-hero h1 {
+  max-width: 800px;
+  margin: 12px 0 0;
+  color: #0f172a;
+  font-size: clamp(36px, 5vw, 52px);
+  line-height: 1.1;
+}
+
+.legal-hero p {
+  max-width: 700px;
+  margin: 15px 0 0;
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.legal-content-container {
+  padding-top: 55px;
+  padding-bottom: 85px;
+}
+
+.contact-page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 40px;
+  align-items: start;
+}
+
+.legal-content {
+  min-width: 0;
+}
+
+.legal-content section {
+  margin-bottom: 42px;
+}
+
+.legal-content h2 {
+  margin: 0 0 14px;
+  color: #0f172a;
+  font-size: 25px;
+}
+
+.legal-content p {
+  margin: 0 0 14px;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.contact-email-box {
+  padding: 22px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 11px;
+}
+
+.contact-email-box span {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.contact-email-box a {
+  color: #2563eb;
+  font-size: 18px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.contact-email-box a:hover {
+  text-decoration: underline;
+}
+
+.legal-small-note {
+  margin-top: 8px !important;
+  color: #94a3b8 !important;
+  font-size: 11px !important;
+}
+
+.contact-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+}
+
+.contact-topic-grid > div {
+  padding: 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.contact-topic-grid strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.contact-topic-grid p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.contact-warning {
+  margin-bottom: 18px;
+  padding: 20px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+}
+
+.contact-warning strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #9a3412;
+}
+
+.contact-warning p {
+  margin: 0;
+  color: #7c2d12;
+  font-size: 13px;
+}
+
+.legal-sidebar {
+  position: sticky;
+  top: 95px;
+}
+
+.legal-sidebar-card {
+  margin-bottom: 15px;
+  padding: 21px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 11px;
+}
+
+.legal-sidebar-card h3 {
+  margin: 0 0 9px;
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.legal-sidebar-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.legal-sidebar-card a {
+  display: block;
+  padding: 8px 0;
+  color: #475569;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.legal-sidebar-card a:last-child {
+  border-bottom: 0;
+}
+
+.legal-sidebar-card a:hover {
+  color: #2563eb;
+}
+
+.legal-bottom-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 25px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.legal-bottom-nav a {
+  padding: 9px 13px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  color: #334155;
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.legal-bottom-nav a:hover {
+  border-color: #bfdbfe;
+  color: #2563eb;
+}
+
+@media (max-width: 800px) {
+  .contact-page-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .legal-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 550px) {
+  .legal-hero {
+    padding: 50px 0;
+  }
+
+  .contact-topic-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Disclaimer / Legal Lists */
+
+.legal-list {
+  margin: 14px 0 20px;
+  padding-left: 22px;
+  color: #475569;
+}
+
+.legal-list li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.legal-list li::marker {
+  color: #2563eb;
+}
+/* Privacy Policy */
+
+.privacy-info-box {
+  margin: 18px 0;
+  padding: 20px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+}
+
+.privacy-info-box strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #1d4ed8;
+}
+
+.privacy-info-box p {
+  margin: 0;
+  color: #334155;
+  font-size: 13px;
+  line-height: 1.7;
+}
+/* =================================
+   ABOUT PAGE
+================================= */
+
+.about-purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+  margin-top: 20px;
+}
+
+.about-purpose-grid > div {
+  padding: 21px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.about-purpose-grid span {
+  display: block;
+  margin-bottom: 10px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.about-purpose-grid strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #0f172a;
+  font-size: 16px;
+}
+
+.about-purpose-grid p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.about-link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 13px;
+  margin-top: 20px;
+}
+
+.about-link-grid a {
+  padding: 20px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+  text-decoration: none;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.about-link-grid a:hover {
+  background: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.about-link-grid span {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.about-link-grid strong {
+  color: #1d4ed8;
+  font-size: 14px;
+}
+
+.about-source-box {
+  margin-top: 20px;
+  padding: 20px;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 10px;
+}
+
+.about-source-box strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #047857;
+}
+
+.about-source-box p {
+  margin: 0;
+  color: #065f46;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .about-purpose-grid,
+  .about-link-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =================================
+   FOOTER
+================================= */
+
+.site-footer {
+  margin-top: 70px;
+  background: #0f172a;
+  color: #cbd5e1;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr repeat(4, 1fr);
+  gap: 38px;
+  padding-top: 58px;
+  padding-bottom: 45px;
+}
+
+.footer-brand {
+  max-width: 330px;
+}
+
+.footer-logo {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.footer-logo span {
+  color: #60a5fa;
+}
+
+.footer-brand p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.footer-trust-note {
+  margin-top: 18px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.footer-column h3 {
+  margin: 0 0 15px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.footer-column a {
+  display: block;
+  margin-bottom: 10px;
+  color: #94a3b8;
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: #60a5fa;
+}
+
+.footer-source-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  border-top: 1px solid #1e293b;
+}
+
+.footer-source-box > div:first-child {
+  max-width: 620px;
+}
+
+.footer-source-box strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #e2e8f0;
+  font-size: 12px;
+}
+
+.footer-source-box p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.footer-source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.footer-source-links a {
+  color: #93c5fd;
+  font-size: 11px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.footer-source-links a:hover {
+  color: #dbeafe;
+}
+
+.footer-bottom {
+  border-top: 1px solid #1e293b;
+  background: #020617;
+}
+
+.footer-bottom-inner {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-bottom-inner p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+}
+
+@media (max-width: 1100px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-brand {
+    max-width: none;
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 750px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    padding-top: 45px;
+  }
+
+  .footer-brand {
+    grid-column: span 2;
+  }
+
+  .footer-source-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 17px;
+    padding-bottom: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+
+  .footer-source-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-main {
+  flex: 1;
+}
+/* =================================
+   PENSION MAIN HUB
+================================= */
+
+.pension-hub-page {
+  background: #ffffff;
+}
+
+.pension-hub-hero {
+  padding: 72px 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(239, 246, 255, 0.95),
+      rgba(248, 250, 252, 0.98)
+    );
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.pension-hub-hero h1 {
+  max-width: 820px;
+  margin: 15px 0 16px;
+  color: #0f172a;
+  font-size: clamp(34px, 5vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+}
+
+.pension-hub-hero p {
+  max-width: 720px;
+  margin: 0;
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.pension-hub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.pension-hub-section {
+  padding-top: 65px;
+  padding-bottom: 65px;
+}
+
+.pension-section-heading {
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+
+.pension-section-heading > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pension-section-heading h2 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.pension-section-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.pension-resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.pension-resource-card {
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.pension-resource-card:hover {
+  transform: translateY(-3px);
+  border-color: #bfdbfe;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+}
+
+.pension-card-label {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 9px;
+  background: #eff6ff;
+  border-radius: 6px;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.pension-resource-card h3 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-size: 19px;
+}
+
+.pension-resource-card p {
+  min-height: 74px;
+  margin: 0 0 18px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.pension-resource-card strong {
+  color: #2563eb;
+  font-size: 12px;
+}
+
+.pension-hub-light-section {
+  padding: 65px 0;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.pension-basics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.pension-basic-card {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.pension-basic-card > span {
+  display: block;
+  margin-bottom: 12px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.pension-basic-card h3 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 17px;
+}
+
+.pension-basic-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.pension-two-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.pension-info-panel {
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.pension-panel-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pension-info-panel h2 {
+  margin: 0 0 13px;
+  color: #0f172a;
+  font-size: 23px;
+}
+
+.pension-info-panel > p {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.pension-formula-box {
+  margin: 20px 0;
+  padding: 17px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 9px;
+  color: #1d4ed8;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.pension-example-box {
+  padding: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+}
+
+.pension-example-box span {
+  display: block;
+  margin-bottom: 8px;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.pension-example-box p {
+  margin: 5px 0;
+  color: #475569;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.pension-example-box strong {
+  display: block;
+  margin: 10px 0;
+  color: #0f172a;
+  font-size: 17px;
+}
+
+.pension-small-note {
+  margin-top: 13px;
+  color: #94a3b8 !important;
+  font-size: 11px !important;
+}
+
+.pension-hub-calculator-section {
+  padding: 20px 0 65px;
+}
+
+.pension-calculator-callout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 34px;
+  background: #0f172a;
+  border-radius: 16px;
+}
+
+.pension-calculator-callout > div {
+  max-width: 680px;
+}
+
+.pension-calculator-callout span {
+  display: block;
+  margin-bottom: 8px;
+  color: #93c5fd;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.pension-calculator-callout h2 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 27px;
+}
+
+.pension-calculator-callout p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.pension-hub-disclaimer {
+  margin-bottom: 65px;
+  padding: 22px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+}
+
+.pension-hub-disclaimer strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #c2410c;
+}
+
+.pension-hub-disclaimer p {
+  margin: 0;
+  color: #7c2d12;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+@media (max-width: 1000px) {
+  .pension-resource-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pension-basics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .pension-hub-hero {
+    padding: 55px 0;
+  }
+
+  .pension-hub-section,
+  .pension-hub-light-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .pension-resource-grid,
+  .pension-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .pension-calculator-callout {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .pension-basics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pension-hub-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pension-hub-actions a {
+    text-align: center;
+  }
+
+  .pension-info-panel {
+    padding: 22px;
+  }
+
+  .pension-calculator-callout {
+    padding: 25px;
+  }
+} 
+/* =================================
+   GUIDES MAIN HUB
+================================= */
+
+.guides-page {
+  background: #ffffff;
+}
+
+.guides-hero {
+  padding: 72px 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(239, 246, 255, 0.96),
+      rgba(248, 250, 252, 0.98)
+    );
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.guides-hero h1 {
+  max-width: 850px;
+  margin: 15px 0 16px;
+  color: #0f172a;
+  font-size: clamp(35px, 5vw, 55px);
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+}
+
+.guides-hero p {
+  max-width: 720px;
+  margin: 0;
+  color: #475569;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.guides-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.guides-section {
+  padding-top: 65px;
+  padding-bottom: 65px;
+}
+
+.guides-heading {
+  max-width: 730px;
+  margin-bottom: 28px;
+}
+
+.guides-heading > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.guides-heading h2 {
+  margin: 0 0 10px;
+  color: #0f172a;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.guides-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+/* Category Cards */
+
+.guides-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 17px;
+}
+
+.guide-category-card {
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.guide-category-card:hover {
+  transform: translateY(-3px);
+  border-color: #bfdbfe;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+}
+
+.guide-number {
+  display: block;
+  margin-bottom: 17px;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.guide-category-card h3 {
+  margin: 0 0 9px;
+  color: #0f172a;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.guide-category-card p {
+  min-height: 95px;
+  margin: 0 0 18px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.guide-category-card strong {
+  color: #2563eb;
+  font-size: 12px;
+}
+
+/* Popular Topics */
+
+.guides-light-section {
+  padding: 65px 0;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.guides-topic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.guide-topic-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.guide-topic-card:hover {
+  border-color: #bfdbfe;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+.guide-topic-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff;
+  border-radius: 9px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.guide-topic-card h3 {
+  margin: 0 0 5px;
+  color: #0f172a;
+  font-size: 15px;
+}
+
+.guide-topic-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+/* West Bengal Guide Cards */
+
+.wb-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.wb-guide-card {
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 13px;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.wb-guide-card:hover {
+  transform: translateY(-3px);
+  border-color: #93c5fd;
+}
+
+.wb-guide-card > span {
+  display: inline-block;
+  margin-bottom: 13px;
+  padding: 6px 9px;
+  background: #eff6ff;
+  border-radius: 6px;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 850;
+}
+
+.wb-guide-card h3 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 17px;
+}
+
+.wb-guide-card p {
+  min-height: 78px;
+  margin: 0 0 15px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.wb-guide-card strong {
+  color: #2563eb;
+  font-size: 11px;
+}
+
+/* Calculator CTA */
+
+.guides-calculator-section {
+  padding: 15px 0 65px;
+}
+
+.guides-calculator-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 36px;
+  background: #0f172a;
+  border-radius: 16px;
+}
+
+.guides-calculator-box > div {
+  max-width: 680px;
+}
+
+.guides-calculator-box span {
+  display: block;
+  margin-bottom: 8px;
+  color: #93c5fd;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.guides-calculator-box h2 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 27px;
+}
+
+.guides-calculator-box p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* Info Section */
+
+.guides-two-column {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.guides-info-card {
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.guide-info-label {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.guides-info-card h2 {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-size: 22px;
+}
+
+.guides-info-card p {
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+/* Disclaimer */
+
+.guides-disclaimer {
+  margin-bottom: 65px;
+  padding: 22px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+}
+
+.guides-disclaimer strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #c2410c;
+}
+
+.guides-disclaimer p {
+  margin: 0;
+  color: #7c2d12;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Responsive */
+
+@media (max-width: 1050px) {
+  .guides-category-grid,
+  .wb-guide-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .guides-topic-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .guide-category-card p,
+  .wb-guide-card p {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 750px) {
+  .guides-hero {
+    padding: 55px 0;
+  }
+
+  .guides-section,
+  .guides-light-section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .guides-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .guides-calculator-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 550px) {
+  .guides-category-grid,
+  .guides-topic-grid,
+  .wb-guide-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guides-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .guides-hero-actions a {
+    text-align: center;
+  }
+
+  .guides-calculator-box {
+    padding: 25px;
+  }
+
+  .guides-info-card {
+    padding: 22px;
+  }
+}
+/* =================================
+   CENTRAL GOVERNMENT HRA CALCULATOR
+================================= */
+
+.hra-pro-page {
+  background: #ffffff;
+}
+
+.hra-pro-hero {
+  padding: 68px 0;
+  background: linear-gradient(
+    135deg,
+    #eff6ff 0%,
+    #f8fafc 55%,
+    #ffffff 100%
+  );
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.hra-pro-hero h1 {
+  max-width: 820px;
+  margin: 15px 0 16px;
+  color: #0f172a;
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -1.4px;
+}
+
+.hra-pro-hero p {
+  max-width: 720px;
+  margin: 0;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.hra-pro-section {
+  padding-top: 62px;
+  padding-bottom: 62px;
+}
+
+.hra-pro-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 25px;
+  align-items: start;
+}
+
+/* Calculator */
+
+.hra-pro-calculator {
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.05);
+}
+
+.hra-pro-card-heading {
+  margin-bottom: 25px;
+}
+
+.hra-pro-card-heading > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hra-pro-card-heading h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 25px;
+}
+
+.hra-pro-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.hra-pro-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hra-pro-field-full {
+  grid-column: span 2;
+}
+
+.hra-pro-field label {
+  color: #334155;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hra-pro-optional {
+  margin-left: 7px;
+  color: #94a3b8;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.hra-pro-field input,
+.hra-pro-field select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 13px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  color: #0f172a;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.hra-pro-field select {
+  cursor: pointer;
+}
+
+.hra-pro-field input:focus,
+.hra-pro-field select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.hra-pro-field small {
+  color: #94a3b8;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.hra-pro-input-wrap {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+}
+
+.hra-pro-input-wrap:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.hra-pro-input-wrap > span {
+  padding: 0 13px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.hra-pro-input-wrap input {
+  min-height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.hra-pro-input-wrap input:focus {
+  border: 0;
+  box-shadow: none;
+}
+
+/* Rate Indicator */
+
+.hra-pro-rate-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.hra-pro-rate-box > div {
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+}
+
+.hra-pro-rate-box span {
+  display: block;
+  margin-bottom: 5px;
+  color: #64748b;
+  font-size: 10px;
+}
+
+.hra-pro-rate-box strong {
+  color: #0f172a;
+  font-size: 16px;
+}
+
+/* Result */
+
+.hra-pro-result {
+  margin-top: 22px;
+  padding: 23px;
+  background: #0f172a;
+  border-radius: 12px;
+}
+
+.hra-pro-main-result {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #334155;
+}
+
+.hra-pro-main-result span {
+  display: block;
+  margin-bottom: 7px;
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+.hra-pro-main-result strong {
+  color: #ffffff;
+  font-size: 31px;
+}
+
+.hra-pro-result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 19px;
+}
+
+.hra-pro-result-grid div {
+  padding: 13px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 7px;
+}
+
+.hra-pro-result-grid span {
+  display: block;
+  margin-bottom: 5px;
+  color: #94a3b8;
+  font-size: 9px;
+}
+
+.hra-pro-result-grid strong {
+  color: #e2e8f0;
+  font-size: 13px;
+}
+
+/* Formula */
+
+.hra-pro-formula {
+  margin-top: 22px;
+  padding: 20px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 10px;
+}
+
+.hra-pro-formula > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hra-pro-formula strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #1e3a8a;
+  font-size: 14px;
+}
+
+.hra-pro-formula p {
+  margin: 0;
+  color: #475569;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* Sidebar */
+
+.hra-pro-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hra-pro-sidebar-card {
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.hra-pro-sidebar-card > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hra-pro-sidebar-card h3 {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-size: 17px;
+}
+
+.hra-pro-sidebar-card p {
+  margin: 12px 0 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.hra-pro-rate-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.hra-pro-rate-list div {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.hra-pro-rate-list div:last-child {
+  border-bottom: 0;
+}
+
+.hra-pro-rate-list strong {
+  color: #334155;
+  font-size: 12px;
+}
+
+.hra-pro-rate-list span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* HRA Table */
+
+.hra-pro-light-section {
+  padding: 62px 0;
+  background: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.hra-pro-section-heading {
+  max-width: 700px;
+  margin-bottom: 25px;
+}
+
+.hra-pro-section-heading > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hra-pro-section-heading h2 {
+  margin: 0 0 9px;
+  color: #0f172a;
+  font-size: 28px;
+}
+
+.hra-pro-section-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.hra-pro-table-wrap {
+  overflow-x: auto;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.hra-pro-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hra-pro-table th,
+.hra-pro-table td {
+  padding: 16px 18px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.hra-pro-table th {
+  background: #f8fafc;
+  color: #475569;
+  font-size: 11px;
+}
+
+.hra-pro-table td {
+  color: #334155;
+  font-size: 12px;
+}
+
+.hra-pro-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.hra-pro-active-row td {
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+.hra-pro-table-note {
+  margin: 12px 0 0;
+  color: #94a3b8;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+/* Information */
+
+.hra-pro-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 17px;
+}
+
+.hra-pro-info-card {
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.hra-pro-info-card > span {
+  display: block;
+  margin-bottom: 12px;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.hra-pro-info-card h3 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 17px;
+}
+
+.hra-pro-info-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* Source */
+
+.hra-pro-source-section {
+  padding-top: 10px;
+}
+
+.hra-pro-source-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 30px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.hra-pro-source-card > div {
+  max-width: 700px;
+}
+
+.hra-pro-source-card span {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hra-pro-source-card h2 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 22px;
+}
+
+.hra-pro-source-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* Disclaimer */
+
+.hra-pro-warning {
+  margin-bottom: 65px;
+  padding: 22px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+}
+
+.hra-pro-warning strong {
+  display: block;
+  margin-bottom: 7px;
+  color: #c2410c;
+}
+
+.hra-pro-warning p {
+  margin: 0;
+  color: #7c2d12;
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+/* Responsive */
+
+@media (max-width: 950px) {
+  .hra-pro-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .hra-pro-sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 750px) {
+  .hra-pro-hero {
+    padding: 52px 0;
+  }
+
+  .hra-pro-section,
+  .hra-pro-light-section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .hra-pro-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hra-pro-source-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .hra-pro-calculator {
+    padding: 21px;
+  }
+
+  .hra-pro-input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hra-pro-field-full {
+    grid-column: auto;
+  }
+
+  .hra-pro-rate-box,
+  .hra-pro-result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hra-pro-sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .hra-pro-main-result strong {
+    font-size: 26px;
+  }
+}
+/* =========================================
+   BIHAR GOVERNMENT HUB
+========================================= */
+
+.bihar-hero {
+  padding: 78px 0 72px;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 35%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-hero .container {
+  max-width: 900px;
+}
+
+.bihar-hero h1 {
+  margin: 14px 0 18px;
+  max-width: 800px;
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.08;
+  letter-spacing: -1.5px;
+  color: #0f172a;
+}
+
+.bihar-hero p {
+  max-width: 760px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.75;
+  color: #475569;
+}
+
+.bihar-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.bihar-hub-page {
+  padding-top: 64px;
+  padding-bottom: 70px;
+}
+
+.bihar-hub-section {
+  margin-bottom: 72px;
+}
+
+.bihar-hub-section .section-heading {
+  max-width: 760px;
+  margin-bottom: 28px;
+}
+
+.bihar-hub-section .section-heading h2,
+.bihar-warning-section h2,
+.bihar-official-section h2 {
+  margin: 8px 0 12px;
+  font-size: clamp(28px, 4vw, 38px);
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.bihar-hub-section .section-heading p,
+.bihar-warning-section p,
+.bihar-official-section p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #64748b;
+}
+
+.bihar-resource-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.bihar-resource-card {
+  display: block;
+  padding: 28px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  text-decoration: none;
+  box-shadow: 0 10px 35px rgba(15, 23, 42, 0.05);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.bihar-resource-card:hover {
+  transform: translateY(-4px);
+  border-color: #bfdbfe;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.bihar-resource-card > span {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.bihar-resource-card h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  color: #0f172a;
+}
+
+.bihar-resource-card p {
+  margin: 0 0 18px;
+  line-height: 1.7;
+  color: #64748b;
+}
+
+.bihar-resource-card strong {
+  color: #2563eb;
+  font-size: 14px;
+}
+
+.bihar-salary-flow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.bihar-salary-flow > div {
+  padding: 24px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.bihar-salary-flow span {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.bihar-salary-flow h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #0f172a;
+}
+
+.bihar-salary-flow p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.bihar-calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.bihar-calculator-card {
+  display: block;
+  padding: 24px;
+  border-radius: 16px;
+  background: #0f172a;
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.bihar-calculator-card:hover {
+  transform: translateY(-3px);
+  opacity: 0.96;
+}
+
+.bihar-calculator-card h3 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 19px;
+}
+
+.bihar-calculator-card p {
+  margin: 0;
+  color: #cbd5e1;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.bihar-warning-section {
+  margin-bottom: 60px;
+  padding: 34px;
+  border: 1px solid #fed7aa;
+  border-radius: 20px;
+  background: #fff7ed;
+}
+
+.bihar-warning-section p + p {
+  margin-top: 12px;
+}
+
+.bihar-official-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 50px;
+  padding: 34px;
+  border: 1px solid #dbeafe;
+  border-radius: 20px;
+  background: #eff6ff;
+}
+
+.bihar-official-section > div {
+  max-width: 720px;
+}
+
+.bihar-official-section .primary-content-button {
+  flex-shrink: 0;
+}
+
+.bihar-bottom-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 34px;
+  padding: 22px 0;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-bottom-links a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.bihar-bottom-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 960px) {
+  .bihar-salary-flow,
+  .bihar-calculator-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .bihar-hero {
+    padding: 54px 0 50px;
+  }
+
+  .bihar-hero p {
+    font-size: 16px;
+  }
+
+  .bihar-hub-page {
+    padding-top: 46px;
+  }
+
+  .bihar-resource-grid,
+  .bihar-salary-flow,
+  .bihar-calculator-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-official-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bihar-bottom-links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* FIX - Bihar section heading alignment */
+
+.bihar-hub-section .section-heading {
+  display: block;
+  max-width: 760px;
+  margin-bottom: 32px;
+}
+
+.bihar-hub-section .section-heading .section-kicker {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.bihar-hub-section .section-heading h2 {
+  display: block;
+  margin: 0 0 12px;
+  font-size: clamp(28px, 4vw, 38px);
+  line-height: 1.2;
+  color: #0f172a;
+}
+
+.bihar-hub-section .section-heading p {
+  display: block;
+  max-width: 720px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #64748b;
+}
+/* =========================================
+   BIHAR DA PAGE
+========================================= */
+
+.bihar-da-hero {
+  padding: 72px 0 66px;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 35%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-da-hero .container {
+  max-width: 900px;
+}
+
+.bihar-da-hero h1 {
+  margin: 14px 0 18px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.bihar-da-hero p {
+  max-width: 760px;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.75;
+  color: #475569;
+}
+
+.bihar-da-page {
+  padding-top: 58px;
+  padding-bottom: 70px;
+}
+
+.bihar-da-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 42px;
+  align-items: start;
+}
+
+.bihar-da-main {
+  min-width: 0;
+}
+
+.bihar-da-current {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 48px;
+  padding: 32px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 20px;
+}
+
+.bihar-da-current h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+  font-size: 30px;
+}
+
+.bihar-da-current p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.75;
+}
+
+.bihar-da-rate-card {
+  padding: 24px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+}
+
+.bihar-da-rate-card span {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bihar-da-rate-card strong {
+  display: block;
+  margin: 6px 0;
+  font-size: 46px;
+  line-height: 1;
+  color: #2563eb;
+}
+
+.bihar-da-rate-card p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.bihar-da-update-box {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.bihar-da-update-box > div:not(.bihar-da-arrow) {
+  padding: 22px;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.bihar-da-update-box span {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bihar-da-update-box strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 30px;
+  color: #0f172a;
+}
+
+.bihar-da-arrow {
+  font-size: 26px;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+.bihar-da-table-wrap {
+  overflow-x: auto;
+  margin: 24px 0;
+}
+
+.bihar-da-table {
+  width: 100%;
+  min-width: 650px;
+  border-collapse: collapse;
+}
+
+.bihar-da-table th,
+.bihar-da-table td {
+  padding: 15px 16px;
+  text-align: left;
+  border: 1px solid #e2e8f0;
+}
+
+.bihar-da-table th {
+  background: #f8fafc;
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.bihar-da-table td {
+  color: #475569;
+}
+
+.bihar-da-dr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.bihar-da-dr-grid > div {
+  padding: 24px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.bihar-da-dr-grid span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.bihar-da-dr-grid h3 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bihar-da-dr-grid p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.65;
+}
+
+.bihar-da-warning {
+  margin: 42px 0;
+  padding: 30px;
+  border: 1px solid #fed7aa;
+  background: #fff7ed;
+  border-radius: 18px;
+}
+
+.bihar-da-warning h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+}
+
+.bihar-da-warning p {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-da-official {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 42px 0;
+  padding: 30px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+}
+
+.bihar-da-official > div {
+  max-width: 620px;
+}
+
+.bihar-da-official h2 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bihar-da-official p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-da-sidebar {
+  position: sticky;
+  top: 96px;
+}
+
+@media (max-width: 900px) {
+  .bihar-da-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-da-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 650px) {
+  .bihar-da-hero {
+    padding: 52px 0 48px;
+  }
+
+  .bihar-da-hero p {
+    font-size: 16px;
+  }
+
+  .bihar-da-current {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-da-rate-card {
+    text-align: left;
+  }
+
+  .bihar-da-update-box {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-da-arrow {
+    text-align: center;
+    transform: rotate(90deg);
+  }
+
+  .bihar-da-dr-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-da-official {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* =========================================
+   BIHAR PAY COMMISSION
+========================================= */
+
+.bihar-pay-hero {
+  padding: 72px 0 66px;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 35%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-pay-hero .container {
+  max-width: 900px;
+}
+
+.bihar-pay-hero h1 {
+  margin: 14px 0 18px;
+  max-width: 850px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.bihar-pay-hero p {
+  max-width: 780px;
+  margin: 0;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.bihar-pay-page {
+  padding-top: 58px;
+  padding-bottom: 72px;
+}
+
+.bihar-pay-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 42px;
+  align-items: start;
+}
+
+.bihar-pay-main {
+  min-width: 0;
+}
+
+.bihar-pay-highlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 48px;
+  padding: 32px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 20px;
+}
+
+.bihar-pay-highlight h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+  font-size: 30px;
+}
+
+.bihar-pay-highlight p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.75;
+}
+
+.bihar-pay-date-card {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.bihar-pay-date-card span {
+  display: block;
+  margin-bottom: 7px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bihar-pay-date-card strong {
+  color: #2563eb;
+  font-size: 23px;
+}
+
+.bihar-pay-timeline {
+  margin-top: 28px;
+}
+
+.bihar-pay-timeline > div {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 18px;
+  position: relative;
+  padding-bottom: 28px;
+}
+
+.bihar-pay-timeline > div > span {
+  display: flex;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  background: #2563eb;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.bihar-pay-timeline > div:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 42px;
+  left: 20px;
+  bottom: 0;
+  width: 2px;
+  background: #dbeafe;
+}
+
+.bihar-pay-timeline strong {
+  color: #2563eb;
+  font-size: 13px;
+}
+
+.bihar-pay-timeline h3 {
+  margin: 5px 0 7px;
+  color: #0f172a;
+}
+
+.bihar-pay-timeline p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.65;
+}
+
+.bihar-pay-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.bihar-pay-flow > div:not(.bihar-pay-flow-arrow) {
+  padding: 24px;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.bihar-pay-flow span {
+  display: block;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.bihar-pay-flow strong {
+  display: block;
+  margin-top: 6px;
+  color: #0f172a;
+  font-size: 18px;
+}
+
+.bihar-pay-flow-arrow {
+  color: #2563eb;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.bihar-pay-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.bihar-pay-feature-grid > div {
+  padding: 23px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.bihar-pay-feature-grid span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.bihar-pay-feature-grid h3 {
+  margin: 7px 0 8px;
+  color: #0f172a;
+}
+
+.bihar-pay-feature-grid p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.65;
+}
+
+.bihar-pay-warning {
+  margin: 42px 0;
+  padding: 30px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+}
+
+.bihar-pay-warning h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+}
+
+.bihar-pay-warning p {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-pay-status-box {
+  margin-top: 22px;
+  padding: 24px;
+  background: #f8fafc;
+  border-left: 4px solid #2563eb;
+  border-radius: 10px;
+}
+
+.bihar-pay-status-box strong {
+  color: #0f172a;
+}
+
+.bihar-pay-status-box p {
+  margin-bottom: 0;
+}
+
+.bihar-commission-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.bihar-commission-compare > div {
+  padding: 25px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.bihar-commission-compare h3 {
+  margin-top: 0;
+  color: #0f172a;
+}
+
+.bihar-commission-compare p {
+  margin-bottom: 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.bihar-pay-official {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 42px 0;
+  padding: 30px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+}
+
+.bihar-pay-official > div {
+  max-width: 620px;
+}
+
+.bihar-pay-official h2 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bihar-pay-official p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-pay-sidebar {
+  position: sticky;
+  top: 96px;
+}
+
+@media (max-width: 900px) {
+  .bihar-pay-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-pay-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 650px) {
+  .bihar-pay-hero {
+    padding: 52px 0 48px;
+  }
+
+  .bihar-pay-hero p {
+    font-size: 16px;
+  }
+
+  .bihar-pay-highlight,
+  .bihar-pay-flow,
+  .bihar-pay-feature-grid,
+  .bihar-commission-compare {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-pay-flow-arrow {
+    text-align: center;
+    transform: rotate(90deg);
+  }
+
+  .bihar-pay-date-card {
+    text-align: left;
+  }
+
+  .bihar-pay-official {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* =========================================
+   BIHAR PAY MATRIX
+========================================= */
+
+.bihar-matrix-hero {
+  padding: 72px 0 66px;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 35%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-matrix-hero .container {
+  max-width: 900px;
+}
+
+.bihar-matrix-hero h1 {
+  margin: 14px 0 18px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.bihar-matrix-hero p {
+  max-width: 760px;
+  margin: 0;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.bihar-matrix-page {
+  padding-top: 58px;
+  padding-bottom: 72px;
+}
+
+.bihar-matrix-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 42px;
+  align-items: start;
+}
+
+.bihar-matrix-main {
+  min-width: 0;
+}
+
+.bihar-matrix-highlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 48px;
+  padding: 32px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 20px;
+}
+
+.bihar-matrix-highlight h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+  font-size: 30px;
+}
+
+.bihar-matrix-highlight p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.75;
+}
+
+.bihar-matrix-badge {
+  padding: 24px;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.bihar-matrix-badge span {
+  display: block;
+  margin-bottom: 7px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bihar-matrix-badge strong {
+  color: #2563eb;
+  font-size: 22px;
+}
+
+.bihar-matrix-table-wrap {
+  margin: 26px 0;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.bihar-matrix-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+}
+
+.bihar-matrix-table th,
+.bihar-matrix-table td {
+  padding: 15px 18px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-matrix-table th {
+  background: #f8fafc;
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.bihar-matrix-table td {
+  color: #475569;
+}
+
+.bihar-matrix-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.bihar-matrix-table tbody tr:hover {
+  background: #f8fbff;
+}
+
+.bihar-matrix-table td:first-child strong,
+.bihar-matrix-table td:last-child strong {
+  color: #0f172a;
+}
+
+.bihar-matrix-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.bihar-matrix-cards > div {
+  padding: 22px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+}
+
+.bihar-matrix-cards span {
+  display: block;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.bihar-matrix-cards strong {
+  display: block;
+  margin: 7px 0;
+  color: #2563eb;
+  font-size: 22px;
+}
+
+.bihar-matrix-cards p {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+.bihar-matrix-example {
+  margin-top: 24px;
+  padding: 27px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+}
+
+.bihar-matrix-example > span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.bihar-matrix-example-flow {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 12px;
+  align-items: center;
+  margin: 22px 0;
+}
+
+.bihar-matrix-example-flow > div {
+  text-align: center;
+}
+
+.bihar-matrix-example-flow > div:nth-child(odd) {
+  padding: 17px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.bihar-matrix-example-flow small {
+  display: block;
+  margin-bottom: 5px;
+  color: #64748b;
+}
+
+.bihar-matrix-example-flow strong {
+  color: #0f172a;
+}
+
+.bihar-matrix-example p {
+  margin-bottom: 0;
+  color: #64748b;
+  line-height: 1.65;
+}
+
+.bihar-matrix-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.bihar-matrix-note {
+  margin: 42px 0;
+  padding: 30px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+}
+
+.bihar-matrix-note h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+}
+
+.bihar-matrix-note p {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-matrix-official {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 42px 0;
+  padding: 30px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+}
+
+.bihar-matrix-official > div {
+  max-width: 620px;
+}
+
+.bihar-matrix-official h2 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bihar-matrix-official p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-matrix-sidebar {
+  position: sticky;
+  top: 96px;
+}
+
+@media (max-width: 900px) {
+  .bihar-matrix-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-matrix-sidebar {
+    position: static;
+  }
+
+  .bihar-matrix-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .bihar-matrix-hero {
+    padding: 52px 0 48px;
+  }
+
+  .bihar-matrix-hero p {
+    font-size: 16px;
+  }
+
+  .bihar-matrix-highlight,
+  .bihar-matrix-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-matrix-badge {
+    text-align: left;
+  }
+
+  .bihar-matrix-example-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-matrix-example-flow > div:nth-child(even) {
+    transform: rotate(90deg);
+  }
+
+  .bihar-matrix-official {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* =========================================
+   BIHAR SALARY CALCULATOR
+========================================= */
+
+.bihar-salary-hero {
+  padding: 72px 0 66px;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 35%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-salary-hero .container {
+  max-width: 900px;
+}
+
+.bihar-salary-hero h1 {
+  margin: 14px 0 18px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.bihar-salary-hero p {
+  max-width: 760px;
+  margin: 0;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.bihar-salary-page {
+  padding-top: 58px;
+  padding-bottom: 72px;
+}
+
+.bihar-salary-layout {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.bihar-salary-calculator {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(330px, 0.85fr);
+  gap: 26px;
+  align-items: start;
+  margin-bottom: 58px;
+}
+
+.bihar-salary-form,
+.bihar-salary-results {
+  padding: 30px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05);
+}
+
+.calculator-heading h2 {
+  margin: 8px 0 9px;
+  color: #0f172a;
+  font-size: 28px;
+}
+
+.calculator-heading p {
+  margin: 0 0 25px;
+  color: #64748b;
+  line-height: 1.65;
+}
+
+.bihar-salary-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.bihar-salary-input-grid label {
+  display: block;
+}
+
+.bihar-salary-input-grid label > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.bihar-salary-input-grid input,
+.bihar-salary-input-grid select {
+  width: 100%;
+  height: 48px;
+  padding: 0 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  font: inherit;
+  outline: none;
+}
+
+.bihar-salary-input-grid input:focus,
+.bihar-salary-input-grid select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.bihar-salary-input-grid small {
+  display: block;
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.bihar-salary-results {
+  position: sticky;
+  top: 96px;
+  background: #0f172a;
+  border-color: #0f172a;
+}
+
+.bihar-result-header {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #334155;
+}
+
+.bihar-result-header span,
+.bihar-result-header p {
+  color: #94a3b8;
+}
+
+.bihar-result-header h2 {
+  margin: 7px 0 4px;
+  color: #ffffff;
+  font-size: 40px;
+}
+
+.bihar-result-header p {
+  margin: 0;
+}
+
+.bihar-result-list {
+  padding: 16px 0;
+}
+
+.bihar-result-list > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 11px 0;
+  border-bottom: 1px solid #1e293b;
+}
+
+.bihar-result-list span {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.bihar-result-list strong {
+  color: #ffffff;
+}
+
+.bihar-result-highlight {
+  margin-top: 6px;
+  border-top: 1px solid #475569;
+}
+
+.bihar-result-takehome {
+  margin-top: 4px;
+}
+
+.bihar-result-takehome span,
+.bihar-result-takehome strong {
+  color: #93c5fd;
+  font-size: 16px;
+}
+
+.bihar-annual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding-top: 16px;
+}
+
+.bihar-annual-grid > div {
+  padding: 14px;
+  border-radius: 12px;
+  background: #1e293b;
+}
+
+.bihar-annual-grid span {
+  display: block;
+  margin-bottom: 5px;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.bihar-annual-grid strong {
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.bihar-salary-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 48px 0;
+}
+
+.bihar-salary-info-grid > div {
+  padding: 23px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.bihar-salary-info-grid span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.bihar-salary-info-grid h3 {
+  margin: 7px 0 9px;
+  color: #0f172a;
+}
+
+.bihar-salary-info-grid p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.bihar-salary-warning {
+  margin: 42px 0;
+  padding: 30px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+}
+
+.bihar-salary-warning h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+}
+
+.bihar-salary-warning p {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-salary-official {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 42px 0;
+  padding: 30px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+}
+
+.bihar-salary-official > div {
+  max-width: 650px;
+}
+
+.bihar-salary-official h2 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bihar-salary-official p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .bihar-salary-calculator {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-salary-results {
+    position: static;
+  }
+
+  .bihar-salary-info-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .bihar-salary-hero {
+    padding: 52px 0 48px;
+  }
+
+  .bihar-salary-hero p {
+    font-size: 16px;
+  }
+
+  .bihar-salary-input-grid,
+  .bihar-salary-info-grid,
+  .bihar-annual-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-salary-form,
+  .bihar-salary-results {
+    padding: 22px;
+  }
+
+  .bihar-salary-official {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* =========================================
+   BIHAR DA CALCULATOR
+========================================= */
+
+.bihar-da-calc-hero {
+  padding: 72px 0 66px;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 35%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-da-calc-hero .container {
+  max-width: 900px;
+}
+
+.bihar-da-calc-hero h1 {
+  margin: 14px 0 18px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.bihar-da-calc-hero p {
+  max-width: 760px;
+  margin: 0;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.bihar-da-calc-page {
+  max-width: 1080px;
+  padding-top: 58px;
+  padding-bottom: 72px;
+}
+
+.bihar-da-calc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.95fr);
+  gap: 26px;
+  align-items: start;
+  margin-bottom: 58px;
+}
+
+.bihar-da-calc-card,
+.bihar-da-calc-results {
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.bihar-da-calc-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05);
+}
+
+.bihar-da-calc-inputs {
+  display: grid;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.bihar-da-calc-inputs label > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.bihar-da-calc-inputs input {
+  width: 100%;
+  height: 50px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  font: inherit;
+  outline: none;
+}
+
+.bihar-da-calc-inputs input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.bihar-da-calc-inputs small {
+  display: block;
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.bihar-da-calc-card .formula-box {
+  margin-top: 26px;
+}
+
+.bihar-da-calc-results {
+  position: sticky;
+  top: 96px;
+  background: #0f172a;
+  border: 1px solid #0f172a;
+}
+
+.bihar-da-calc-result-head {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #334155;
+}
+
+.bihar-da-calc-result-head span {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.bihar-da-calc-result-head strong {
+  display: block;
+  margin: 8px 0 5px;
+  color: #ffffff;
+  font-size: 44px;
+  line-height: 1.1;
+}
+
+.bihar-da-calc-result-head p {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.bihar-da-calc-result-list {
+  padding-top: 14px;
+}
+
+.bihar-da-calc-result-list > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 13px 0;
+  border-bottom: 1px solid #1e293b;
+}
+
+.bihar-da-calc-result-list > div:last-child {
+  border-bottom: 0;
+}
+
+.bihar-da-calc-result-list span {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.bihar-da-calc-result-list strong {
+  color: #ffffff;
+}
+
+.bihar-da-calc-highlight {
+  margin-top: 5px;
+  padding: 16px !important;
+  background: #1e293b;
+  border: 0 !important;
+  border-radius: 11px;
+}
+
+.bihar-da-calc-highlight span,
+.bihar-da-calc-highlight strong {
+  color: #93c5fd;
+}
+
+.bihar-da-calc-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 48px 0;
+}
+
+.bihar-da-calc-info-grid > div {
+  padding: 24px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.bihar-da-calc-info-grid span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.bihar-da-calc-info-grid h3 {
+  margin: 7px 0 9px;
+  color: #0f172a;
+}
+
+.bihar-da-calc-info-grid p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.bihar-da-calc-warning {
+  margin: 42px 0;
+  padding: 30px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+}
+
+.bihar-da-calc-warning h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+}
+
+.bihar-da-calc-warning p {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-da-calc-source {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 42px 0;
+  padding: 30px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+}
+
+.bihar-da-calc-source > div {
+  max-width: 650px;
+}
+
+.bihar-da-calc-source h2 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bihar-da-calc-source p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .bihar-da-calc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-da-calc-results {
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  .bihar-da-calc-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .bihar-da-calc-hero {
+    padding: 52px 0 48px;
+  }
+
+  .bihar-da-calc-hero p {
+    font-size: 16px;
+  }
+
+  .bihar-da-calc-card,
+  .bihar-da-calc-results {
+    padding: 22px;
+  }
+
+  .bihar-da-calc-result-head strong {
+    font-size: 36px;
+  }
+
+  .bihar-da-calc-source {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* =========================================
+   BIHAR DA ARREARS CALCULATOR
+========================================= */
+
+.bihar-arrears-hero {
+  padding: 72px 0 66px;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 35%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-arrears-hero .container {
+  max-width: 900px;
+}
+
+.bihar-arrears-hero h1 {
+  margin: 14px 0 18px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.bihar-arrears-hero p {
+  max-width: 760px;
+  margin: 0;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.bihar-arrears-page {
+  max-width: 1080px;
+  padding-top: 58px;
+  padding-bottom: 72px;
+}
+
+.bihar-arrears-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.95fr);
+  gap: 26px;
+  align-items: start;
+  margin-bottom: 58px;
+}
+
+.bihar-arrears-card,
+.bihar-arrears-results {
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.bihar-arrears-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05);
+}
+
+.bihar-arrears-input-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.bihar-arrears-input-grid label > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.bihar-arrears-input-grid input {
+  width: 100%;
+  height: 50px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  font: inherit;
+  outline: none;
+}
+
+.bihar-arrears-input-grid input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.bihar-arrears-input-grid small {
+  display: block;
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.bihar-arrears-card .formula-box {
+  margin-top: 26px;
+}
+
+.bihar-arrears-results {
+  position: sticky;
+  top: 96px;
+  background: #0f172a;
+  border: 1px solid #0f172a;
+}
+
+.bihar-arrears-result-head {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #334155;
+}
+
+.bihar-arrears-result-head span,
+.bihar-arrears-result-head p {
+  color: #94a3b8;
+}
+
+.bihar-arrears-result-head strong {
+  display: block;
+  margin: 8px 0 5px;
+  color: #ffffff;
+  font-size: 44px;
+  line-height: 1.1;
+}
+
+.bihar-arrears-result-head p {
+  margin: 0;
+}
+
+.bihar-arrears-result-list {
+  padding-top: 14px;
+}
+
+.bihar-arrears-result-list > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 13px 0;
+  border-bottom: 1px solid #1e293b;
+}
+
+.bihar-arrears-result-list span {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.bihar-arrears-result-list strong {
+  color: #ffffff;
+  text-align: right;
+}
+
+.bihar-arrears-difference {
+  margin-top: 5px;
+  padding: 16px !important;
+  background: #1e293b;
+  border: 0 !important;
+  border-radius: 11px;
+}
+
+.bihar-arrears-difference span,
+.bihar-arrears-difference strong {
+  color: #93c5fd;
+}
+
+.bihar-arrears-total {
+  margin-top: 9px;
+  border-bottom: 0 !important;
+}
+
+.bihar-arrears-total span,
+.bihar-arrears-total strong {
+  color: #bfdbfe;
+  font-size: 16px;
+}
+
+.bihar-arrears-example {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.bihar-arrears-example > div {
+  padding: 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.bihar-arrears-example span {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.bihar-arrears-example strong {
+  color: #0f172a;
+  font-size: 18px;
+}
+
+.bihar-arrears-warning {
+  margin: 42px 0;
+  padding: 30px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+}
+
+.bihar-arrears-warning h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+}
+
+.bihar-arrears-warning p {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-arrears-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 48px 0;
+}
+
+.bihar-arrears-info-grid > div {
+  padding: 24px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.bihar-arrears-info-grid span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.bihar-arrears-info-grid h3 {
+  margin: 7px 0 9px;
+  color: #0f172a;
+}
+
+.bihar-arrears-info-grid p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.bihar-arrears-official {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 42px 0;
+  padding: 30px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+}
+
+.bihar-arrears-official > div {
+  max-width: 650px;
+}
+
+.bihar-arrears-official h2 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bihar-arrears-official p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .bihar-arrears-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-arrears-results {
+    position: static;
+  }
+
+  .bihar-arrears-example {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .bihar-arrears-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .bihar-arrears-hero {
+    padding: 52px 0 48px;
+  }
+
+  .bihar-arrears-hero p {
+    font-size: 16px;
+  }
+
+  .bihar-arrears-input-grid,
+  .bihar-arrears-example {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-arrears-card,
+  .bihar-arrears-results {
+    padding: 22px;
+  }
+
+  .bihar-arrears-result-head strong {
+    font-size: 36px;
+  }
+
+  .bihar-arrears-official {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* =========================================
+   BIHAR PENSION PAGE
+========================================= */
+
+.bihar-pension-hero {
+  padding: 72px 0 66px;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 35%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-pension-hero .container {
+  max-width: 900px;
+}
+
+.bihar-pension-hero h1 {
+  margin: 14px 0 18px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.bihar-pension-hero p {
+  max-width: 780px;
+  margin: 0;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.bihar-pension-page {
+  padding-top: 58px;
+  padding-bottom: 72px;
+}
+
+.bihar-pension-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 42px;
+  align-items: start;
+}
+
+.bihar-pension-main {
+  min-width: 0;
+}
+
+.bihar-pension-highlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 28px;
+  align-items: center;
+  margin-bottom: 48px;
+  padding: 32px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 20px;
+}
+
+.bihar-pension-highlight h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+  font-size: 30px;
+}
+
+.bihar-pension-highlight p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.75;
+}
+
+.bihar-pension-rate-card {
+  padding: 24px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+}
+
+.bihar-pension-rate-card span {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bihar-pension-rate-card strong {
+  display: block;
+  margin: 7px 0;
+  color: #2563eb;
+  font-size: 46px;
+  line-height: 1;
+}
+
+.bihar-pension-rate-card p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.bihar-pension-dr-change {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: center;
+  margin: 24px 0;
+}
+
+.bihar-pension-dr-change > div:not(.bihar-pension-arrow) {
+  padding: 22px;
+  text-align: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.bihar-pension-dr-change span {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bihar-pension-dr-change strong {
+  display: block;
+  margin-top: 6px;
+  color: #0f172a;
+  font-size: 30px;
+}
+
+.bihar-pension-arrow {
+  color: #2563eb;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.bihar-pension-table-wrap {
+  margin: 24px 0;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 15px;
+}
+
+.bihar-pension-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+}
+
+.bihar-pension-table th,
+.bihar-pension-table td {
+  padding: 15px 17px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-pension-table th {
+  background: #f8fafc;
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.bihar-pension-table td {
+  color: #475569;
+}
+
+.bihar-pension-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.bihar-pension-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.bihar-pension-info-grid > div {
+  padding: 23px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.bihar-pension-info-grid span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.bihar-pension-info-grid h3 {
+  margin: 7px 0 8px;
+  color: #0f172a;
+}
+
+.bihar-pension-info-grid p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.65;
+}
+
+.bihar-pension-warning {
+  margin: 42px 0;
+  padding: 30px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+}
+
+.bihar-pension-warning h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+}
+
+.bihar-pension-warning p {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-pension-official {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 42px 0;
+  padding: 30px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+}
+
+.bihar-pension-official > div {
+  max-width: 650px;
+}
+
+.bihar-pension-official h2 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bihar-pension-official p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-pension-sidebar {
+  position: sticky;
+  top: 96px;
+}
+
+@media (max-width: 900px) {
+  .bihar-pension-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-pension-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width: 650px) {
+  .bihar-pension-hero {
+    padding: 52px 0 48px;
+  }
+
+  .bihar-pension-hero p {
+    font-size: 16px;
+  }
+
+  .bihar-pension-highlight,
+  .bihar-pension-dr-change,
+  .bihar-pension-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-pension-rate-card {
+    text-align: left;
+  }
+
+  .bihar-pension-arrow {
+    text-align: center;
+    transform: rotate(90deg);
+  }
+
+  .bihar-pension-official {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* =========================================
+   BIHAR PENSION CALCULATOR
+========================================= */
+
+.bihar-pension-calc-hero {
+  padding: 72px 0 66px;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, 0.1), transparent 35%),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bihar-pension-calc-hero .container {
+  max-width: 900px;
+}
+
+.bihar-pension-calc-hero h1 {
+  margin: 14px 0 18px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.bihar-pension-calc-hero p {
+  max-width: 780px;
+  margin: 0;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.bihar-pension-calc-page {
+  max-width: 1080px;
+  padding-top: 58px;
+  padding-bottom: 72px;
+}
+
+.bihar-pension-calc-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.95fr);
+  gap: 26px;
+  align-items: start;
+  margin-bottom: 58px;
+}
+
+.bihar-pension-calc-card,
+.bihar-pension-calc-results {
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.bihar-pension-calc-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05);
+}
+
+.bihar-pension-calc-inputs {
+  display: grid;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.bihar-pension-calc-inputs label > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.bihar-pension-calc-inputs input {
+  width: 100%;
+  height: 50px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  font: inherit;
+  outline: none;
+}
+
+.bihar-pension-calc-inputs input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.bihar-pension-calc-inputs small {
+  display: block;
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.bihar-pension-calc-card .formula-box {
+  margin-top: 26px;
+}
+
+.bihar-pension-calc-results {
+  position: sticky;
+  top: 96px;
+  background: #0f172a;
+  border: 1px solid #0f172a;
+}
+
+.bihar-pension-calc-result-head {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #334155;
+}
+
+.bihar-pension-calc-result-head span,
+.bihar-pension-calc-result-head p {
+  color: #94a3b8;
+}
+
+.bihar-pension-calc-result-head strong {
+  display: block;
+  margin: 8px 0 5px;
+  color: #ffffff;
+  font-size: 44px;
+  line-height: 1.1;
+}
+
+.bihar-pension-calc-result-head p {
+  margin: 0;
+}
+
+.bihar-pension-calc-result-list {
+  padding-top: 14px;
+}
+
+.bihar-pension-calc-result-list > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 13px 0;
+  border-bottom: 1px solid #1e293b;
+}
+
+.bihar-pension-calc-result-list span {
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.bihar-pension-calc-result-list strong {
+  color: #ffffff;
+  text-align: right;
+}
+
+.bihar-pension-calc-highlight {
+  margin-top: 6px;
+  padding: 16px !important;
+  background: #1e293b;
+  border: 0 !important;
+  border-radius: 11px;
+}
+
+.bihar-pension-calc-highlight span,
+.bihar-pension-calc-highlight strong {
+  color: #93c5fd;
+}
+
+.bihar-pension-calc-total {
+  margin-top: 8px;
+  border-bottom: 0 !important;
+}
+
+.bihar-pension-calc-total span,
+.bihar-pension-calc-total strong {
+  color: #bfdbfe;
+  font-size: 16px;
+}
+
+.bihar-pension-calc-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 48px 0;
+}
+
+.bihar-pension-calc-info-grid > div {
+  padding: 24px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+}
+
+.bihar-pension-calc-info-grid span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.bihar-pension-calc-info-grid h3 {
+  margin: 7px 0 9px;
+  color: #0f172a;
+}
+
+.bihar-pension-calc-info-grid p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.bihar-pension-calc-warning {
+  margin: 42px 0;
+  padding: 30px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+}
+
+.bihar-pension-calc-warning h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+}
+
+.bihar-pension-calc-warning p {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.bihar-pension-calc-source {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 42px 0;
+  padding: 30px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+}
+
+.bihar-pension-calc-source > div {
+  max-width: 650px;
+}
+
+.bihar-pension-calc-source h2 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bihar-pension-calc-source p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .bihar-pension-calc-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bihar-pension-calc-results {
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  .bihar-pension-calc-info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .bihar-pension-calc-hero {
+    padding: 52px 0 48px;
+  }
+
+  .bihar-pension-calc-hero p {
+    font-size: 16px;
+  }
+
+  .bihar-pension-calc-card,
+  .bihar-pension-calc-results {
+    padding: 22px;
+  }
+
+  .bihar-pension-calc-result-head strong {
+    font-size: 36px;
+  }
+
+  .bihar-pension-calc-source {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* =========================================
+   BIHAR SALARY ARREARS CALCULATOR
+========================================= */
+
+.bsa-hero {
+  padding: 72px 0 66px;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 99, 235, 0.1),
+      transparent 35%
+    ),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.bsa-hero .container {
+  max-width: 920px;
+}
+
+.bsa-hero h1 {
+  margin: 14px 0 18px;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1.08;
+  color: #0f172a;
+}
+
+.bsa-hero p {
+  max-width: 800px;
+  margin: 0;
+  color: #475569;
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.bsa-page {
+  max-width: 1280px;
+  padding-top: 56px;
+  padding-bottom: 76px;
+}
+
+.bsa-intro {
+  max-width: 780px;
+  margin-bottom: 28px;
+}
+
+.bsa-intro h2,
+.bsa-summary-title h2,
+.bsa-formula-section h2,
+.bsa-example h2,
+.bsa-warning h2 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+}
+
+.bsa-intro p,
+.bsa-example p,
+.bsa-warning p {
+  color: #64748b;
+  line-height: 1.75;
+}
+
+.bsa-table-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05);
+}
+
+.bsa-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.bsa-table {
+  width: 100%;
+  min-width: 2150px;
+  border-collapse: collapse;
+}
+
+.bsa-table th {
+  padding: 13px 10px;
+  background: #0f172a;
+  color: #ffffff;
+  border-right: 1px solid #334155;
+  font-size: 12px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.bsa-table td {
+  padding: 9px;
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.bsa-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.bsa-number-input,
+.bsa-month-input,
+.bsa-rate-input {
+  height: 40px;
+  padding: 0 9px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #0f172a;
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+}
+
+.bsa-number-input {
+  width: 105px;
+}
+
+.bsa-month-input {
+  width: 115px;
+}
+
+.bsa-rate-input {
+  width: 70px;
+  border: 0;
+}
+
+.bsa-number-input:focus,
+.bsa-month-input:focus,
+.bsa-rate-wrap:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.bsa-rate-wrap {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+}
+
+.bsa-rate-wrap span {
+  padding-right: 8px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.bsa-result-cell {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.bsa-highlight-cell {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.bsa-strong-cell {
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.bsa-total-cell {
+  background: #ecfdf5;
+  color: #047857;
+  font-weight: 800;
+}
+
+.bsa-remove {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 8px;
+  background: #fee2e2;
+  color: #b91c1c;
+  cursor: pointer;
+  font-size: 21px;
+}
+
+.bsa-remove:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.bsa-table-actions {
+  display: flex;
+  gap: 12px;
+  padding: 18px;
+  background: #f8fafc;
+}
+
+.bsa-add-button,
+.bsa-reset-button {
+  padding: 11px 18px;
+  border-radius: 9px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bsa-add-button {
+  border: 0;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.bsa-reset-button {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #334155;
+}
+
+.bsa-summary {
+  margin-top: 48px;
+  padding: 30px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+}
+
+.bsa-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 24px;
+}
+
+.bsa-summary-card {
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.bsa-summary-card span {
+  display: block;
+  margin-bottom: 7px;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bsa-summary-card strong {
+  color: #0f172a;
+  font-size: 25px;
+}
+
+.bsa-net-card {
+  background: #0f172a;
+  border-color: #0f172a;
+}
+
+.bsa-net-card span {
+  color: #94a3b8;
+}
+
+.bsa-net-card strong {
+  color: #93c5fd;
+}
+
+.bsa-formula-section {
+  margin: 48px 0;
+}
+
+.bsa-formulas {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 24px;
+}
+
+.bsa-formulas > div {
+  padding: 20px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.bsa-formulas span {
+  display: block;
+  margin-bottom: 7px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.bsa-formulas strong {
+  color: #0f172a;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.bsa-example {
+  margin: 42px 0;
+  padding: 30px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+}
+
+.bsa-example-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.bsa-example-grid > div {
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+}
+
+.bsa-example-grid span {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.bsa-example-grid strong {
+  display: block;
+  margin-top: 5px;
+  color: #0f172a;
+  font-size: 22px;
+}
+
+.bsa-warning {
+  margin: 42px 0;
+  padding: 30px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 18px;
+}
+
+@media (max-width: 1000px) {
+  .bsa-formulas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bsa-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .bsa-hero {
+    padding: 52px 0 48px;
+  }
+
+  .bsa-hero p {
+    font-size: 16px;
+  }
+
+  .bsa-summary-grid,
+  .bsa-formulas,
+  .bsa-example-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bsa-summary,
+  .bsa-example,
+  .bsa-warning {
+    padding: 22px;
+  }
+
+  .bsa-table-actions {
+    flex-direction: column;
+  }
+}
+/* =========================================
+   BIHAR ARREARS MONTH GENERATOR
+========================================= */
+
+.bsa-generator {
+  margin-bottom: 52px;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05);
+}
+
+.bsa-generator-heading {
+  max-width: 750px;
+  margin-bottom: 26px;
+}
+
+.bsa-generator-heading h2 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bsa-generator-heading p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.bsa-generator-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 650px;
+}
+
+.bsa-generator-grid label,
+.bsa-default-grid label {
+  display: block;
+}
+
+.bsa-generator-grid label > span,
+.bsa-default-grid label > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bsa-generator-grid input,
+.bsa-default-grid input {
+  width: 100%;
+  height: 48px;
+  padding: 0 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #0f172a;
+  font: inherit;
+  outline: none;
+}
+
+.bsa-generator-grid input:focus,
+.bsa-default-grid input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.bsa-generator-grid small {
+  display: block;
+  margin-top: 5px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.bsa-default-heading {
+  margin: 30px 0 18px;
+}
+
+.bsa-default-heading h3 {
+  margin: 0 0 6px;
+  color: #0f172a;
+  font-size: 18px;
+}
+
+.bsa-default-heading p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.bsa-default-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.bsa-generate-button {
+  margin-top: 24px;
+  padding: 13px 22px;
+  border: 0;
+  border-radius: 10px;
+  background: #2563eb;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.bsa-generate-button:hover {
+  background: #1d4ed8;
+}
+
+.bsa-generator-note {
+  margin: 11px 0 0;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.bsa-table-section {
+  margin-bottom: 0;
+}
+
+@media (max-width: 800px) {
+  .bsa-default-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .bsa-generator {
+    padding: 22px;
+  }
+
+  .bsa-generator-grid,
+  .bsa-default-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bsa-generate-button {
+    width: 100%;
+  }
+}
+/* =========================================
+   BIHAR ARREARS AUTOMATIC CHANGE RULES
+========================================= */
+
+.bsa-rules-section {
+  margin-bottom: 36px;
+  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.05);
+}
+
+.bsa-rules-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 25px;
+  margin-bottom: 24px;
+}
+
+.bsa-rules-heading > div {
+  max-width: 720px;
+}
+
+.bsa-rules-heading h2 {
+  margin: 8px 0 10px;
+  color: #0f172a;
+}
+
+.bsa-rules-heading p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.bsa-rule-add {
+  flex-shrink: 0;
+  padding: 11px 17px;
+  border: 0;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bsa-rule-add:hover {
+  background: #1d4ed8;
+}
+
+.bsa-empty-rules {
+  padding: 22px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.bsa-rules-list {
+  display: grid;
+  gap: 12px;
+}
+
+.bsa-rule-row {
+  display: grid;
+  grid-template-columns:
+    42px
+    minmax(180px, 1fr)
+    minmax(160px, 0.8fr)
+    minmax(150px, 0.7fr)
+    auto;
+  gap: 12px;
+  align-items: end;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 13px;
+}
+
+.bsa-rule-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 42px;
+  background: #dbeafe;
+  border-radius: 9px;
+  color: #1d4ed8;
+  font-weight: 800;
+}
+
+.bsa-rule-row label > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.bsa-rule-row select,
+.bsa-rule-row input {
+  width: 100%;
+  height: 42px;
+  padding: 0 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  font: inherit;
+  font-size: 13px;
+  outline: none;
+}
+
+.bsa-rule-row select:focus,
+.bsa-rule-row input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.bsa-rule-remove {
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #be123c;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.bsa-rules-example {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  padding-top: 18px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.bsa-rules-example strong {
+  color: #0f172a;
+  font-size: 13px;
+}
+
+.bsa-rules-example span {
+  padding: 5px 9px;
+  background: #eff6ff;
+  border-radius: 6px;
+  color: #1d4ed8;
+  font-size: 12px;
+}
+
+.bsa-generate-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 48px;
+  padding: 26px 30px;
+  background: #0f172a;
+  border-radius: 18px;
+}
+
+.bsa-generate-panel h2 {
+  margin: 7px 0 8px;
+  color: #ffffff;
+}
+
+.bsa-generate-panel p {
+  margin: 0;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.bsa-generate-panel .section-kicker {
+  color: #93c5fd;
+}
+
+.bsa-generate-panel .bsa-generate-button {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+@media (max-width: 950px) {
+  .bsa-rule-row {
+    grid-template-columns:
+      42px
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .bsa-rule-remove {
+    grid-column: 2 / -1;
+  }
+}
+
+@media (max-width: 700px) {
+  .bsa-rules-heading,
+  .bsa-generate-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bsa-rule-add,
+  .bsa-generate-panel .bsa-generate-button {
+    width: 100%;
+  }
+
+  .bsa-rule-row {
+    grid-template-columns: 1fr;
+  }
+
+  .bsa-rule-number {
+    width: 100%;
+    height: 34px;
+  }
+
+  .bsa-rule-remove {
+    grid-column: auto;
+  }
+
+  .bsa-rules-section {
+    padding: 22px;
   }
 }
