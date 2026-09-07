@@ -9313,3 +9313,295 @@ body {
     padding: 22px;
   }
 }
+/* =========================================
+   GLOBAL MOBILE RESPONSIVE FIX
+========================================= */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 22px;
+  padding-right: 22px;
+}
+
+/* Prevent grid children from forcing page width */
+.container > *,
+main,
+section,
+div {
+  min-width: 0;
+}
+
+/* =========================================
+   HOMEPAGE MOBILE FIX
+========================================= */
+
+@media (max-width: 768px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* Hero */
+  .hero,
+  .home-hero {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hero h1,
+  .home-hero h1 {
+    font-size: clamp(36px, 10vw, 48px);
+    line-height: 1.08;
+    overflow-wrap: break-word;
+  }
+
+  .hero p,
+  .home-hero p {
+    max-width: 100%;
+  }
+
+  /* Generic grids */
+  .feature-grid,
+  .features-grid,
+  .home-feature-grid,
+  .tools-grid,
+  .calculator-grid,
+  .latest-grid {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+  }
+
+  .feature-card,
+  .tool-card,
+  .calculator-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Bihar */
+  .bihar-resource-grid,
+  .bihar-calculator-grid,
+  .bihar-salary-flow {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+  }
+
+  .bihar-resource-card,
+  .bihar-calculator-card,
+  .bihar-salary-flow > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* West Bengal */
+  .wb-resource-grid,
+  .wb-calculator-grid {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+  }
+
+  /* Tables should scroll internally */
+  .bsa-table-scroll,
+  .table-scroll,
+  .table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* =========================================
+   EXTRA SMALL PHONES
+========================================= */
+
+@media (max-width: 480px) {
+  .container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  h1 {
+    overflow-wrap: break-word;
+  }
+
+  .bihar-hero-actions,
+  .hero-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .bihar-hero-actions a,
+  .hero-actions a {
+    width: 100%;
+    text-align: center;
+  }
+}
+/* =========================================
+   HOMEPAGE MOBILE RESPONSIVE FIX
+========================================= */
+
+@media (max-width: 768px) {
+  /* HERO */
+  .hero {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+    line-height: 1.08;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .hero p {
+    max-width: 100%;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* QUICK LINKS */
+  .quick-links {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+    width: 100%;
+  }
+
+  .feature-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* LATEST UPDATES */
+  .updates-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+    width: 100%;
+  }
+
+  .update-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* TOOLS */
+  .tools-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .tool-card {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* SECTION HEADINGS */
+  .section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* DISCLAIMER */
+  .disclaimer-box {
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 38px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .quick-links,
+  .updates-grid,
+  .tools-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+html,
+body {
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+main,
+header,
+footer,
+section {
+  width: 100%;
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.site-header,
+.site-footer {
+  width: 100%;
+}
