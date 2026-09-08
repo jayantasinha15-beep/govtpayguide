@@ -29,6 +29,7 @@ export default function Header() {
           <Link href="/state-government" onClick={closeMenu}>
             States
           </Link>
+          <Link href="/updates">Updates</Link>
 
           <Link href="/calculators" onClick={closeMenu}>
             Calculators

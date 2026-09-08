@@ -19,6 +19,13 @@ const mainResources = [
     label: "DA Updates",
   },
   {
+    title: "West Bengal 7th State Pay Commission",
+    description:
+      "Follow the 7th State Pay Commission, Terms of Reference, official resolutions, memoranda and latest Commission developments.",
+    href: "/state-government/west-bengal/pay-commission",
+    label: "7th SPC",
+  },
+  {
     title: "ROPA 2019 Pay Structure",
     description:
       "Understand West Bengal ROPA 2019, pay fixation, pay levels, increments and salary structure.",
@@ -249,6 +256,97 @@ export default function WestBengalPage() {
             <small>West Bengal State Government</small>
           </div>
         </section>
+        {/* 7TH STATE PAY COMMISSION */}
+<section className="wb-7spc-section">
+  <div className="section-heading">
+    <span className="section-kicker">
+      West Bengal 7th State Pay Commission
+    </span>
+
+    <h2>7th State Pay Commission Updates</h2>
+
+    <p>
+      The Government of West Bengal has constituted the 7th State Pay
+      Commission to review the existing pay structure, allowances, pensionary
+      benefits and related service matters of State Government employees and
+      pensioners.
+    </p>
+  </div>
+
+  <div className="wb-7spc-grid">
+    <div className="wb-7spc-card">
+      <span>22 July 2026</span>
+
+      <h3>7th Pay Commission Constituted</h3>
+
+      <p>
+        Resolution No. 2657-F(P1) constituted the West Bengal 7th Pay
+        Commission along with its Terms of Reference.
+      </p>
+    </div>
+
+    <div className="wb-7spc-card">
+      <span>29 July 2026</span>
+
+      <h3>Terms Modified</h3>
+
+      <p>
+        Resolution No. 2760-F(P1) partially modified the earlier resolution
+        relating to the 7th Pay Commission.
+      </p>
+    </div>
+
+    <div className="wb-7spc-card">
+      <span>Official Portal</span>
+
+      <h3>7th SPC Portal Now Live</h3>
+
+      <p>
+        The official portal provides access to the Terms of Reference, State
+        Pay Commission repository, questionnaire, memorandum submission and
+        online data portal.
+      </p>
+    </div>
+
+    <div className="wb-7spc-card">
+      <span>2 September 2026</span>
+
+      <h3>Memoranda Invited</h3>
+
+      <p>
+        The Commission has published a notice inviting memoranda from
+        organisations and individuals.
+      </p>
+    </div>
+  </div>
+
+  <div className="wb-7spc-actions">
+    <a
+      href="https://7spc.wb.gov.in/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="primary-content-button"
+    >
+      Official 7th SPC Portal ↗
+    </a>
+
+    <a
+      href="https://finance.wb.gov.in/Fin_New/Pages/publication.aspx?type=36"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="secondary-content-button"
+    >
+      Finance Department Orders ↗
+    </a>
+  </div>
+
+  <div className="wb-7spc-note">
+    <strong>Important:</strong> The Commission is currently in the review and
+    consultation stage. A new fitment factor, revised pay matrix, revised Basic
+    Pay or implementation date should not be treated as final unless officially
+    recommended and accepted by the State Government.
+  </div>
+</section>
 
         {/* DA / PENSION */}
         <section className="wb-hub-two-column">
