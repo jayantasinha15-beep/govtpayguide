@@ -29,20 +29,38 @@ export default function Header() {
           <Link href="/state-government" onClick={closeMenu}>
             States
           </Link>
-          <Link href="/updates">Updates</Link>
+
+          <Link href="/updates" onClick={closeMenu}>
+            Updates
+          </Link>
 
           <Link href="/calculators" onClick={closeMenu}>
             Calculators
           </Link>
+
           <Link href="/pension" onClick={closeMenu}>
             Pension
-            </Link>
+          </Link>
+
           <Link href="/guides" onClick={closeMenu}>
             Guides
+          </Link>
+
+          <Link
+            href="/search"
+            className="nav-search"
+            onClick={closeMenu}
+            aria-label="Search GovtPayGuide"
+          >
+            <span className="nav-search-icon" aria-hidden="true">
+              ⌕
+            </span>
+            <span>Search</span>
           </Link>
         </nav>
 
         <button
+          type="button"
           className="menu-button"
           onClick={() => setOpen(!open)}
           aria-label="Toggle navigation menu"
