@@ -12721,3 +12721,15 @@ section {
     padding: 11px 13px !important;
   }
 }
+.search-browse-link {
+  display: inline-flex;
+  margin-top: 20px;
+  color: #155eef;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.search-browse-link:hover {
+  text-decoration: underline;
+}

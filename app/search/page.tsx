@@ -4,7 +4,14 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { updates } from "@/data/updates";
 
-const staticPages = [
+type SearchItem = {
+  title: string;
+  description: string;
+  category: string;
+  href: string;
+};
+
+const staticPages: SearchItem[] = [
   {
     title: "Central Government Salary & Pay Guide",
     description:
@@ -69,7 +76,6 @@ const staticPages = [
     href: "/pension",
   },
 
-  // West Bengal
   {
     title: "West Bengal Government Employees",
     description:
@@ -91,15 +97,7 @@ const staticPages = [
     category: "West Bengal",
     href: "/state-government/west-bengal/pay-commission",
   },
-  {
-    title: "West Bengal Salary Calculator",
-    description:
-      "Estimate salary for West Bengal Government employees.",
-    category: "West Bengal Calculator",
-    href: "/state-government/west-bengal/salary-calculator",
-  },
 
-  // Bihar
   {
     title: "Bihar Government Employees",
     description:
@@ -114,15 +112,7 @@ const staticPages = [
     category: "Bihar",
     href: "/state-government/bihar/da",
   },
-  {
-    title: "Bihar Salary Calculator",
-    description:
-      "Estimate salary for Bihar Government employees.",
-    category: "Bihar Calculator",
-    href: "/state-government/bihar/salary-calculator",
-  },
 
-  // Assam
   {
     title: "Assam Government Employees",
     description:
@@ -144,47 +134,54 @@ const staticPages = [
     category: "Assam",
     href: "/state-government/assam/pay-commission",
   },
-  {
-    title: "Assam Salary Calculator",
-    description:
-      "Estimate salary for Assam Government employees.",
-    category: "Assam Calculator",
-    href: "/state-government/assam/salary-calculator",
-  },
 ];
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
 
   const allItems = useMemo(() => {
-    const updateItems = updates.map((item) => ({
+    const updateItems: SearchItem[] = updates.map((item) => ({
       title: item.title,
       description: item.description,
       category: item.category,
       href: item.href,
     }));
 
-    return [...updateItems, ...staticPages];
+    const merged = [...updateItems, ...staticPages];
+
+    const uniqueItems = Array.from(
+      new Map(merged.map((item) => [item.href, item])).values()
+    );
+
+    return uniqueItems;
   }, []);
 
   const results = useMemo(() => {
     const searchTerm = query.trim().toLowerCase();
 
-    if (!searchTerm) {
-      return [];
-    }
+    if (!searchTerm) return [];
 
-    return allItems.filter((item) => {
-      const searchableText = [
-        item.title,
-        item.description,
-        item.category,
-      ]
-        .join(" ")
-        .toLowerCase();
+    return allItems
+      .map((item) => {
+        const title = item.title.toLowerCase();
+        const category = item.category.toLowerCase();
+        const description = item.description.toLowerCase();
 
-      return searchableText.includes(searchTerm);
-    });
+        let score = 0;
+
+        if (title === searchTerm) score += 100;
+        if (title.startsWith(searchTerm)) score += 50;
+        if (title.includes(searchTerm)) score += 30;
+        if (category.includes(searchTerm)) score += 20;
+        if (description.includes(searchTerm)) score += 10;
+
+        return {
+          ...item,
+          score,
+        };
+      })
+      .filter((item) => item.score > 0)
+      .sort((a, b) => b.score - a.score);
   }, [query, allItems]);
 
   return (
@@ -204,7 +201,9 @@ export default function SearchPage() {
 
       <div className="container search-page">
         <div className="site-search-box">
-          <span className="site-search-icon">⌕</span>
+          <span className="site-search-icon" aria-hidden="true">
+            🔍
+          </span>
 
           <input
             type="search"
@@ -214,7 +213,7 @@ export default function SearchPage() {
             aria-label="Search GovtPayGuide"
           />
 
-          {query.length > 0 && (
+          {query && (
             <button
               type="button"
               className="search-clear-button"
@@ -230,8 +229,8 @@ export default function SearchPage() {
             <h2>What are you looking for?</h2>
 
             <p>
-              Search for DA, Pay Commission, salary calculator, pension,
-              West Bengal, Bihar, Assam or Punjab.
+              Try searching for DA, Pay Commission, salary calculator,
+              pension or any State Government.
             </p>
 
             <div className="search-suggestions">
@@ -255,6 +254,13 @@ export default function SearchPage() {
 
               <button
                 type="button"
+                onClick={() => setQuery("Punjab")}
+              >
+                Punjab
+              </button>
+
+              <button
+                type="button"
                 onClick={() => setQuery("Salary Calculator")}
               >
                 Salary Calculator
@@ -266,21 +272,26 @@ export default function SearchPage() {
         {query.trim() && (
           <section className="search-results-section">
             <div className="search-results-heading">
-              <h2>Search Results</h2>
+              <div>
+                <span className="section-label">Results</span>
+                <h2>
+                  Search results for &quot;{query}&quot;
+                </h2>
+              </div>
 
               <span>
                 {results.length}{" "}
-                {results.length === 1 ? "result" : "results"}
+                {results.length === 1 ? "result" : "results"} found
               </span>
             </div>
 
             {results.length > 0 ? (
               <div className="search-results-grid">
-                {results.map((item, index) => (
-  <article
-    className="search-result-card"
-    key={`${item.href}-${index}`}
-  >
+                {results.map((item) => (
+                  <article
+                    className="search-result-card"
+                    key={item.href}
+                  >
                     <span className="search-result-category">
                       {item.category}
                     </span>
@@ -306,8 +317,12 @@ export default function SearchPage() {
 
                 <p>
                   We could not find anything for &quot;{query}&quot;.
-                  Try another keyword.
+                  Try a shorter keyword such as DA, Punjab, pension or salary.
                 </p>
+
+                <Link href="/updates" className="search-browse-link">
+                  Browse Latest Updates →
+                </Link>
               </div>
             )}
           </section>
