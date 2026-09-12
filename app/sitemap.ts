@@ -1,7 +1,11 @@
-﻿import type { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+import { supabase } from "@/lib/supabase";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://govtpayindia.com";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = "https://www.govtpayindia.com";
 
   const routes = [
     "",
@@ -58,10 +62,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/state-government/assam/arrears-calculator",
     "/state-government/assam/pension-calculator",
 
-    // Updates
+    // Existing Static Update Pages
     "/updates/west-bengal-da-latest-update",
     "/updates/punjab-da-hike-60-percent-government-employees-2026",
-    "/updates/andhra-pradesh-da-pension-12th-pay-revision-commission-2026", 
+    "/updates/andhra-pradesh-da-pension-12th-pay-revision-commission-2026",
     "/updates/west-bengal-7th-pay-commission-fitment-factor",
     "/updates/west-bengal-7th-pay-commission-latest-news",
 
@@ -72,7 +76,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/disclaimer",
   ];
 
-  return routes.map((route) => ({
+  // Get all published Supabase articles
+  const { data: articles, error } = await supabase
+    .from("articles")
+    .select("slug, published_at")
+    .eq("published", true)
+    .order("published_at", { ascending: false });
+
+  if (error) {
+    console.error("Sitemap article fetch error:", error.message);
+  }
+
+  // Static sitemap URLs
+  const staticUrls: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency:
@@ -94,4 +110,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ? 0.8
         : 0.7,
   }));
+
+  // Dynamic Supabase article URLs
+  const articleUrls: MetadataRoute.Sitemap =
+    articles?.map((article) => ({
+      url: `${baseUrl}/updates/${article.slug}`,
+      lastModified: article.published_at
+        ? new Date(article.published_at)
+        : new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })) ?? [];
+
+  // Prevent duplicate URLs
+  const combinedUrls = [...staticUrls, ...articleUrls];
+
+  const uniqueUrls = Array.from(
+    new Map(combinedUrls.map((item) => [item.url, item])).values()
+  );
+
+  return uniqueUrls;
 }
