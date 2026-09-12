@@ -14718,3 +14718,25 @@ section {
     padding: 20px;
   }
 }
+/* =========================================
+   ARTICLE EXTERNAL LINKS
+========================================= */
+
+.public-article-content .article-external-link {
+  color: #0756b3;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  transition: opacity 0.2s ease;
+}
+
+.public-article-content .article-external-link:hover {
+  opacity: 0.75;
+}
+
+.public-article-content .article-external-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}

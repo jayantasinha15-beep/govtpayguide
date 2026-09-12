@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
-
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 type Article = {
   id: string;
   title: string;
@@ -118,11 +119,13 @@ async function getArticle(
 ========================================= */
 
 function renderInlineText(text: string) {
+  // Detect **bold** text and URLs
   const parts = text.split(
-    /(\*\*.*?\*\*)/g
+    /(\*\*.*?\*\*|https?:\/\/[^\s]+)/g
   );
 
   return parts.map((part, index) => {
+    // Bold text
     if (
       part.startsWith("**") &&
       part.endsWith("**")
@@ -131,6 +134,24 @@ function renderInlineText(text: string) {
         <strong key={index}>
           {part.slice(2, -2)}
         </strong>
+      );
+    }
+
+    // Clickable URL
+    if (
+      part.startsWith("http://") ||
+      part.startsWith("https://")
+    ) {
+      return (
+        <a
+          key={index}
+          href={part}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="article-external-link"
+        >
+          {part}
+        </a>
       );
     }
 
