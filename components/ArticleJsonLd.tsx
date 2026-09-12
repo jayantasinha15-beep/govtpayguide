@@ -1,4 +1,4 @@
-﻿type ArticleJsonLdProps = {
+type ArticleJsonLdProps = {
   title: string;
   description: string;
   url: string;

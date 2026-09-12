@@ -1,4 +1,4 @@
-﻿type Item = {
+type Item = {
   name: string;
   path: string;
 };
