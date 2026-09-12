@@ -51,8 +51,8 @@ export default function ContactPage() {
               <div className="contact-email-box">
                 <span>General Enquiries & Corrections</span>
 
-                <a href="mailto:contact@govtpayguide.in">
-                  contact@govtpayguide.in
+                <a href="mailto:jayantasingha09@yahoo.com">
+                  jayantasingha09@yahoo.com
                 </a>
               </div>
 
