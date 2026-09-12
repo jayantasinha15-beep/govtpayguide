@@ -59,6 +59,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/state-government/assam/pension-calculator",
 
     // Updates
+    "/updates/west-bengal-da-latest-update",
     "/updates/punjab-da-hike-60-percent-government-employees-2026",
     "/updates/andhra-pradesh-da-pension-12th-pay-revision-commission-2026", 
     "/updates/west-bengal-7th-pay-commission-fitment-factor",

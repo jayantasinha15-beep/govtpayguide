@@ -1,106 +1,188 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { updates } from "@/data/updates";
+import { supabase } from "@/lib/supabase";
 
 export const metadata: Metadata = {
-  title: "Latest Government Salary, DA & Pay Commission Updates",
+  title: "Government Salary, DA & Pay Commission Updates",
   description:
-    "Read the latest Government salary, Dearness Allowance, Pay Commission, pension and State Government employee updates.",
+    "Latest government salary, DA, Pay Commission, pension and pay revision updates for Central Government and State Government employees.",
   alternates: {
     canonical: "/updates",
   },
 };
 
-export default function UpdatesPage() {
-  const sortedUpdates = [...updates].sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() -
-      new Date(a.publishedAt).getTime()
-  );
+type Article = {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  category: string;
+  status: string;
+  published_at: string | null;
+};
+
+function formatDate(date: string | null) {
+  if (!date) return "";
+
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(date));
+}
+
+export default async function UpdatesPage() {
+  const { data: articles, error } = await supabase
+    .from("articles")
+    .select(
+      `
+        id,
+        title,
+        slug,
+        description,
+        category,
+        status,
+        published_at
+      `
+    )
+    .eq("published", true)
+    .order("published_at", { ascending: false });
+
+  if (error) {
+    console.error("Error loading articles:", error);
+  }
+
+  const updates: Article[] = articles || [];
 
   return (
     <main>
-      <section className="state-hero">
+      <section className="updates-page-hero">
         <div className="container">
-          <span className="page-badge">Latest Updates</span>
+          <span className="page-badge">GovtPayGuide Updates</span>
 
           <h1>Government Salary & Pay Updates</h1>
 
           <p>
-            Read the latest DA, Pay Commission, salary, pension and State
-            Government employee updates in one place.
+            Follow important developments in Dearness Allowance, Pay
+            Commissions, salary revision, pay matrix, pension and government
+            employee benefits.
           </p>
         </div>
       </section>
 
-      <div className="container state-page-content">
-        <section className="updates-page-section">
-          <div className="updates-page-header">
-            <div>
-              <span className="section-label">Latest News</span>
-              <h2>Recent Government Employee Updates</h2>
-              <p>
-                Browse recently published updates related to government pay,
-                allowances, pension and Pay Commission developments.
-              </p>
-            </div>
+      <div className="container updates-page-container">
+        <section className="updates-page-intro">
+          <div>
+            <span className="updates-section-label">
+              Latest Updates
+            </span>
+
+            <h2>Salary, DA & Pay Commission News</h2>
           </div>
 
-          <div className="updates-page-grid">
-            {sortedUpdates.map((item) => (
-              <article className="updates-page-card" key={item.slug}>
-                <div className="updates-page-meta">
-                  <span className="updates-page-category">
-                    {item.category}
+          <p>
+            Official Government updates, salary information, DA revisions,
+            Pay Commission developments and analysis.
+          </p>
+        </section>
+
+        {updates.length > 0 ? (
+          <section className="updates-list-grid">
+            {updates.map((article) => (
+              <article
+                className="updates-news-card"
+                key={article.id}
+              >
+                <div className="updates-card-meta">
+                  <span className="updates-category">
+                    {article.category}
                   </span>
 
-                  <span
-                    className={`updates-page-status ${
-                      item.status === "Analysis"
-                        ? "analysis"
-                        : item.status === "DA Update"
-                        ? "da"
-                        : "official"
-                    }`}
-                  >
-                    {item.status}
+                  <span className="updates-status">
+                    {article.status}
                   </span>
                 </div>
 
-                <Link
-                  href={item.href}
-                  className="updates-page-title"
-                >
-                  <h2>{item.title}</h2>
-                </Link>
+                <h2>
+                  <Link href={`/updates/${article.slug}`}>
+                    {article.title}
+                  </Link>
+                </h2>
 
-                <p>{item.description}</p>
+                <p>{article.description}</p>
 
-                <div className="updates-page-footer">
-                  <span>
-                    {new Date(item.publishedAt).toLocaleDateString("en-IN", {
-                      day: "numeric",
-                      month: "long",
-                      year: "numeric",
-                    })}
-                  </span>
+                <div className="updates-card-footer">
+                  {article.published_at && (
+                    <span>
+                      Published:{" "}
+                      {formatDate(article.published_at)}
+                    </span>
+                  )}
 
-                  <Link href={item.href}>
-                    {item.status === "Analysis"
+                  <Link href={`/updates/${article.slug}`}>
+                    {article.status === "Analysis"
                       ? "Read Analysis →"
-                      : "Read Full Update →"}
+                      : "Read Update →"}
                   </Link>
                 </div>
               </article>
             ))}
+          </section>
+        ) : (
+          <div className="updates-info-box">
+            <h2>No published updates yet</h2>
+
+            <p>
+              Published articles will appear here automatically.
+            </p>
+          </div>
+        )}
+
+        <section className="updates-info-box">
+          <div>
+            <span className="updates-section-label">
+              How We Label Updates
+            </span>
+
+            <h2>Official Information vs Analysis</h2>
+          </div>
+
+          <div className="updates-label-grid">
+            <div>
+              <strong>Official Update</strong>
+
+              <p>
+                Information supported by Government resolutions,
+                notifications, orders or official portals.
+              </p>
+            </div>
+
+            <div>
+              <strong>Analysis</strong>
+
+              <p>
+                Explanations, calculations and scenarios based on
+                available information. These are not Government
+                decisions.
+              </p>
+            </div>
+
+            <div>
+              <strong>DA Update</strong>
+
+              <p>
+                Updates related to Dearness Allowance rates,
+                revisions and effective dates.
+              </p>
+            </div>
           </div>
         </section>
 
         <div className="calculator-disclaimer">
           <strong>Disclaimer:</strong> GovtPayGuide is an independent
-          informational website and is not affiliated with the Government of
-          India or any State Government. Always verify important salary,
-          pension, DA and Pay Commission information from official Government
+          informational website and is not affiliated with any
+          Government department or Pay Commission. Always verify
+          important information from official Government
           notifications.
         </div>
       </div>

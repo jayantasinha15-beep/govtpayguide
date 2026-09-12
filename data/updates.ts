@@ -12,6 +12,17 @@ export type UpdateItem = {
 
 export const updates: UpdateItem[] = [
   {
+  slug: "west-bengal-da-latest-update-2026",
+  title: "West Bengal DA Latest Update 2026 | 38% DA from October",
+  description:
+    "The latest notified West Bengal Government DA rate is 38%, effective from 1 October 2026. Check the official order, calculation examples and key details.",
+  category: "West Bengal",
+  status: "DA Update",
+  publishedAt: "2026-09-11",
+  href: "/updates/west-bengal-da-latest-update",
+  featured: true,
+},
+  {
   slug: "punjab-da-hike-60-percent-government-employees-2026",
   title:
     "Punjab DA Hike 2026: 85,000 Govt Employees to Get 60% DA",
