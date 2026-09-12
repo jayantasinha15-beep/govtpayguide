@@ -4,21 +4,21 @@ export default function SiteJsonLd() {
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://govtpayguide.in/#organization",
+        "@id": "https://govtpayindia.com/#organization",
         name: "GovtPayGuide",
-        url: "https://govtpayguide.in/",
+        url: "https://govtpayindia.com/",
         description:
           "Independent informational website covering government salary, Dearness Allowance, Pay Commission, pay matrix, pension and related calculators.",
       },
       {
         "@type": "WebSite",
-        "@id": "https://govtpayguide.in/#website",
-        url: "https://govtpayguide.in/",
+        "@id": "https://govtpayindia.com/#website",
+        url: "https://govtpayindia.com/",
         name: "GovtPayGuide",
         description:
           "Government salary, DA, Pay Commission, pay matrix, pension and calculator information for Central and State Government employees.",
         publisher: {
-          "@id": "https://govtpayguide.in/#organization",
+          "@id": "https://govtpayindia.com/#organization",
         },
         inLanguage: "en-IN",
       },

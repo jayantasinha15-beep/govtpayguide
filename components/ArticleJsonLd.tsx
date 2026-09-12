@@ -1,4 +1,4 @@
-type ArticleJsonLdProps = {
+﻿type ArticleJsonLdProps = {
   title: string;
   description: string;
   url: string;
@@ -9,7 +9,7 @@ export default function ArticleJsonLd({
   description,
   url,
 }: ArticleJsonLdProps) {
-  const baseUrl = "https://govtpayguide.in";
+  const baseUrl = "https://govtpayindia.com";
   const fullUrl = url.startsWith("http") ? url : `${baseUrl}${url}`;
 
   const jsonLd = {

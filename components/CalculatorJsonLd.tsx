@@ -9,7 +9,7 @@ export default function CalculatorJsonLd({
   description,
   url,
 }: CalculatorJsonLdProps) {
-  const baseUrl = "https://govtpayguide.in";
+  const baseUrl = "https://govtpayindia.com";
 
   const fullUrl = url.startsWith("http")
     ? url

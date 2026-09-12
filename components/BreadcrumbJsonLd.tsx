@@ -1,4 +1,4 @@
-type Item = {
+﻿type Item = {
   name: string;
   path: string;
 };
@@ -10,7 +10,7 @@ type BreadcrumbProps = {
 export default function BreadcrumbJsonLd({
   items,
 }: BreadcrumbProps) {
-  const baseUrl = "https://govtpayguide.in";
+  const baseUrl = "https://govtpayindia.com";
 
   const jsonLd = {
     "@context": "https://schema.org",

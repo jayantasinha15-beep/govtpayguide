@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import "./globals.css";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SiteJsonLd from "@/components/SiteJsonLd";
 
-const siteUrl = "https://govtpayguide.in";
+const siteUrl = "https://govtpayindia.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
