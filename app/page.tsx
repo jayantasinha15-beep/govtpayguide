@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@supabase/supabase-js";
-//import { updates } from "@/data/updates";
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 type DbArticle = {
   id: string;
