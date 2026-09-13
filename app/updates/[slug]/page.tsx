@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 300;
 type Article = {
   id: string;
   title: string;

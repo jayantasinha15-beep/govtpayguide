@@ -360,7 +360,10 @@ const latestUpdates = sortedUpdates
   sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
   quality={75}
   loading="lazy"
-  style={{ objectFit: "cover" }}
+  style={{
+  objectFit: "contain",
+  objectPosition: "center",
+}}
 />
     </div>
   </Link>
