@@ -1,3 +1,5 @@
+import { unstable_cache } from "next/cache";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
@@ -74,45 +76,50 @@ function getSupabase() {
    GET ARTICLE
 ========================================= */
 
-async function getArticle(
-  slug: string
-): Promise<Article | null> {
-  const supabase = getSupabase();
+const getArticle = unstable_cache(
+  async (
+    slug: string
+  ): Promise<Article | null> => {
+    const supabase = getSupabase();
 
-  const { data, error } = await supabase
-    .from("articles")
-    .select(`
-      id,
-      title,
-      slug,
-      description,
-      category,
-      status,
-      content,
-      meta_title,
-      meta_description,
-      keywords,
-      featured_image,
-      published,
-      published_at,
-      updated_at
-    `)
-    .eq("slug", slug)
-    .eq("published", true)
-    .maybeSingle<Article>();
+    const { data, error } = await supabase
+      .from("articles")
+      .select(`
+        id,
+        title,
+        slug,
+        description,
+        category,
+        status,
+        content,
+        meta_title,
+        meta_description,
+        keywords,
+        featured_image,
+        published,
+        published_at,
+        updated_at
+      `)
+      .eq("slug", slug)
+      .eq("published", true)
+      .maybeSingle<Article>();
 
-  if (error) {
-    console.error(
-      "Failed to load article:",
-      error
-    );
+    if (error) {
+      console.error(
+        "Failed to load article:",
+        error
+      );
 
-    return null;
+      return null;
+    }
+
+    return data;
+  },
+  ["published-article"],
+  {
+    revalidate: 300,
   }
-
-  return data;
-}
-
+);
 /* =========================================
    INLINE BOLD TEXT
 ========================================= */
@@ -428,15 +435,22 @@ export default async function ArticlePage({
           {/* FEATURED IMAGE */}
 
           {article.featured_image && (
-            <div className="public-article-image">
-              <img
-                src={
-                  article.featured_image
-                }
-                alt={article.title}
-              />
-            </div>
-          )}
+  <div className="public-article-image">
+    <Image
+      src={article.featured_image}
+      alt={article.title}
+      width={1200}
+      height={675}
+      sizes="(max-width: 768px) 100vw, 1200px"
+      quality={75}
+      priority={false}
+      style={{
+        width: "100%",
+        height: "auto",
+      }}
+    />
+  </div>
+)}
 
           {/* ARTICLE BODY */}
 
