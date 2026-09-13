@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "Contact Us",
   description:
     "Contact GovtPayGuide for feedback, corrections, questions and website-related enquiries.",
-alternates: {
-  canonical: "/contact",
-},
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {
@@ -33,7 +33,7 @@ export default function ContactPage() {
               <h2>Get in Touch</h2>
 
               <p>
-                GovtPayGuide aims to provide clear and useful information about
+                GovtPayGuide is an independent informational website focused on
                 government salaries, Dearness Allowance, Pay Commission, pay
                 structures, pension and related calculators.
               </p>
@@ -55,11 +55,6 @@ export default function ContactPage() {
                   jayantasingha09@yahoo.com
                 </a>
               </div>
-
-              <p className="legal-small-note">
-                Replace this email address if your final website uses a
-                different official contact email.
-              </p>
             </section>
 
             <section>
@@ -115,9 +110,35 @@ export default function ContactPage() {
 
               <p>
                 For individual service matters, salary disputes, pension
-                sanctions, official DA entitlement or departmental decisions,
-                please contact the appropriate government department or
-                competent authority.
+                sanctions, official DA entitlement, transfers, appointments or
+                departmental decisions, please contact the appropriate
+                government department or competent authority.
+              </p>
+            </section>
+
+            <section>
+              <h2>Not a Government Payment Portal</h2>
+
+              <div className="contact-warning">
+                <strong>Important Clarification</strong>
+
+                <p>
+                  GovtPayGuide does not process government payments, collect
+                  government fees, receive application charges or accept money
+                  on behalf of the Government of India, any State Government,
+                  department, commission or public authority.
+                </p>
+
+                <p>
+                  We do not operate an official government payment gateway and
+                  do not provide government payment services.
+                </p>
+              </div>
+
+              <p>
+                Any government-related payment should only be made through the
+                official website, portal or payment channel specified by the
+                concerned government authority.
               </p>
             </section>
 
@@ -142,6 +163,13 @@ export default function ContactPage() {
               </p>
             </section>
 
+            <div className="about-disclaimer">
+              <strong>Important:</strong> GovtPayGuide is an independent
+              informational website. We are not affiliated with the Government
+              of India, any State Government or government department, and we
+              do not process government payments.
+            </div>
+
             <div className="legal-bottom-nav">
               <Link href="/about">About Us</Link>
               <Link href="/privacy-policy">Privacy Policy</Link>
@@ -160,11 +188,20 @@ export default function ContactPage() {
             </div>
 
             <div className="legal-sidebar-card">
-              <h3>Important</h3>
+              <h3>Independent Website</h3>
 
               <p>
                 We are not affiliated with the Government of India, any State
                 Government or government department.
+              </p>
+            </div>
+
+            <div className="legal-sidebar-card">
+              <h3>Not a Payment Portal</h3>
+
+              <p>
+                GovtPayGuide does not collect government fees or process
+                government payments.
               </p>
             </div>
 
