@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SiteJsonLd from "@/components/SiteJsonLd";
 
-const siteUrl = "https://govtpayindia.com";
+const siteUrl = "https://www.govtpayindia.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -47,6 +47,18 @@ export const metadata: Metadata = {
 
   creator: "GovtPayGuide",
   publisher: "GovtPayGuide",
+
+  // Favicon / Site Icon
+  icons: {
+    icon: [
+      {
+        url: "/icon.png",
+        type: "image/png",
+      },
+    ],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
 
   openGraph: {
     type: "website",
