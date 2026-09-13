@@ -10,7 +10,7 @@ type BreadcrumbProps = {
 export default function BreadcrumbJsonLd({
   items,
 }: BreadcrumbProps) {
-  const baseUrl = "https://govtpayindia.com";
+  const baseUrl = "https://www.govtpayindia.com";
 
   const jsonLd = {
     "@context": "https://schema.org",

@@ -193,6 +193,24 @@ const latestUpdates = sortedUpdates
           </div>
         </div>
       </section>
+      <section className="trust-notice">
+  <div className="trust-notice-inner">
+    <h2>Independent Government Pay Information Portal</h2>
+
+    <p>
+      GovtPayGuide is an independent informational website providing guides,
+      calculators and updates related to government salary, Dearness Allowance,
+      Pay Commission, pension and employee pay matters.
+    </p>
+
+    <p>
+      We are not affiliated with the Government of India, any State Government,
+      department, commission or official government payment portal. GovtPayGuide
+      does not process government payments or collect money on behalf of any
+      government authority.
+    </p>
+  </div>
+</section>
 
       {/* =====================================
           QUICK LINKS

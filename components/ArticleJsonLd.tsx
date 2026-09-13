@@ -9,7 +9,7 @@ export default function ArticleJsonLd({
   description,
   url,
 }: ArticleJsonLdProps) {
-  const baseUrl = "https://govtpayindia.com";
+  const baseUrl = "https://www.govtpayindia.com";
   const fullUrl = url.startsWith("http") ? url : `${baseUrl}${url}`;
 
   const jsonLd = {

@@ -5,9 +5,9 @@ export const metadata: Metadata = {
   title: "About Us",
   description:
     "Learn about GovtPayGuide, an independent informational website covering government salary, DA, Pay Commission, pay matrix, pension and calculators.",
-alternates: {
-  canonical: "/about",
-},
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {
@@ -20,9 +20,9 @@ export default function AboutPage() {
           <h1>About GovtPayGuide</h1>
 
           <p>
-            GovtPayGuide is an independent informational website focused on
-            government salary, Dearness Allowance, pay structure, pension and
-            related calculators.
+            GovtPayGuide is an independent informational website created to
+            make government salary, Dearness Allowance, Pay Commission,
+            pension, pay matrix and related calculations easier to understand.
           </p>
         </div>
       </section>
@@ -34,26 +34,48 @@ export default function AboutPage() {
               <h2>What is GovtPayGuide?</h2>
 
               <p>
-                GovtPayGuide is designed to make government salary and pension
-                information easier to understand.
+                GovtPayGuide is an independent information platform focused on
+                government salary, Dearness Allowance, Dearness Relief, Pay
+                Commission, pay matrix, pension, allowances and salary-related
+                calculators.
               </p>
 
               <p>
-                The website covers topics such as Central Government pay,
-                State Government salary structures, Dearness Allowance,
-                Dearness Relief, Pay Commission updates, pay matrices,
-                pension and salary calculators.
+                The website is designed to explain publicly available
+                government pay information in a simpler and more practical
+                format for employees, pensioners and readers who want to
+                understand salary and pension-related topics.
               </p>
+
+              <div className="contact-warning">
+                <strong>Independent Information Website</strong>
+
+                <p>
+                  GovtPayGuide is not affiliated with the Government of India,
+                  any State Government, ministry, department, commission,
+                  public authority or official government payment portal.
+                </p>
+
+                <p>
+                  GovtPayGuide does not process government payments, collect
+                  money on behalf of any government authority, issue official
+                  orders or provide government services.
+                </p>
+              </div>
             </section>
 
             <section>
               <h2>Our Purpose</h2>
 
               <p>
-                Government salary rules can involve multiple notifications,
-                pay levels, allowances, pension rules and effective dates.
-                GovtPayGuide aims to present this information in a simpler,
-                more practical format.
+                Government salary and pension rules may involve multiple
+                notifications, memoranda, pay levels, allowances, service
+                conditions, effective dates and departmental orders.
+              </p>
+
+              <p>
+                GovtPayGuide aims to organize and explain this information in a
+                clear, useful and easy-to-understand format.
               </p>
 
               <div className="about-purpose-grid">
@@ -61,7 +83,8 @@ export default function AboutPage() {
                   <span>01</span>
                   <strong>Explain</strong>
                   <p>
-                    Simplify complex salary, DA, pay matrix and pension topics.
+                    Simplify complex salary, DA, pay matrix, Pay Commission and
+                    pension topics.
                   </p>
                 </div>
 
@@ -69,8 +92,8 @@ export default function AboutPage() {
                   <span>02</span>
                   <strong>Calculate</strong>
                   <p>
-                    Provide useful tools for salary, DA, arrears and pension
-                    estimates.
+                    Provide practical calculators for salary, DA, HRA, arrears,
+                    pension and related estimates.
                   </p>
                 </div>
 
@@ -78,8 +101,8 @@ export default function AboutPage() {
                   <span>03</span>
                   <strong>Organize</strong>
                   <p>
-                    Separate Central Government and State Government rules
-                    clearly.
+                    Keep Central Government and State Government pay rules and
+                    updates clearly separated.
                   </p>
                 </div>
 
@@ -87,7 +110,8 @@ export default function AboutPage() {
                   <span>04</span>
                   <strong>Reference</strong>
                   <p>
-                    Point readers toward relevant official government sources.
+                    Direct readers toward relevant official government sources
+                    wherever possible.
                   </p>
                 </div>
               </div>
@@ -99,13 +123,14 @@ export default function AboutPage() {
               <p>
                 GovtPayGuide keeps Central Government and State Government
                 salary systems separate because DA rates, HRA rules, pay
-                structures, pension rules and government orders may differ.
+                structures, pension rules, allowances and government orders can
+                differ significantly.
               </p>
 
               <p>
                 State-specific sections are intended to explain the rules and
-                resources relevant to each State Government rather than applying
-                Central Government assumptions universally.
+                resources relevant to individual State Governments rather than
+                applying Central Government assumptions universally.
               </p>
 
               <div className="about-link-grid">
@@ -126,13 +151,13 @@ export default function AboutPage() {
 
               <p>
                 Government salary and pension information can change through
-                notifications, memoranda, circulars, resolutions and Gazette
-                publications.
+                official notifications, office memoranda, circulars,
+                resolutions, Gazette publications and departmental orders.
               </p>
 
               <p>
-                Where applicable, GovtPayGuide aims to rely on authoritative
-                sources such as:
+                Wherever applicable, GovtPayGuide aims to verify information
+                using authoritative primary sources such as:
               </p>
 
               <ul className="legal-list">
@@ -142,18 +167,43 @@ export default function AboutPage() {
                 <li>Press Information Bureau</li>
                 <li>Gazette notifications</li>
                 <li>Official State Finance Departments</li>
+                <li>Official Education Departments</li>
                 <li>Official Government orders and memoranda</li>
+                <li>Official departmental portals</li>
               </ul>
 
               <div className="about-source-box">
                 <strong>Official records always take priority.</strong>
 
                 <p>
-                  If information on GovtPayGuide differs from an official
-                  Government notification or departmental record, the official
-                  source should be treated as authoritative.
+                  If information published on GovtPayGuide differs from an
+                  official Government notification, order, circular, portal or
+                  departmental record, the official Government source should be
+                  treated as authoritative.
                 </p>
               </div>
+            </section>
+
+            <section>
+              <h2>Official Information vs Explanations</h2>
+
+              <p>
+                GovtPayGuide aims to clearly distinguish between officially
+                confirmed information and explanatory or illustrative content.
+              </p>
+
+              <p>
+                When a figure, salary estimate, fitment factor, expected rate or
+                calculation has not been officially notified, it should be
+                understood as an example or estimate rather than a confirmed
+                Government decision.
+              </p>
+
+              <p>
+                Important service, pension, transfer, appointment, payment or
+                financial decisions should always be based on the latest
+                official Government order or departmental instruction.
+              </p>
             </section>
 
             <section>
@@ -166,7 +216,7 @@ export default function AboutPage() {
               </p>
 
               <p>
-                Calculator results are estimates only. Actual amounts can differ
+                Calculator results are estimates only. Actual amounts may differ
                 because of employee-specific pay fixation, promotion, increment,
                 deductions, pension rules, service conditions and Government
                 orders.
@@ -178,22 +228,43 @@ export default function AboutPage() {
             </section>
 
             <section>
-              <h2>Independent Website</h2>
+              <h2>GovtPayGuide Is Not a Payment Portal</h2>
 
               <div className="contact-warning">
-                <strong>Important</strong>
+                <strong>Important Clarification</strong>
 
                 <p>
-                  GovtPayGuide is not an official Government website and is not
-                  affiliated with the Government of India, any State Government,
-                  ministry, department, commission or public authority.
+                  GovtPayGuide does not receive Government fees, salaries,
+                  pension payments, tax payments, application fees or any other
+                  payment on behalf of the Government.
+                </p>
+
+                <p>
+                  We do not operate any Government payment gateway and do not
+                  claim to be an official Government payment service.
                 </p>
               </div>
 
               <p>
-                The website does not have access to Government employee records,
-                payroll systems, pension databases, PPO information or
-                departmental service files.
+                Users should make Government payments only through the official
+                website or payment portal specified by the relevant Government
+                department or authority.
+              </p>
+            </section>
+
+            <section>
+              <h2>No Access to Government Records</h2>
+
+              <p>
+                GovtPayGuide does not have access to Government employee
+                records, payroll systems, pension databases, PPO information,
+                departmental service books, transfer databases or confidential
+                Government systems.
+              </p>
+
+              <p>
+                We cannot approve salaries, pensions, transfers, appointments,
+                claims, arrears, allowances or any official Government request.
               </p>
             </section>
 
@@ -201,15 +272,15 @@ export default function AboutPage() {
               <h2>Corrections and Updates</h2>
 
               <p>
-                Government rules and rates change over time, and errors can
-                occur. We welcome correction requests when readers find
+                Government rules, rates and orders change over time, and errors
+                can occur. We welcome correction requests when readers find
                 outdated, unclear or incorrect information.
               </p>
 
               <p>
                 When reporting an issue, it is helpful to include the relevant
-                page and, where possible, an official notification or Government
-                source.
+                page and, where possible, the related official notification,
+                Government order or departmental source.
               </p>
 
               <Link href="/contact" className="secondary-content-button">
@@ -218,12 +289,13 @@ export default function AboutPage() {
             </section>
 
             <section>
-              <h2>Who This Website is For</h2>
+              <h2>Who This Website Is For</h2>
 
               <p>
                 GovtPayGuide may be useful for Government employees, pensioners,
                 family pensioners, job aspirants and anyone trying to understand
-                Government pay structures or salary calculations.
+                Government pay structures, salary calculations, DA, pension or
+                Pay Commission-related information.
               </p>
             </section>
 
@@ -232,15 +304,24 @@ export default function AboutPage() {
 
               <p>
                 We aim to clearly distinguish between official information,
-                simplified explanations, examples and calculator estimates.
+                simplified explanations, examples, estimates and calculator
+                results.
               </p>
 
               <p>
-                For important financial, pension or service decisions, readers
-                should verify information with the appropriate Government
-                authority.
+                For important financial, pension, employment or service-related
+                decisions, readers should verify the latest information directly
+                with the appropriate Government authority.
               </p>
             </section>
+
+            <div className="about-disclaimer">
+              <strong>Important:</strong> GovtPayGuide is an independent
+              information platform. For official decisions, payments,
+              applications, transfers, appointments, pension matters or
+              service-related action, always verify the latest information from
+              the concerned Government department or official portal.
+            </div>
 
             <div className="legal-bottom-nav">
               <Link href="/contact">Contact</Link>
@@ -254,8 +335,13 @@ export default function AboutPage() {
               <h3>GovtPayGuide</h3>
 
               <p>
-                Independent salary, DA, pay structure, pension and calculator
-                resource for Government pay information.
+                Independent salary, DA, Pay Commission, pension and calculator
+                information platform.
+              </p>
+
+              <p>
+                Not an official Government website and not a Government payment
+                portal.
               </p>
             </div>
 
