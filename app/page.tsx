@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 type DbArticle = {
   id: string;
@@ -355,12 +354,14 @@ const latestUpdates = sortedUpdates
   >
     <div className="featured-news-image">
       <Image
-        src={item.featuredImage}
-        alt={item.title}
-        fill
-        sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
-        style={{ objectFit: "cover" }}
-      />
+  src={item.featuredImage}
+  alt={item.title}
+  fill
+  sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
+  quality={75}
+  loading="lazy"
+  style={{ objectFit: "cover" }}
+/>
     </div>
   </Link>
 )}
