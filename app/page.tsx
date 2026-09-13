@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -12,6 +13,7 @@ type DbArticle = {
   status: string;
   published_at: string | null;
   featured: boolean;
+  featured_image: string | null;
 };
 
 type LatestUpdate = {
@@ -22,6 +24,7 @@ type LatestUpdate = {
   publishedAt: string;
   href: string;
   featured?: boolean;
+  featuredImage?: string | null;
 };
 
 function getSupabase() {
@@ -56,7 +59,8 @@ async function getPublishedArticles() {
       category,
       status,
       published_at,
-      featured
+      featured,
+      featured_image
     `)
     .eq("published", true)
     .order("published_at", {
@@ -90,14 +94,23 @@ export default async function Home() {
         new Date(0).toISOString(),
       href: `/updates/${article.slug}`,
       featured: article.featured,
+      featuredImage: article.featured_image,
     }));
 
-  const latestUpdates = supabaseUpdates
-  .sort(
-    (a, b) =>
-      new Date(b.publishedAt).getTime() -
-      new Date(a.publishedAt).getTime()
-  )
+  const sortedUpdates = [...supabaseUpdates].sort(
+  (a, b) =>
+    new Date(b.publishedAt).getTime() -
+    new Date(a.publishedAt).getTime()
+);
+
+// Admin থেকে "Feature on Homepage" ON করা articles
+const featuredUpdates = sortedUpdates
+  .filter((article) => article.featured === true)
+  .slice(0, 3);
+
+// Featured articles বাদ দিয়ে normal latest articles
+const latestUpdates = sortedUpdates
+  .filter((article) => article.featured !== true)
   .slice(0, 3);
 
   return (
@@ -295,6 +308,105 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      {/* =====================================
+    FEATURED UPDATES
+====================================== */}
+
+{featuredUpdates.length > 0 && (
+  <section className="home-section home-featured-section">
+    <div className="container">
+      <div className="home-section-heading">
+        <div>
+          <span className="section-label">
+            Featured
+          </span>
+
+          <h2>
+            Featured Government Updates
+          </h2>
+
+          <p>
+            Important salary, DA, Pay Commission
+            and pension updates selected for the
+            homepage.
+          </p>
+        </div>
+      </div>
+
+      <div className="featured-news-grid">
+        {featuredUpdates.map((item) => {
+          const formattedDate = new Date(
+            item.publishedAt
+          ).toLocaleDateString("en-IN", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          });
+
+          return (
+            <article
+              className="featured-news-card"
+              key={item.href}
+            >
+              {item.featuredImage && (
+  <Link
+    href={item.href}
+    className="featured-news-image-link"
+  >
+    <div className="featured-news-image">
+      <Image
+        src={item.featuredImage}
+        alt={item.title}
+        fill
+        sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
+        style={{ objectFit: "cover" }}
+      />
+    </div>
+  </Link>
+)}
+              <div className="featured-news-top">
+                <span className="featured-badge">
+                  Featured
+                </span>
+
+                <span className="featured-news-date">
+                  {formattedDate}
+                </span>
+              </div>
+
+              <div className="latest-news-meta">
+                <span className="latest-news-category">
+                  {item.category}
+                </span>
+
+                <span className="latest-news-status">
+                  {item.status}
+                </span>
+              </div>
+
+              <Link href={item.href}>
+                <h3>
+                  {item.title}
+                </h3>
+              </Link>
+
+              <p>
+                {item.description}
+              </p>
+
+              <Link
+                href={item.href}
+                className="latest-news-link"
+              >
+                Read Featured Update →
+              </Link>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+)}
 
       {/* =====================================
           LATEST UPDATES
