@@ -1,8 +1,8 @@
+import { unstable_cache } from "next/cache";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Government Salary, DA & Pay Commission Updates",
@@ -32,12 +32,11 @@ function formatDate(date: string | null) {
     year: "numeric",
   }).format(new Date(date));
 }
-
-export default async function UpdatesPage() {
-  const { data: articles, error } = await supabase
-    .from("articles")
-    .select(
-      `
+const getPublishedArticles = unstable_cache(
+  async () => {
+    const { data, error } = await supabase
+      .from("articles")
+      .select(`
         id,
         title,
         slug,
@@ -45,16 +44,26 @@ export default async function UpdatesPage() {
         category,
         status,
         published_at
-      `
-    )
-    .eq("published", true)
-    .order("published_at", { ascending: false });
+      `)
+      .eq("published", true)
+      .order("published_at", { ascending: false });
 
-  if (error) {
-    console.error("Error loading articles:", error);
+    if (error) {
+      console.error("Error loading articles:", error);
+      return [];
+    }
+
+    return data ?? [];
+  },
+  ["published-updates"],
+  {
+    revalidate: 60,
   }
+);
 
-  const updates: Article[] = articles || [];
+export default async function UpdatesPage() {
+  const updates: Article[] =
+  await getPublishedArticles();
 
   return (
     <main>
