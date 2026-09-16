@@ -17,7 +17,9 @@ export const metadata: Metadata = {
 
   description:
     "Government salary information, DA updates, Pay Commission guides, pay matrix, pension information and salary calculators for Central and State Government employees.",
-
+  alternates: {
+    canonical: "/",
+  },
   applicationName: "GovtPayGuide",
 
   keywords: [
