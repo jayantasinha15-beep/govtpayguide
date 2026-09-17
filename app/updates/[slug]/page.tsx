@@ -3,7 +3,13 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
+
 export const revalidate = 300;
+
+/* =========================================
+   TYPES
+========================================= */
+
 type Article = {
   id: string;
   title: string;
@@ -47,6 +53,11 @@ type ContentBlock =
   | {
       type: "ordered-list";
       items: string[];
+    }
+  | {
+      type: "table";
+      headers: string[];
+      rows: string[][];
     };
 
 /* =========================================
@@ -120,18 +131,20 @@ const getArticle = unstable_cache(
     revalidate: 300,
   }
 );
+
 /* =========================================
-   INLINE BOLD TEXT
+   INLINE TEXT
+   Supports **bold** and URLs
 ========================================= */
 
 function renderInlineText(text: string) {
-  // Detect **bold** text and URLs
   const parts = text.split(
     /(\*\*.*?\*\*|https?:\/\/[^\s]+)/g
   );
 
   return parts.map((part, index) => {
-    // Bold text
+    /* Bold */
+
     if (
       part.startsWith("**") &&
       part.endsWith("**")
@@ -143,7 +156,8 @@ function renderInlineText(text: string) {
       );
     }
 
-    // Clickable URL
+    /* URL */
+
     if (
       part.startsWith("http://") ||
       part.startsWith("https://")
@@ -167,6 +181,14 @@ function renderInlineText(text: string) {
 
 /* =========================================
    CONTENT PARSER
+   Supports:
+   ## H2
+   ### H3
+   - Bullet lists
+   1. Numbered lists
+   Markdown tables
+   **Bold**
+   URLs
 ========================================= */
 
 function parseContent(
@@ -180,6 +202,8 @@ function parseContent(
 
   let listItems: string[] = [];
   let orderedListItems: string[] = [];
+
+  /* Flush Lists */
 
   const flushLists = () => {
     if (listItems.length > 0) {
@@ -201,15 +225,99 @@ function parseContent(
     }
   };
 
-  for (const line of contentLines) {
-    /* Empty line */
+  /* Parse Table Row */
+
+  const parseTableRow = (
+    line: string
+  ): string[] => {
+    return line
+      .replace(/^\|/, "")
+      .replace(/\|$/, "")
+      .split("|")
+      .map((cell) => cell.trim());
+  };
+
+  /* Detect Markdown Table Separator */
+
+  const isTableSeparator = (
+    line: string
+  ): boolean => {
+    if (!line.includes("|")) {
+      return false;
+    }
+
+    const cells =
+      parseTableRow(line);
+
+    return (
+      cells.length > 0 &&
+      cells.every((cell) =>
+        /^:?-{3,}:?$/.test(cell)
+      )
+    );
+  };
+
+  let i = 0;
+
+  while (i < contentLines.length) {
+    const line = contentLines[i];
+
+    /* =====================================
+       EMPTY LINE
+    ===================================== */
 
     if (!line) {
       flushLists();
+      i++;
       continue;
     }
 
-    /* H3 */
+    /* =====================================
+       MARKDOWN TABLE
+    ===================================== */
+
+    if (
+      line.includes("|") &&
+      i + 1 < contentLines.length &&
+      isTableSeparator(
+        contentLines[i + 1]
+      )
+    ) {
+      flushLists();
+
+      const headers =
+        parseTableRow(line);
+
+      const rows: string[][] = [];
+
+      i += 2;
+
+      while (
+        i < contentLines.length &&
+        contentLines[i] &&
+        contentLines[i].includes("|")
+      ) {
+        rows.push(
+          parseTableRow(
+            contentLines[i]
+          )
+        );
+
+        i++;
+      }
+
+      contentBlocks.push({
+        type: "table",
+        headers,
+        rows,
+      });
+
+      continue;
+    }
+
+    /* =====================================
+       H3
+    ===================================== */
 
     if (line.startsWith("### ")) {
       flushLists();
@@ -222,10 +330,13 @@ function parseContent(
         ),
       });
 
+      i++;
       continue;
     }
 
-    /* H2 */
+    /* =====================================
+       H2
+    ===================================== */
 
     if (line.startsWith("## ")) {
       flushLists();
@@ -238,24 +349,35 @@ function parseContent(
         ),
       });
 
+      i++;
       continue;
     }
 
-    /* Bullet List */
+    /* =====================================
+       BULLET LIST
+    ===================================== */
 
     if (line.startsWith("- ")) {
-      if (orderedListItems.length > 0) {
+      if (
+        orderedListItems.length > 0
+      ) {
         flushLists();
       }
 
       listItems.push(
-        line.replace(/^-\s+/, "")
+        line.replace(
+          /^-\s+/,
+          ""
+        )
       );
 
+      i++;
       continue;
     }
 
-    /* Numbered List */
+    /* =====================================
+       NUMBERED LIST
+    ===================================== */
 
     if (/^\d+\.\s+/.test(line)) {
       if (listItems.length > 0) {
@@ -269,10 +391,13 @@ function parseContent(
         )
       );
 
+      i++;
       continue;
     }
 
-    /* Normal Paragraph */
+    /* =====================================
+       NORMAL PARAGRAPH
+    ===================================== */
 
     flushLists();
 
@@ -280,6 +405,8 @@ function parseContent(
       type: "paragraph",
       text: line,
     });
+
+    i++;
   }
 
   flushLists();
@@ -435,28 +562,33 @@ export default async function ArticlePage({
           {/* FEATURED IMAGE */}
 
           {article.featured_image && (
-  <div className="public-article-image">
-    <Image
-      src={article.featured_image}
-      alt={article.title}
-      width={1200}
-      height={675}
-      sizes="(max-width: 768px) 100vw, 1200px"
-      quality={75}
-      priority={false}
-      style={{
-        width: "100%",
-        height: "auto",
-      }}
-    />
-  </div>
-)}
+            <div className="public-article-image">
+              <Image
+                src={
+                  article.featured_image
+                }
+                alt={article.title}
+                width={1200}
+                height={675}
+                sizes="(max-width: 768px) 100vw, 1200px"
+                quality={75}
+                priority={false}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                }}
+              />
+            </div>
+          )}
 
-          {/* ARTICLE BODY */}
+          {/* =====================================
+              ARTICLE BODY
+          ====================================== */}
 
           <div className="public-article-content">
             {contentBlocks.map(
               (block, index) => {
+
                 /* H2 */
 
                 if (
@@ -537,6 +669,78 @@ export default async function ArticlePage({
                         )
                       )}
                     </ol>
+                  );
+                }
+
+                /* =================================
+                   TABLE
+                ================================= */
+
+                if (
+                  block.type === "table"
+                ) {
+                  return (
+                    <div
+                      className="article-table-wrapper"
+                      key={index}
+                    >
+                      <table className="article-table">
+                        <thead>
+                          <tr>
+                            {block.headers.map(
+                              (
+                                header,
+                                headerIndex
+                              ) => (
+                                <th
+                                  key={
+                                    headerIndex
+                                  }
+                                >
+                                  {renderInlineText(
+                                    header
+                                  )}
+                                </th>
+                              )
+                            )}
+                          </tr>
+                        </thead>
+
+                        <tbody>
+                          {block.rows.map(
+                            (
+                              row,
+                              rowIndex
+                            ) => (
+                              <tr
+                                key={
+                                  rowIndex
+                                }
+                              >
+                                {block.headers.map(
+                                  (
+                                    _,
+                                    cellIndex
+                                  ) => (
+                                    <td
+                                      key={
+                                        cellIndex
+                                      }
+                                    >
+                                      {renderInlineText(
+                                        row[
+                                          cellIndex
+                                        ] || ""
+                                      )}
+                                    </td>
+                                  )
+                                )}
+                              </tr>
+                            )
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
                   );
                 }
 
