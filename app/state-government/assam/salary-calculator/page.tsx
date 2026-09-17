@@ -291,6 +291,149 @@ export default function AssamSalaryCalculatorPage() {
             Take-Home = Gross Salary − Deductions
           </div>
         </section>
+        <section className="article-section">
+  <span className="section-label">Salary Guide</span>
+
+  <h2>Assam Government Salary Calculator 2026</h2>
+
+  <p>
+    The Assam Government Salary Calculator helps employees estimate
+    their monthly salary using Pay in Pay Band, Grade Pay, Dearness
+    Allowance (DA), HRA, other allowances and deductions.
+  </p>
+
+  <p>
+    The calculator first combines Pay in Pay Band and Grade Pay to
+    determine the Basic Pay used for the calculation. DA and HRA are
+    then calculated according to the percentages entered by the user.
+  </p>
+
+  <p>
+    Since salary components can vary depending on department, post,
+    place of posting, applicable Government orders and individual
+    deductions, the result should be treated as an estimate rather
+    than an official salary statement.
+  </p>
+</section>
+
+<section className="article-section">
+  <span className="section-label">Example</span>
+
+  <h2>Assam Government Salary Calculation Example</h2>
+
+  <p>
+    Suppose an employee enters ₹30,000 as Pay in Pay Band and ₹12,700
+    as Grade Pay. The Basic Pay used by this calculator will be
+    ₹42,700.
+  </p>
+
+  <div className="article-formula">
+    ₹30,000 + ₹12,700 = ₹42,700 Basic Pay
+  </div>
+
+  <p>
+    If a DA rate of 58% is entered, the estimated DA on ₹42,700 will
+    be ₹24,766.
+  </p>
+
+  <div className="article-formula">
+    ₹42,700 × 58 ÷ 100 = ₹24,766 DA
+  </div>
+
+  <p>
+    HRA and other applicable allowances can then be added, while
+    deductions can be entered separately to estimate take-home pay.
+    The DA percentage in this example is illustrative for explaining
+    the calculator; employees should use the rate applicable to them
+    under the latest Government order.
+  </p>
+</section>
+
+<section className="article-section">
+  <span className="section-label">Components</span>
+
+  <h2>What Is Included in the Salary Estimate?</h2>
+
+  <h3>Pay in Pay Band</h3>
+  <p>
+    Enter the Pay in Pay Band applicable to your current pay
+    particulars.
+  </p>
+
+  <h3>Grade Pay</h3>
+  <p>
+    Enter the applicable Grade Pay. This calculator adds it to Pay
+    in Pay Band when determining Basic Pay.
+  </p>
+
+  <h3>Dearness Allowance (DA)</h3>
+  <p>
+    DA is calculated as a percentage of the Basic Pay used by this
+    calculator. Because DA rates can change through Government
+    orders, verify the applicable rate before calculating.
+  </p>
+
+  <h3>House Rent Allowance (HRA)</h3>
+  <p>
+    HRA eligibility and rates may differ depending on place of
+    posting and applicable service rules. The calculator therefore
+    allows you to enter the relevant HRA percentage manually.
+  </p>
+
+  <h3>Other Allowances</h3>
+  <p>
+    Any additional fixed monthly allowances applicable to you can be
+    entered separately.
+  </p>
+
+  <h3>Deductions</h3>
+  <p>
+    Enter applicable monthly deductions to obtain a closer estimate
+    of take-home salary. Actual deductions vary between employees.
+  </p>
+</section>
+
+<section className="article-section">
+  <span className="section-label">FAQ</span>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <h3>How is Basic Pay calculated in this calculator?</h3>
+  <p>
+    For this calculator, Basic Pay is calculated by adding Pay in Pay
+    Band and Grade Pay.
+  </p>
+
+  <h3>How do I calculate Assam Government employee salary?</h3>
+  <p>
+    Enter your Pay in Pay Band, Grade Pay, applicable DA rate, HRA
+    rate, other monthly allowances and deductions. The calculator
+    will estimate Basic Pay, DA, HRA, gross salary and take-home
+    salary automatically.
+  </p>
+
+  <h3>Does this calculator calculate annual salary?</h3>
+  <p>
+    Yes. It displays estimated annual gross salary and annual
+    take-home salary based on the monthly calculation multiplied by
+    12.
+  </p>
+
+  <h3>Is the salary shown by the calculator official?</h3>
+  <p>
+    No. The result is an estimate for informational purposes.
+    Actual salary depends on the employee&apos;s department, post,
+    applicable pay rules, allowances, deductions and Government
+    orders.
+  </p>
+
+  <h3>Should I always use 58% DA?</h3>
+  <p>
+    No. The DA field is editable. Enter the rate actually applicable
+    to you and verify the latest rate from the relevant Assam
+    Government order before relying on the calculation.
+  </p>
+</section>
 
         <section className="article-section">
           <span className="section-label">Related</span>
