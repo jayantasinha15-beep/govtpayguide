@@ -1,6 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://www.govtpayindia.com/",
+  },
+};
 export const revalidate = 60;
 
 type DbArticle = {
