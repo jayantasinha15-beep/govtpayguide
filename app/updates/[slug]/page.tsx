@@ -139,40 +139,80 @@ const getArticle = unstable_cache(
 
 function renderInlineText(text: string) {
   const parts = text.split(
-    /(\*\*.*?\*\*|https?:\/\/[^\s]+)/g
+    /(\[[^\]]+\]\(https?:\/\/[^)\s]+\)|\*\*.*?\*\*|https?:\/\/[^\s<]+)/g
+  );
+
+  const externalLink = (
+    url: string,
+    label: string,
+    key: number
+  ) => (
+    <a
+      key={key}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="article-external-link"
+    >
+      {label}
+    </a>
   );
 
   return parts.map((part, index) => {
-    /* Bold */
+    /* Markdown link: [Text](https://example.com) */
+
+    const markdownLink = part.match(
+      /^\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)$/
+    );
+
+    if (markdownLink) {
+      return externalLink(
+        markdownLink[2],
+        markdownLink[1],
+        index
+      );
+    }
+
+    /* Bold text or bold URL */
 
     if (
       part.startsWith("**") &&
       part.endsWith("**")
     ) {
+      const boldContent = part.slice(2, -2);
+
+      if (
+        boldContent.startsWith("http://") ||
+        boldContent.startsWith("https://")
+      ) {
+        return (
+          <strong key={index}>
+            <a
+              href={boldContent}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="article-external-link"
+            >
+              {boldContent}
+            </a>
+          </strong>
+        );
+      }
+
       return (
         <strong key={index}>
-          {part.slice(2, -2)}
+          {boldContent}
         </strong>
       );
     }
 
-    /* URL */
+    /* Plain URL */
 
     if (
       part.startsWith("http://") ||
       part.startsWith("https://")
     ) {
-      return (
-        <a
-          key={index}
-          href={part}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="article-external-link"
-        >
-          {part}
-        </a>
-      );
+      return externalLink(part, part, index);
     }
 
     return part;

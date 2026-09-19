@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about GovtPayGuide, an independent informational website covering government salary, DA, Pay Commission, pay matrix, pension and calculators.",
+    "Learn about GovtPayGuide, an independent informational website covering government salary, pension, calculators, job guides and recruitment notifications.",
   alternates: {
     canonical: "/about",
   },
@@ -22,7 +22,8 @@ export default function AboutPage() {
           <p>
             GovtPayGuide is an independent informational website created to
             make government salary, Dearness Allowance, Pay Commission,
-            pension, pay matrix and related calculations easier to understand.
+            pension, pay matrix, government jobs and related information easier
+            to understand.
           </p>
         </div>
       </section>
@@ -37,14 +38,16 @@ export default function AboutPage() {
                 GovtPayGuide is an independent information platform focused on
                 government salary, Dearness Allowance, Dearness Relief, Pay
                 Commission, pay matrix, pension, allowances and salary-related
-                calculators.
+                calculators, as well as government job guides and recruitment
+                notifications.
               </p>
 
               <p>
                 The website is designed to explain publicly available
                 government pay information in a simpler and more practical
-                format for employees, pensioners and readers who want to
-                understand salary and pension-related topics.
+                format for employees, pensioners, job aspirants and readers who
+                want to understand salary, pension and recruitment-related
+                topics.
               </p>
 
               <div className="contact-warning">
@@ -59,7 +62,8 @@ export default function AboutPage() {
                 <p>
                   GovtPayGuide does not process government payments, collect
                   money on behalf of any government authority, issue official
-                  orders or provide government services.
+                  orders, accept job applications or provide government
+                  services.
                 </p>
               </div>
             </section>
@@ -110,10 +114,53 @@ export default function AboutPage() {
                   <span>04</span>
                   <strong>Reference</strong>
                   <p>
-                    Direct readers toward relevant official government sources
-                    wherever possible.
+                    Direct readers toward official government and recruitment
+                    sources wherever possible.
                   </p>
                 </div>
+              </div>
+            </section>
+
+            <section>
+              <h2>Government Jobs and Recruitment Coverage</h2>
+
+              <p>
+                GovtPayGuide publishes government job guides and recruitment
+                notifications to help candidates understand publicly available
+                information such as vacancies, eligibility, age limits,
+                application fees, important dates, selection processes and
+                official application links.
+              </p>
+
+              <p>
+                Recruitment details can be revised, extended or withdrawn by
+                the recruiting authority. Candidates should therefore read the
+                complete latest official notification and verify every detail
+                on the recruiting organization&apos;s official website before
+                applying.
+              </p>
+
+              <div className="contact-warning">
+                <strong>Independent Recruitment Information</strong>
+
+                <p>
+                  GovtPayGuide is not a recruiting authority, examination
+                  board, employer or placement agency. We do not accept job
+                  applications, issue admit cards, conduct examinations,
+                  prepare merit lists or guarantee employment.
+                </p>
+              </div>
+
+              <div className="about-link-grid">
+                <Link href="/government-jobs/notifications">
+                  <span>Latest Vacancies</span>
+                  <strong>Recruitment Notifications →</strong>
+                </Link>
+
+                <Link href="/government-jobs/guides">
+                  <span>Career Information</span>
+                  <strong>Explore Job Guides →</strong>
+                </Link>
               </div>
             </section>
 
@@ -170,6 +217,8 @@ export default function AboutPage() {
                 <li>Official Education Departments</li>
                 <li>Official Government orders and memoranda</li>
                 <li>Official departmental portals</li>
+                <li>Official recruiting organizations and examination boards</li>
+                <li>Official recruitment notifications and application portals</li>
               </ul>
 
               <div className="about-source-box">
@@ -200,9 +249,10 @@ export default function AboutPage() {
               </p>
 
               <p>
-                Important service, pension, transfer, appointment, payment or
-                financial decisions should always be based on the latest
-                official Government order or departmental instruction.
+                Important service, pension, transfer, recruitment, appointment,
+                payment or financial decisions should always be based on the
+                latest official Government order, recruitment notification or
+                departmental instruction.
               </p>
             </section>
 
@@ -250,6 +300,12 @@ export default function AboutPage() {
                 website or payment portal specified by the relevant Government
                 department or authority.
               </p>
+
+              <p>
+                Recruitment and examination fees should be paid only through
+                the official application portal specified by the recruiting
+                authority.
+              </p>
             </section>
 
             <section>
@@ -258,13 +314,15 @@ export default function AboutPage() {
               <p>
                 GovtPayGuide does not have access to Government employee
                 records, payroll systems, pension databases, PPO information,
-                departmental service books, transfer databases or confidential
-                Government systems.
+                departmental service books, transfer databases, recruitment
+                databases, application records or confidential Government
+                systems.
               </p>
 
               <p>
                 We cannot approve salaries, pensions, transfers, appointments,
-                claims, arrears, allowances or any official Government request.
+                job applications, admit cards, examination results, claims,
+                arrears, allowances or any official Government request.
               </p>
             </section>
 
@@ -294,8 +352,8 @@ export default function AboutPage() {
               <p>
                 GovtPayGuide may be useful for Government employees, pensioners,
                 family pensioners, job aspirants and anyone trying to understand
-                Government pay structures, salary calculations, DA, pension or
-                Pay Commission-related information.
+                Government pay structures, salary calculations, DA, pension,
+                Pay Commission or recruitment-related information.
               </p>
             </section>
 
@@ -311,16 +369,17 @@ export default function AboutPage() {
               <p>
                 For important financial, pension, employment or service-related
                 decisions, readers should verify the latest information directly
-                with the appropriate Government authority.
+                with the appropriate Government or recruiting authority.
               </p>
             </section>
 
             <div className="about-disclaimer">
               <strong>Important:</strong> GovtPayGuide is an independent
               information platform. For official decisions, payments,
-              applications, transfers, appointments, pension matters or
-              service-related action, always verify the latest information from
-              the concerned Government department or official portal.
+              job applications, recruitment, transfers, appointments, pension
+              matters or service-related action, always verify the latest
+              information from the concerned Government department, recruiting
+              authority or official portal.
             </div>
 
             <div className="legal-bottom-nav">
@@ -335,8 +394,8 @@ export default function AboutPage() {
               <h3>GovtPayGuide</h3>
 
               <p>
-                Independent salary, DA, Pay Commission, pension and calculator
-                information platform.
+                Independent salary, DA, Pay Commission, pension, calculator and
+                government jobs information platform.
               </p>
 
               <p>
@@ -352,6 +411,10 @@ export default function AboutPage() {
               <Link href="/state-government">State Governments</Link>
               <Link href="/calculators">Calculators</Link>
               <Link href="/pension">Pension</Link>
+              <Link href="/government-jobs/notifications">
+                Recruitment Notifications
+              </Link>
+              <Link href="/government-jobs/guides">Job Guides</Link>
             </div>
 
             <div className="legal-sidebar-card">

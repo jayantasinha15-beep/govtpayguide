@@ -17,6 +17,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/calculators",
     "/pension",
     "/guides",
+    "/government-jobs",
+    "/government-jobs/notifications",
+    "/government-jobs/guides",
 
     // Central Government
     "/da",

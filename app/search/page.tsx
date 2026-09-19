@@ -1,14 +1,24 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { updates } from "@/data/updates";
+import { supabase } from "@/lib/supabase";
 
 type SearchItem = {
   title: string;
   description: string;
   category: string;
+  articleType?: string;
   href: string;
+};
+
+type ArticleRow = {
+  title: string;
+  slug: string;
+  description: string | null;
+  category: string | null;
+  status: string | null;
 };
 
 const staticPages: SearchItem[] = [
@@ -49,22 +59,19 @@ const staticPages: SearchItem[] = [
   },
   {
     title: "DA Calculator",
-    description:
-      "Calculate Dearness Allowance from Basic Pay and DA percentage.",
+    description: "Calculate Dearness Allowance from Basic Pay and DA percentage.",
     category: "Calculator",
     href: "/da-calculator",
   },
   {
     title: "HRA Calculator",
-    description:
-      "Estimate House Rent Allowance based on Basic Pay and HRA rate.",
+    description: "Estimate House Rent Allowance based on Basic Pay and HRA rate.",
     category: "Calculator",
     href: "/hra-calculator",
   },
   {
     title: "DA Arrears Calculator",
-    description:
-      "Estimate Dearness Allowance arrears after a DA revision.",
+    description: "Estimate Dearness Allowance arrears after a DA revision.",
     category: "Calculator",
     href: "/arrears-calculator",
   },
@@ -75,7 +82,29 @@ const staticPages: SearchItem[] = [
     category: "Pension",
     href: "/pension",
   },
-
+  {
+    title: "Government Jobs",
+    description:
+      "Government job guides, latest vacancies and recruitment notifications.",
+    category: "Government Jobs",
+    href: "/government-jobs",
+  },
+  {
+    title: "Recruitment Notifications",
+    description:
+      "Browse the latest government recruitment notifications, vacancies and application dates.",
+    category: "Government Jobs",
+    articleType: "Recruitment Notification",
+    href: "/government-jobs/notifications",
+  },
+  {
+    title: "Government Job Guides",
+    description:
+      "Government job salary, eligibility, selection process and career guides.",
+    category: "Government Jobs",
+    articleType: "Guide",
+    href: "/government-jobs/guides",
+  },
   {
     title: "West Bengal Government Employees",
     description:
@@ -97,7 +126,6 @@ const staticPages: SearchItem[] = [
     category: "West Bengal",
     href: "/state-government/west-bengal/pay-commission",
   },
-
   {
     title: "Bihar Government Employees",
     description:
@@ -112,7 +140,6 @@ const staticPages: SearchItem[] = [
     category: "Bihar",
     href: "/state-government/bihar/da",
   },
-
   {
     title: "Assam Government Employees",
     description:
@@ -129,8 +156,7 @@ const staticPages: SearchItem[] = [
   },
   {
     title: "Assam Pay Commission",
-    description:
-      "Assam Pay Commission and Revision of Pay Rules information.",
+    description: "Assam Pay Commission and Revision of Pay Rules information.",
     category: "Assam",
     href: "/state-government/assam/pay-commission",
   },
@@ -138,6 +164,47 @@ const staticPages: SearchItem[] = [
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
+  const [articleItems, setArticleItems] = useState<SearchItem[]>([]);
+  const [loadingArticles, setLoadingArticles] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+
+    const loadArticles = async () => {
+      const { data, error } = await supabase
+        .from("articles")
+        .select("title, slug, description, category, status")
+        .eq("published", true)
+        .order("published_at", { ascending: false })
+        .limit(500);
+
+      if (!active) return;
+
+      if (error) {
+        console.error("Search article loading failed:", error.message);
+        setArticleItems([]);
+        setLoadingArticles(false);
+        return;
+      }
+
+      const items = ((data ?? []) as ArticleRow[]).map((article) => ({
+        title: article.title,
+        description: article.description ?? "Read the latest update on GovtPayGuide.",
+        category: article.category ?? "Update",
+        articleType: article.status ?? "",
+        href: `/updates/${article.slug}`,
+      }));
+
+      setArticleItems(items);
+      setLoadingArticles(false);
+    };
+
+    loadArticles();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const allItems = useMemo(() => {
     const updateItems: SearchItem[] = updates.map((item) => ({
@@ -147,14 +214,12 @@ export default function SearchPage() {
       href: item.href,
     }));
 
-    const merged = [...updateItems, ...staticPages];
+    const merged = [...articleItems, ...updateItems, ...staticPages];
 
-    const uniqueItems = Array.from(
+    return Array.from(
       new Map(merged.map((item) => [item.href, item])).values()
     );
-
-    return uniqueItems;
-  }, []);
+  }, [articleItems]);
 
   const results = useMemo(() => {
     const searchTerm = query.trim().toLowerCase();
@@ -166,6 +231,7 @@ export default function SearchPage() {
         const title = item.title.toLowerCase();
         const category = item.category.toLowerCase();
         const description = item.description.toLowerCase();
+        const articleType = (item.articleType ?? "").toLowerCase();
 
         let score = 0;
 
@@ -173,12 +239,10 @@ export default function SearchPage() {
         if (title.startsWith(searchTerm)) score += 50;
         if (title.includes(searchTerm)) score += 30;
         if (category.includes(searchTerm)) score += 20;
+        if (articleType.includes(searchTerm)) score += 15;
         if (description.includes(searchTerm)) score += 10;
 
-        return {
-          ...item,
-          score,
-        };
+        return { ...item, score };
       })
       .filter((item) => item.score > 0)
       .sort((a, b) => b.score - a.score);
@@ -189,30 +253,24 @@ export default function SearchPage() {
       <section className="state-hero">
         <div className="container">
           <span className="page-badge">Search</span>
-
           <h1>Search GovtPayGuide</h1>
-
           <p>
-            Search Government salary, DA, Pay Commission, pension,
-            calculators and latest employee updates.
+            Search government jobs, recruitment notifications, salary, DA, Pay
+            Commission, pension, calculators and latest updates.
           </p>
         </div>
       </section>
 
       <div className="container search-page">
         <div className="site-search-box">
-          <span className="site-search-icon" aria-hidden="true">
-            🔍
-          </span>
-
+          <span className="site-search-icon" aria-hidden="true">🔍</span>
           <input
             type="search"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search DA, Pay Commission, West Bengal, Punjab..."
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder="Search government jobs, UPSC, SSC, DA, pension..."
             aria-label="Search GovtPayGuide"
           />
-
           {query && (
             <button
               type="button"
@@ -227,44 +285,22 @@ export default function SearchPage() {
         {!query.trim() && (
           <div className="search-empty-state">
             <h2>What are you looking for?</h2>
-
             <p>
-              Try searching for DA, Pay Commission, salary calculator,
-              pension or any State Government.
+              Try searching for Government Jobs, Recruitment Notification,
+              UPSC, SSC, DA, Pay Commission, pension or a State Government.
             </p>
-
             <div className="search-suggestions">
-              <button type="button" onClick={() => setQuery("DA")}>
-                DA
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setQuery("Pay Commission")}
-              >
-                Pay Commission
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setQuery("West Bengal")}
-              >
-                West Bengal
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setQuery("Punjab")}
-              >
-                Punjab
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setQuery("Salary Calculator")}
-              >
-                Salary Calculator
-              </button>
+              {["Government Jobs", "Recruitment Notification", "UPSC", "DA", "Pay Commission", "West Bengal"].map(
+                (suggestion) => (
+                  <button
+                    type="button"
+                    key={suggestion}
+                    onClick={() => setQuery(suggestion)}
+                  >
+                    {suggestion}
+                  </button>
+                )
+              )}
             </div>
           </div>
         )}
@@ -274,54 +310,43 @@ export default function SearchPage() {
             <div className="search-results-heading">
               <div>
                 <span className="section-label">Results</span>
-                <h2>
-                  Search results for &quot;{query}&quot;
-                </h2>
+                <h2>Search results for &quot;{query}&quot;</h2>
               </div>
-
               <span>
-                {results.length}{" "}
-                {results.length === 1 ? "result" : "results"} found
+                {loadingArticles
+                  ? "Loading articles..."
+                  : `${results.length} ${results.length === 1 ? "result" : "results"} found`}
               </span>
             </div>
 
             {results.length > 0 ? (
               <div className="search-results-grid">
                 {results.map((item) => (
-                  <article
-                    className="search-result-card"
-                    key={item.href}
-                  >
+                  <article className="search-result-card" key={item.href}>
                     <span className="search-result-category">
-                      {item.category}
+                      {item.articleType
+                        ? `${item.category} · ${item.articleType}`
+                        : item.category}
                     </span>
-
-                    <Link href={item.href}>
-                      <h3>{item.title}</h3>
-                    </Link>
-
+                    <Link href={item.href}><h3>{item.title}</h3></Link>
                     <p>{item.description}</p>
-
-                    <Link
-                      href={item.href}
-                      className="search-result-link"
-                    >
+                    <Link href={item.href} className="search-result-link">
                       View Page →
                     </Link>
                   </article>
                 ))}
               </div>
+            ) : loadingArticles ? (
+              <div className="search-no-results"><p>Loading published articles...</p></div>
             ) : (
               <div className="search-no-results">
                 <h2>No results found</h2>
-
                 <p>
-                  We could not find anything for &quot;{query}&quot;.
-                  Try a shorter keyword such as DA, Punjab, pension or salary.
+                  We could not find anything for &quot;{query}&quot;. Try a shorter
+                  keyword such as UPSC, SSC, jobs, DA, pension or salary.
                 </p>
-
-                <Link href="/updates" className="search-browse-link">
-                  Browse Latest Updates →
+                <Link href="/government-jobs" className="search-browse-link">
+                  Browse Government Jobs →
                 </Link>
               </div>
             )}

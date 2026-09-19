@@ -138,9 +138,9 @@ export default async function GovernmentJobsPage() {
     <h2>Recruitment Notifications</h2>
   </div>
 
-  <Link href="/updates">
-    View All Updates →
-  </Link>
+  <Link href="/government-jobs/notifications">
+  View All Notifications →
+</Link>
 </div>
 
           <ArticleGrid
@@ -160,9 +160,9 @@ export default async function GovernmentJobsPage() {
     <h2>Government Job Guides</h2>
   </div>
 
-  <Link href="/updates">
-    View All Guides →
-  </Link>
+  <Link href="/government-jobs/guides">
+  View All Guides →
+</Link>
 </div>
 
           <ArticleGrid
