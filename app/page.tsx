@@ -4,6 +4,9 @@ import { createClient } from "@supabase/supabase-js";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  title: "Government Pay, Pension & Job Updates",
+  description:
+    "Explore government salary, DA, Pay Commission, pension, calculators, recruitment notifications, job guides and government job news.",
   alternates: {
     canonical: "https://www.govtpayindia.com/",
   },
@@ -129,13 +132,12 @@ const latestUpdates = sortedUpdates
         <div className="container home-hero-inner">
           <div className="home-hero-content">
             <span className="page-badge">
-              Government Pay & Salary Guide
+              Government Pay & Job Guide
             </span>
 
             <h1>
-              Government Salary, DA,
-              Pay Commission & Pension
-              Updates
+              Government Pay, Pension
+              & Job Updates
             </h1>
 
             <p>
@@ -143,8 +145,9 @@ const latestUpdates = sortedUpdates
               Central and State Government
               salary, Dearness Allowance,
               Pay Commission, pension,
-              pay matrix and useful salary
-              calculators.
+              pay matrix, recruitment
+              notifications, job guides and
+              useful salary calculators.
             </p>
 
             <div className="home-hero-actions">
@@ -156,10 +159,10 @@ const latestUpdates = sortedUpdates
               </Link>
 
               <Link
-                href="/calculators"
+                href="/government-jobs"
                 className="home-secondary-button"
               >
-                Explore Calculators
+                Explore Government Jobs
               </Link>
             </div>
           </div>
@@ -170,14 +173,15 @@ const latestUpdates = sortedUpdates
             </span>
 
             <h2>
-              Your Government Pay Information
+              Your Government Information
               Hub
             </h2>
 
             <p>
               Salary guides, DA revisions,
-              Pay Commission updates and
-              calculators in one place.
+              Pay Commission updates,
+              calculators and government
+              job information in one place.
             </p>
 
             <div className="home-hero-points">
@@ -196,25 +200,30 @@ const latestUpdates = sortedUpdates
               <span>
                 ✓ Pension Guides
               </span>
+
+              <span>
+                ✓ Government Jobs
+              </span>
             </div>
           </div>
         </div>
       </section>
       <section className="trust-notice">
   <div className="trust-notice-inner">
-    <h2>Independent Government Pay Information Portal</h2>
+    <h2>Independent Government Information Portal</h2>
 
     <p>
       GovtPayGuide is an independent informational website providing guides,
       calculators and updates related to government salary, Dearness Allowance,
-      Pay Commission, pension and employee pay matters.
+      Pay Commission, pension, employee pay matters, recruitment notifications
+      and government job guides.
     </p>
 
     <p>
       We are not affiliated with the Government of India, any State Government,
       department, commission or official government payment portal. GovtPayGuide
       does not process government payments or collect money on behalf of any
-      government authority.
+      government authority, and it is not a recruiting agency.
     </p>
   </div>
 </section>
@@ -332,6 +341,94 @@ const latestUpdates = sortedUpdates
           </div>
         </div>
       </section>
+
+      {/* =====================================
+          GOVERNMENT JOBS
+      ====================================== */}
+
+      <section className="home-section home-state-section">
+        <div className="container">
+          <div className="home-section-heading">
+            <div>
+              <span className="section-label">
+                Government Jobs
+              </span>
+
+              <h2>
+                Recruitment Notifications & Job Guides
+              </h2>
+
+              <p>
+                Explore active recruitment notifications, upcoming vacancy
+                news, post-wise salary information and practical job guides.
+              </p>
+            </div>
+
+            <Link
+              href="/government-jobs"
+              className="home-view-all-link"
+            >
+              View Government Jobs →
+            </Link>
+          </div>
+
+          <div className="home-quick-grid">
+            <Link
+              href="/government-jobs/notifications"
+              className="home-quick-card"
+            >
+              <span className="home-quick-icon">
+                📢
+              </span>
+
+              <h3>Recruitment Notifications</h3>
+
+              <p>
+                Check published vacancies, eligibility, important dates and
+                official application links.
+              </p>
+
+              <span>View Notifications →</span>
+            </Link>
+
+            <Link
+              href="/government-jobs/guides"
+              className="home-quick-card"
+            >
+              <span className="home-quick-icon">
+                📘
+              </span>
+
+              <h3>Government Job Guides</h3>
+
+              <p>
+                Understand salary, pay level, allowances, selection process
+                and career growth for government posts.
+              </p>
+
+              <span>Browse Job Guides →</span>
+            </Link>
+
+            <Link
+              href="/government-jobs"
+              className="home-quick-card"
+            >
+              <span className="home-quick-icon">
+                📰
+              </span>
+
+              <h3>Recruitment News</h3>
+
+              <p>
+                Follow upcoming vacancies, recruitment developments and
+                important updates for candidates.
+              </p>
+
+              <span>Read Job News →</span>
+            </Link>
+          </div>
+        </div>
+      </section>
       {/* =====================================
     FEATURED UPDATES
 ====================================== */}
@@ -346,13 +443,12 @@ const latestUpdates = sortedUpdates
           </span>
 
           <h2>
-            Featured Government Updates
+            Featured Government Updates & Job News
           </h2>
 
           <p>
-            Important salary, DA, Pay Commission
-            and pension updates selected for the
-            homepage.
+            Important salary, DA, Pay Commission, pension and recruitment
+            updates selected for the homepage.
           </p>
         </div>
       </div>
@@ -446,18 +542,16 @@ const latestUpdates = sortedUpdates
           <div className="home-section-heading">
             <div>
               <span className="section-label">
-                Latest News
+                Latest Updates
               </span>
 
               <h2>
-                Latest Government Employee
-                Updates
+                Latest Government Updates & Job News
               </h2>
 
               <p>
-                Recent salary, DA,
-                Pay Commission and pension
-                developments.
+                Recent salary, DA, Pay Commission, pension, recruitment
+                notifications and government job developments.
               </p>
             </div>
 
@@ -764,13 +858,15 @@ const latestUpdates = sortedUpdates
             <p>
               Salary figures, DA rates,
               pension information,
-              Pay Commission developments
+              Pay Commission developments,
+              recruitment details, job guides
               and calculator results are
               provided for informational
               purposes only. Always verify
               important information from the
               relevant official Government
-              notification or department.
+              notification, recruiting authority
+              or department.
             </p>
           </div>
         </div>
