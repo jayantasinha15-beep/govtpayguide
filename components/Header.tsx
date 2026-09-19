@@ -41,6 +41,7 @@ export default function Header() {
           <Link href="/pension" onClick={closeMenu}>
             Pension
           </Link>
+          <Link href="/government-jobs"> Government Jobs</Link>
 
           <Link href="/guides" onClick={closeMenu}>
             Guides
