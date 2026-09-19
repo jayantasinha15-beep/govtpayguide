@@ -702,6 +702,9 @@ export default function NewArticlePage() {
                   <option>
                     Guide
                   </option>
+                  <option>
+                    Recruitment Notification
+                  </option>
                 </select>
               </div>
             </div>

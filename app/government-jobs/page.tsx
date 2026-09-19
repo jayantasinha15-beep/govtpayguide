@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+
 export const revalidate = 60;
 
 export const metadata = {
   title: "Latest Government Jobs 2026 | GovtPayIndia",
   description:
-    "Find the latest Central and State Government job updates, salary details, eligibility, important dates and official notification links.",
+    "Find the latest government recruitment notifications, salary guides, eligibility details, important dates and official links.",
   alternates: {
-    canonical: "https://govtpayindia.com/government-jobs",
+    canonical: "https://www.govtpayindia.com/government-jobs",
   },
 };
 
@@ -17,13 +18,16 @@ type JobArticle = {
   slug: string;
   description: string | null;
   category: string | null;
+  status: string | null;
   published_at: string | null;
 };
 
 async function getJobArticles(): Promise<JobArticle[]> {
   const { data, error } = await supabase
     .from("articles")
-    .select("id, title, slug, description, category, published_at")
+    .select(
+      "id, title, slug, description, category, status, published_at"
+    )
     .eq("published", true)
     .eq("category", "Government Jobs")
     .order("published_at", { ascending: false });
@@ -46,21 +50,79 @@ function formatDate(date: string | null) {
   }).format(new Date(date));
 }
 
+function ArticleGrid({
+  articles,
+  emptyMessage,
+}: {
+  articles: JobArticle[];
+  emptyMessage: string;
+}) {
+  if (articles.length === 0) {
+    return (
+      <div className="empty-jobs">
+        <p>{emptyMessage}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="jobs-grid">
+      {articles.map((article) => (
+        <article className="job-card" key={article.id}>
+          <span className="job-category">
+            {article.status || "Government Jobs"}
+          </span>
+
+          <h3>
+            <Link href={`/updates/${article.slug}`}>
+              {article.title}
+            </Link>
+          </h3>
+
+          <p>
+            {article.description ||
+              "Read the latest government job information and official updates."}
+          </p>
+
+          <div className="job-card-footer">
+            <time>{formatDate(article.published_at)}</time>
+
+            <Link href={`/updates/${article.slug}`}>
+              Read More →
+            </Link>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
 export default async function GovernmentJobsPage() {
   const articles = await getJobArticles();
+
+  const recruitmentArticles = articles.filter(
+    (article) =>
+      article.status === "Recruitment Notification"
+  );
+
+  const guideArticles = articles.filter(
+    (article) => article.status === "Guide"
+  );
 
   return (
     <main className="jobs-page">
       <section className="jobs-hero">
         <div className="jobs-container">
-          <span className="jobs-label">GOVERNMENT JOB UPDATES</span>
+          <span className="jobs-label">
+            GOVERNMENT JOB UPDATES
+          </span>
 
           <h1>Latest Government Jobs 2026</h1>
 
           <p>
-            Explore verified Central and State Government job updates,
-            eligibility, salary details, important dates and official
-            notification links.
+            Explore verified government recruitment notifications,
+            eligibility details, important dates, salary information
+            and career guides.
           </p>
         </div>
       </section>
@@ -69,60 +131,46 @@ export default async function GovernmentJobsPage() {
         <div className="jobs-container">
           <div className="section-heading">
             <div>
-              <p className="section-label">LATEST UPDATES</p>
-              <h2>Government Job Articles</h2>
-            </div>
+              <p className="section-label">
+                LATEST VACANCIES
+              </p>
 
-            <Link href="/updates">View All Updates →</Link>
+              <h2>Recruitment Notifications</h2>
+            </div>
           </div>
 
-          {articles.length > 0 ? (
-            <div className="jobs-grid">
-              {articles.map((article) => (
-                <article className="job-card" key={article.id}>
-                  <span className="job-category">
-                    {article.category || "Government Jobs"}
-                  </span>
+          <ArticleGrid
+            articles={recruitmentArticles}
+            emptyMessage="No recruitment notifications have been published yet."
+          />
 
-                  <h3>
-                    <Link href={`/updates/${article.slug}`}>
-                      {article.title}
-                    </Link>
-                  </h3>
-
-                  <p>
-                    {article.description ||
-                      "Read the latest government job details, eligibility, salary and official updates."}
-                  </p>
-
-                  <div className="job-card-footer">
-                    <time>{formatDate(article.published_at)}</time>
-
-                    <Link href={`/updates/${article.slug}`}>
-                      Read More →
-                    </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
-          ) : (
-            <div className="empty-jobs">
-              <h3>Government job updates are coming soon</h3>
-              <p>
-                New recruitment, eligibility and salary articles will be
-                published here.
+          <div
+            className="section-heading"
+            style={{ marginTop: "60px" }}
+          >
+            <div>
+              <p className="section-label">
+                SALARY & CAREER
               </p>
+
+              <h2>Government Job Guides</h2>
             </div>
-          )}
+          </div>
+
+          <ArticleGrid
+            articles={guideArticles}
+            emptyMessage="No government job guides have been published yet."
+          />
 
           <div className="jobs-disclaimer">
             <h2>Important Notice</h2>
 
             <p>
-              GovtPayIndia is not affiliated with any government department or
-              recruitment agency. Candidates should always verify application
-              dates, eligibility and recruitment details from the official
-              notification before applying.
+              GovtPayIndia is not affiliated with any Government
+              department or recruitment agency. Candidates should
+              always verify vacancies, eligibility, dates and
+              application details from the official notification
+              before applying.
             </p>
           </div>
         </div>

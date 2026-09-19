@@ -669,6 +669,9 @@ export default function EditArticlePage() {
                   <option>
                     Guide
                   </option>
+                  <option>
+                    Recruitment Notification
+                  </option>
                 </select>
               </div>
             </div>
