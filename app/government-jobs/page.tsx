@@ -130,14 +130,18 @@ export default async function GovernmentJobsPage() {
       <section className="jobs-content">
         <div className="jobs-container">
           <div className="section-heading">
-            <div>
-              <p className="section-label">
-                LATEST VACANCIES
-              </p>
+  <div>
+    <p className="section-label">
+      LATEST VACANCIES
+    </p>
 
-              <h2>Recruitment Notifications</h2>
-            </div>
-          </div>
+    <h2>Recruitment Notifications</h2>
+  </div>
+
+  <Link href="/updates">
+    View All Updates →
+  </Link>
+</div>
 
           <ArticleGrid
             articles={recruitmentArticles}
@@ -145,17 +149,21 @@ export default async function GovernmentJobsPage() {
           />
 
           <div
-            className="section-heading"
-            style={{ marginTop: "60px" }}
-          >
-            <div>
-              <p className="section-label">
-                SALARY & CAREER
-              </p>
+  className="section-heading"
+  style={{ marginTop: "60px" }}
+>
+  <div>
+    <p className="section-label">
+      SALARY & CAREER
+    </p>
 
-              <h2>Government Job Guides</h2>
-            </div>
-          </div>
+    <h2>Government Job Guides</h2>
+  </div>
+
+  <Link href="/updates">
+    View All Guides →
+  </Link>
+</div>
 
           <ArticleGrid
             articles={guideArticles}
