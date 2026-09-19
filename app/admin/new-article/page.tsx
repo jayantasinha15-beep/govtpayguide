@@ -529,8 +529,8 @@ export default function NewArticlePage() {
 
           <p>
             Write and publish Government salary,
-            DA, Pay Commission, pension and
-            employee updates.
+            DA, Pay Commission, pension,
+            recruitment and job-related updates.
           </p>
         </div>
       </section>
@@ -704,6 +704,10 @@ export default function NewArticlePage() {
                   </option>
                   <option>
                     Recruitment Notification
+                  </option>
+
+                  <option>
+                    Recruitment News
                   </option>
                 </select>
               </div>

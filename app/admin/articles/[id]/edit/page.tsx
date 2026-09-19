@@ -672,6 +672,10 @@ export default function EditArticlePage() {
                   <option>
                     Recruitment Notification
                   </option>
+
+                  <option>
+                    Recruitment News
+                  </option>
                 </select>
               </div>
             </div>
