@@ -13,18 +13,18 @@ export default function Footer() {
           </Link>
 
           <p>
-            Independent information and calculators for Government salary,
-            Dearness Allowance, Pay Commission, pay structure, pension and
-            related topics.
+            Independent information, calculators, Government job guides and
+            recruitment updates covering salary, Dearness Allowance, Pay
+            Commission, pension and related topics.
           </p>
 
           <div className="footer-trust-note">
-            Not affiliated with the Government of India or any State
-            Government.
+            Not affiliated with the Government of India, any State Government,
+            department or recruitment authority.
           </div>
         </div>
 
-        {/* CENTRAL GOVT */}
+        {/* CENTRAL GOVERNMENT */}
         <div className="footer-column">
           <h3>Central Government</h3>
 
@@ -35,7 +35,7 @@ export default function Footer() {
           <Link href="/salary-calculator">Salary Calculator</Link>
         </div>
 
-        {/* STATE GOVT */}
+        {/* STATE GOVERNMENT */}
         <div className="footer-column">
           <h3>State Government</h3>
 
@@ -54,6 +54,27 @@ export default function Footer() {
           </Link>
         </div>
 
+        {/* GOVERNMENT JOBS */}
+        <div className="footer-column">
+          <h3>Government Jobs</h3>
+
+          <Link href="/government-jobs">
+            Government Jobs
+          </Link>
+
+          <Link href="/government-jobs/notifications">
+            Recruitment Notifications
+          </Link>
+
+          <Link href="/government-jobs/guides">
+            Job Guides
+          </Link>
+
+          <Link href="/updates">
+            Latest Updates
+          </Link>
+        </div>
+
         {/* CALCULATORS */}
         <div className="footer-column">
           <h3>Calculators</h3>
@@ -62,7 +83,9 @@ export default function Footer() {
           <Link href="/salary-calculator">Salary Calculator</Link>
           <Link href="/da-calculator">DA Calculator</Link>
           <Link href="/hra-calculator">HRA Calculator</Link>
-          <Link href="/arrears-calculator">DA Arrears Calculator</Link>
+          <Link href="/arrears-calculator">
+            DA Arrears Calculator
+          </Link>
           <Link href="/state-government/west-bengal/pension-calculator">
             WB Pension Calculator
           </Link>
@@ -81,11 +104,13 @@ export default function Footer() {
 
       <div className="container footer-source-box">
         <div>
-          <strong>Verify official government sources</strong>
+          <strong>Verify Official Government Sources</strong>
 
           <p>
-            Salary, DA, DR, pension, allowances and pay rules can change
-            through official notifications and Government orders.
+            Salary, DA, pension, recruitment vacancies, eligibility,
+            application dates and other details may change through official
+            notifications. Always verify the information on the concerned
+            department or recruitment authority&apos;s official website.
           </p>
         </div>
 
@@ -97,19 +122,16 @@ export default function Footer() {
           >
             Department of Expenditure ↗
           </a>
-
-        
         </div>
       </div>
 
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p>
-            © {year} GovtPayGuide. All rights reserved.
-          </p>
+          <p>© {year} GovtPayGuide. All rights reserved.</p>
 
           <p>
-            Information and calculator results are for general guidance only.
+            Information, recruitment updates and calculator results are for
+            general guidance only.
           </p>
         </div>
       </div>
