@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Contact GovtPayGuide for feedback, corrections, questions and website-related enquiries.",
+    "Contact GovtPayGuide for corrections, recruitment updates, calculator feedback, content suggestions and website-related enquiries.",
   alternates: {
     canonical: "/contact",
   },
@@ -35,13 +35,15 @@ export default function ContactPage() {
               <p>
                 GovtPayGuide is an independent informational website focused on
                 government salaries, Dearness Allowance, Pay Commission, pay
-                structures, pension and related calculators.
+                structures, pension, calculators, government job guides and
+                recruitment notifications.
               </p>
 
               <p>
                 You can contact us if you notice incorrect or outdated
-                information, have feedback about one of our calculators, or
-                want to suggest a topic that should be covered on the website.
+                information, have feedback about one of our calculators, find
+                an issue in a recruitment article, or want to suggest a topic
+                that should be covered on the website.
               </p>
             </section>
 
@@ -49,7 +51,7 @@ export default function ContactPage() {
               <h2>Email</h2>
 
               <div className="contact-email-box">
-                <span>General Enquiries & Corrections</span>
+                <span>General Enquiries &amp; Corrections</span>
 
                 <a href="mailto:jayantasingha09@yahoo.com">
                   jayantasingha09@yahoo.com
@@ -64,8 +66,16 @@ export default function ContactPage() {
                 <div>
                   <strong>Corrections</strong>
                   <p>
-                    Report incorrect, outdated or unclear salary, DA, pension
-                    or pay information.
+                    Report incorrect, outdated or unclear salary, DA, pension,
+                    pay or recruitment information.
+                  </p>
+                </div>
+
+                <div>
+                  <strong>Recruitment Updates</strong>
+                  <p>
+                    Report changes to vacancies, eligibility, important dates,
+                    official notifications or application links.
                   </p>
                 </div>
 
@@ -80,7 +90,7 @@ export default function ContactPage() {
                 <div>
                   <strong>Content Suggestions</strong>
                   <p>
-                    Suggest government salary, pension or service-related
+                    Suggest government salary, pension, service or job-related
                     topics for future guides.
                   </p>
                 </div>
@@ -96,6 +106,34 @@ export default function ContactPage() {
             </section>
 
             <section>
+              <h2>Recruitment Support Notice</h2>
+
+              <div className="contact-warning">
+                <strong>Important for Job Applicants</strong>
+
+                <p>
+                  GovtPayGuide is not a recruiting authority, examination
+                  board, employer or placement agency. We do not accept job
+                  applications, resumes, certificates, identity documents,
+                  photographs, signatures or recruitment fees.
+                </p>
+
+                <p>
+                  We cannot provide application status, registration support,
+                  admit cards, examination results, merit lists, interview
+                  details or selection assistance.
+                </p>
+              </div>
+
+              <p>
+                For these matters, contact the relevant recruiting authority
+                through its official website. Before applying, read the latest
+                complete official notification and use only the official
+                application portal.
+              </p>
+            </section>
+
+            <section>
               <h2>Government Service Queries</h2>
 
               <div className="contact-warning">
@@ -104,7 +142,8 @@ export default function ContactPage() {
                 <p>
                   GovtPayGuide is not a government department and cannot access
                   employee service records, salary accounts, pension records,
-                  PPO details, applications or government databases.
+                  PPO details, job applications, recruitment databases or
+                  government systems.
                 </p>
               </div>
 
@@ -124,9 +163,10 @@ export default function ContactPage() {
 
                 <p>
                   GovtPayGuide does not process government payments, collect
-                  government fees, receive application charges or accept money
-                  on behalf of the Government of India, any State Government,
-                  department, commission or public authority.
+                  government fees, receive application or examination charges,
+                  or accept money on behalf of the Government of India, any
+                  State Government, department, commission, recruiting
+                  authority or public body.
                 </p>
 
                 <p>
@@ -136,20 +176,26 @@ export default function ContactPage() {
               </div>
 
               <p>
-                Any government-related payment should only be made through the
-                official website, portal or payment channel specified by the
-                concerned government authority.
+                Government and recruitment-related payments should be made only
+                through the official portal or payment channel specified by the
+                concerned authority.
               </p>
             </section>
 
             <section>
-              <h2>Corrections & Source Updates</h2>
+              <h2>Corrections &amp; Source Updates</h2>
 
               <p>
-                When reporting an incorrect rate, government order or other
-                factual issue, please include the page URL and, where possible,
-                the relevant official notification, memorandum, circular or
-                government source.
+                When reporting an incorrect rate, government order,
+                recruitment detail or other factual issue, please include the
+                page URL and, where possible, the relevant official
+                notification, memorandum, circular or government source.
+              </p>
+
+              <p>
+                Please do not email passwords, OTPs, Aadhaar details, bank
+                information, application credentials or other sensitive
+                personal data.
               </p>
             </section>
 
@@ -166,8 +212,9 @@ export default function ContactPage() {
             <div className="about-disclaimer">
               <strong>Important:</strong> GovtPayGuide is an independent
               informational website. We are not affiliated with the Government
-              of India, any State Government or government department, and we
-              do not process government payments.
+              of India, any State Government, government department or
+              recruiting authority. We do not accept job applications or
+              process government or recruitment payments.
             </div>
 
             <div className="legal-bottom-nav">
@@ -182,8 +229,8 @@ export default function ContactPage() {
               <h3>GovtPayGuide</h3>
 
               <p>
-                Independent information and calculator website for government
-                salary, DA, pay and pension topics.
+                Independent information website for government salary, pension,
+                calculators, job guides and recruitment notifications.
               </p>
             </div>
 
@@ -192,16 +239,16 @@ export default function ContactPage() {
 
               <p>
                 We are not affiliated with the Government of India, any State
-                Government or government department.
+                Government, government department or recruiting authority.
               </p>
             </div>
 
             <div className="legal-sidebar-card">
-              <h3>Not a Payment Portal</h3>
+              <h3>Applicant Safety</h3>
 
               <p>
-                GovtPayGuide does not collect government fees or process
-                government payments.
+                Apply and pay fees only through the recruiting authority&apos;s
+                official portal. Never send sensitive documents to us.
               </p>
             </div>
 
@@ -211,6 +258,10 @@ export default function ContactPage() {
               <Link href="/central-government">Central Government</Link>
               <Link href="/state-government">State Governments</Link>
               <Link href="/calculators">Calculators</Link>
+              <Link href="/government-jobs/notifications">
+                Recruitment Notifications
+              </Link>
+              <Link href="/government-jobs/guides">Job Guides</Link>
             </div>
           </aside>
         </div>

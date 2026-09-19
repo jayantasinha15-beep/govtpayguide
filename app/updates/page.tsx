@@ -71,12 +71,12 @@ export default async function UpdatesPage() {
         <div className="container">
           <span className="page-badge">GovtPayGuide Updates</span>
 
-          <h1>Government Salary & Pay Updates</h1>
+          <h1>Government Updates, Jobs & Pay News</h1>
 
           <p>
-            Follow important developments in Dearness Allowance, Pay
-            Commissions, salary revision, pay matrix, pension and government
-            employee benefits.
+            Follow the latest government recruitment notifications, job guides,
+            salary revisions, Dearness Allowance, Pay Commissions, pension and
+            employee benefit updates.
           </p>
         </div>
       </section>
@@ -88,12 +88,12 @@ export default async function UpdatesPage() {
               Latest Updates
             </span>
 
-            <h2>Salary, DA & Pay Commission News</h2>
+            <h2>Government Updates, Jobs & Pay News</h2>
           </div>
 
           <p>
-            Official Government updates, salary information, DA revisions,
-            Pay Commission developments and analysis.
+            Latest government salary, DA, Pay Commission, pension, recruitment
+            notifications and job guides—all in one place.
           </p>
         </section>
 

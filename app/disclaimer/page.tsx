@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
-    "Read the GovtPayGuide disclaimer regarding government salary, DA, Pay Commission, pension information, calculator estimates and independent website status.",
+    "Read the GovtPayGuide disclaimer regarding government salary, pension, calculators, government job guides, recruitment notifications and independent website status.",
   alternates: {
     canonical: "/disclaimer",
   },
@@ -21,8 +21,8 @@ export default function DisclaimerPage() {
 
           <p>
             Important information about the use of GovtPayGuide, its guides,
-            salary information, calculators and independent informational
-            status.
+            salary information, calculators, government job guides,
+            recruitment notifications and independent informational status.
           </p>
         </div>
       </section>
@@ -41,8 +41,89 @@ export default function DisclaimerPage() {
               </p>
 
               <p>
+                We may also publish government job guides, recruitment
+                notifications, vacancy information, eligibility details,
+                application dates and links to official recruitment portals.
+              </p>
+
+              <p>
                 The information published on this website is provided for
                 general educational and informational purposes only.
+              </p>
+            </section>
+
+            <section>
+              <h2>Government Jobs and Recruitment Disclaimer</h2>
+
+              <div className="contact-warning">
+                <strong>Important for Applicants</strong>
+
+                <p>
+                  GovtPayGuide is not a recruiting authority, examination
+                  board, employer or job placement agency. We do not conduct
+                  examinations, issue admit cards, receive applications,
+                  prepare merit lists, select candidates or provide jobs.
+                </p>
+              </div>
+
+              <p>
+                Recruitment articles and job guides are based on publicly
+                available notifications and official sources. Vacancy counts,
+                eligibility rules, age limits, fees, reservations, important
+                dates, selection procedures and application instructions may
+                be changed, corrected, extended or withdrawn by the recruiting
+                authority.
+              </p>
+
+              <p>
+                Before applying, every candidate must read the complete latest
+                official notification and verify all details on the official
+                website of the recruiting organization. The official
+                notification and recruitment portal will always take priority
+                over information published on GovtPayGuide.
+              </p>
+            </section>
+
+            <section>
+              <h2>Applications, Fees and Candidate Data</h2>
+
+              <p>
+                GovtPayGuide does not accept job applications, resumes, CVs,
+                certificates, identity documents, photographs, signatures or
+                examination forms. Do not send such documents or sensitive
+                personal information to us.
+              </p>
+
+              <p>
+                We do not collect recruitment or examination fees and we do
+                not authorize any person to collect money in our name for a
+                government job. Application fees should be paid only through
+                the payment method provided on the official recruitment
+                portal.
+              </p>
+
+              <p>
+                A link on our website may take users to an external official
+                portal. Any information submitted there is governed by that
+                portal&apos;s own terms and privacy policy, not by GovtPayGuide.
+              </p>
+            </section>
+
+            <section>
+              <h2>No Guarantee of Selection or Employment</h2>
+
+              <p>
+                Publishing a recruitment notification, job guide or external
+                application link does not guarantee eligibility, acceptance of
+                an application, examination admission, interview selection,
+                appointment, salary, posting or employment.
+              </p>
+
+              <p>
+                Recruitment decisions are made solely by the relevant
+                recruiting authority according to its official rules and
+                procedures. GovtPayGuide cannot influence or verify any
+                candidate&apos;s selection status.
               </p>
             </section>
 
@@ -310,9 +391,11 @@ export default function DisclaimerPage() {
               <p>
                 GovtPayGuide and its operators will not be responsible for any
                 direct or indirect loss, financial difference, missed benefit,
-                incorrect payment, missed deadline, administrative decision or
-                other consequence resulting from reliance on information,
-                examples or calculator results available on this website.
+                incorrect payment, missed application deadline, rejected
+                application, loss of an employment opportunity, administrative
+                decision or other consequence resulting from reliance on
+                information, examples, external links or calculator results
+                available on this website.
               </p>
 
               <p>
@@ -351,10 +434,11 @@ export default function DisclaimerPage() {
             <div className="about-disclaimer">
               <strong>Important:</strong> GovtPayGuide is an independent
               information website. We are not a Government website, Government
-              department or Government payment portal. For official payments,
-              applications, salary, pension, transfers, appointments or other
-              service-related matters, always use the relevant official
-              Government website or department.
+              department, recruiting authority or Government payment portal.
+              For official payments, job applications, recruitment details,
+              salary, pension, transfers, appointments or other service-related
+              matters, always use the relevant official Government website or
+              department.
             </div>
 
             <div className="legal-bottom-nav">
@@ -393,11 +477,24 @@ export default function DisclaimerPage() {
             </div>
 
             <div className="legal-sidebar-card">
+              <h3>Recruitment Information</h3>
+
+              <p>
+                Always read the official notification and apply only through
+                the recruiting authority&apos;s official portal.
+              </p>
+            </div>
+
+            <div className="legal-sidebar-card">
               <h3>Useful Links</h3>
 
               <Link href="/central-government">Central Government</Link>
               <Link href="/state-government">State Governments</Link>
               <Link href="/calculators">Calculators</Link>
+              <Link href="/government-jobs/notifications">
+                Recruitment Notifications
+              </Link>
+              <Link href="/government-jobs/guides">Job Guides</Link>
             </div>
           </aside>
         </div>
