@@ -15652,46 +15652,8 @@ section {
   }
 }
 
-/* SMALL MOBILE */
+/* MOBILE */
 
-@media (max-width: 420px) {
-  .header-info-inner {
-    min-height: 60px;
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-
-  .header-live-time {
-    min-height: 24px;
-  }
-
-  .header-date {
-    font-size: 9px;
-  }
-
-  .header-time {
-    min-width: 64px;
-    font-size: 9px;
-  }
-
-  .time-zone {
-    padding: 1px 5px;
-    font-size: 7px;
-  }
-
-  .announcement-label {
-    display: none;
-  }
-
-  .header-notice-track span {
-    font-size: 9px;
-    font-weight: 700;
-  }
-
-  .nav-menu {
-    max-height: calc(100dvh - 126px);
-  }
-}
 @media (max-width: 768px) {
   .header-info-inner {
     min-height: 66px;
@@ -15706,6 +15668,8 @@ section {
   .header-live-time {
     min-width: 0;
     min-height: 26px;
+    display: flex;
+    align-items: center;
     justify-content: flex-start;
   }
 
@@ -15740,28 +15704,66 @@ section {
     font-size: 9px;
     font-weight: 700;
   }
+
+  .nav-menu {
+    max-height: calc(100dvh - 132px);
+  }
 }
+
+/* SMALL MOBILE */
+
 @media (max-width: 420px) {
   .header-info-inner {
+    min-height: 60px;
     padding-right: 10px;
     padding-left: 10px;
+    column-gap: 6px;
   }
 
-  .header-date,
-  .date-time-divider,
-  .time-zone {
-    display: none;
+  .header-live-time {
+    min-width: 0;
+    min-height: 24px;
+    gap: 3px;
+    overflow: visible;
+  }
+
+  .header-date {
+    display: inline !important;
+    font-size: 8px;
+    white-space: nowrap;
+  }
+
+  .date-time-divider {
+    display: inline !important;
+    font-size: 8px;
   }
 
   .header-time {
     min-width: auto;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  .time-zone {
+    display: none !important;
   }
 
   .header-info-bar .top-disclaimer-link {
+    display: inline-flex !important;
     font-size: 8px;
   }
 
   .announcement-label {
     display: none;
+  }
+
+  .header-notice-track span {
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 700;
+  }
+
+  .nav-menu {
+    max-height: calc(100dvh - 126px);
   }
 }
