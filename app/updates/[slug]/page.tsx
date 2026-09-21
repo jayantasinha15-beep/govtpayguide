@@ -463,66 +463,112 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
 
-  const article =
-    await getArticle(slug);
+  const article = await getArticle(slug);
 
   if (!article) {
     return {
-      title:
-        "Article Not Found | GovtPayGuide",
+      title: "Article Not Found",
+
+      description:
+        "The requested article could not be found.",
+
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
   const title =
-    article.meta_title ||
+    article.meta_title?.trim() ||
     article.title;
 
   const description =
-    article.meta_description ||
+    article.meta_description?.trim() ||
     article.description;
 
+  const articleUrl =
+    `/updates/${article.slug}`;
+
+  const images = article.featured_image
+    ? [
+        {
+          url: article.featured_image,
+          width: 1200,
+          height: 675,
+          alt: article.title,
+        },
+      ]
+    : undefined;
+
   return {
-    title: `${title} | GovtPayGuide`,
+    /*
+      Root layout-এর template নিজে থেকেই
+      শেষে "| GovtPayGuide" যোগ করবে।
+    */
+    title,
 
     description,
 
     keywords: article.keywords
       ? article.keywords
           .split(",")
-          .map((keyword) =>
-            keyword.trim()
-          )
+          .map((keyword) => keyword.trim())
+          .filter(Boolean)
       : undefined,
 
     alternates: {
-      canonical: `/updates/${article.slug}`,
+      canonical: articleUrl,
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
 
     openGraph: {
       title,
       description,
+      url: articleUrl,
+      siteName: "GovtPayGuide",
       type: "article",
+      locale: "en_IN",
 
       publishedTime:
-        article.published_at ||
-        undefined,
+        article.published_at || undefined,
 
       modifiedTime:
-        article.updated_at ||
-        undefined,
+        article.updated_at || undefined,
+
+      authors: [
+        "https://www.govtpayindia.com/about",
+      ],
+
+      images,
+    },
+
+    twitter: {
+      card: article.featured_image
+        ? "summary_large_image"
+        : "summary",
+
+      title,
+      description,
 
       images: article.featured_image
-        ? [
-            {
-              url: article.featured_image,
-              alt: article.title,
-            },
-          ]
+        ? [article.featured_image]
         : undefined,
     },
   };
 }
-
 /* =========================================
    ARTICLE PAGE
 ========================================= */
@@ -604,20 +650,18 @@ export default async function ArticlePage({
           {article.featured_image && (
             <div className="public-article-image">
               <Image
-                src={
-                  article.featured_image
-                }
-                alt={article.title}
-                width={1200}
-                height={675}
-                sizes="(max-width: 768px) 100vw, 1200px"
-                quality={75}
-                priority={false}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                }}
-              />
+  src={article.featured_image}
+  alt={article.title}
+  width={1200}
+  height={675}
+  sizes="(max-width: 768px) 100vw, 1200px"
+  priority={false}
+  unoptimized
+  style={{
+    width: "100%",
+    height: "auto",
+  }}
+/>
             </div>
           )}
 

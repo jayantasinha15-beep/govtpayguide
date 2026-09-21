@@ -11,12 +11,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "GovtPayGuide | DA, Pay Commission & Salary Calculator",
+    default:
+      "Government Salary, Pension & Job Updates | GovtPayGuide",
     template: "%s | GovtPayGuide",
   },
 
   description:
-    "Government salary information, DA updates, Pay Commission guides, pay matrix, pension information and salary calculators for Central and State Government employees.",
+    "Government salary, DA, Pay Commission, pay matrix, pension, recruitment notifications, job guides and salary calculators for Central and State Government employees.",
 
   applicationName: "GovtPayGuide",
 
@@ -33,6 +34,13 @@ export const metadata: Metadata = {
     "government employee salary",
     "government pension",
     "Dearness Relief",
+    "government jobs",
+    "government recruitment",
+    "recruitment notifications",
+    "government job guides",
+    "Central Government jobs",
+    "State Government jobs",
+    "West Bengal government jobs",
     "West Bengal government salary",
     "West Bengal DA",
     "ROPA 2019",
@@ -48,7 +56,6 @@ export const metadata: Metadata = {
   creator: "GovtPayGuide",
   publisher: "GovtPayGuide",
 
-  // Favicon / Site Icon
   icons: {
     icon: [
       {
@@ -65,16 +72,16 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: siteUrl,
     siteName: "GovtPayGuide",
-    title: "GovtPayGuide | Government Salary, DA & Pension Guides",
+    title: "Government Salary, Pension & Job Updates | GovtPayGuide",
     description:
-      "Independent guides and calculators for government salary, DA, Pay Commission, pay matrix, pension and State Government pay information.",
+      "Independent information about government salary, DA, Pay Commission, pension, recruitment notifications, job guides and salary calculators.",
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "GovtPayGuide | Government Salary, DA & Pension Guides",
+    title: "Government Salary, Pension & Job Updates | GovtPayGuide",
     description:
-      "Government salary, DA, Pay Commission, pension and calculator resources for Central and State Government employees.",
+      "Government salary, DA, Pay Commission, pension, recruitment notifications, job guides and calculators.",
   },
 
   robots: {

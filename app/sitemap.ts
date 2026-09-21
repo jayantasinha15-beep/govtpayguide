@@ -1,12 +1,11 @@
 import type { MetadataRoute } from "next";
 import { supabase } from "@/lib/supabase";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 300;
+
+const baseUrl = "https://www.govtpayindia.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://www.govtpayindia.com";
-
   const routes = [
     "",
 
@@ -79,57 +78,113 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/disclaimer",
   ];
 
-  // Get all published Supabase articles
+  /* =========================================
+     STATIC URLS
+  ========================================= */
+
+  const staticUrls: MetadataRoute.Sitemap = routes.map((route) => {
+    let changeFrequency:
+      | "daily"
+      | "weekly"
+      | "monthly" = "monthly";
+
+    let priority = 0.7;
+
+    if (route === "") {
+      changeFrequency = "daily";
+      priority = 1;
+    } else if (
+      route === "/updates" ||
+      route === "/government-jobs"
+    ) {
+      changeFrequency = "daily";
+      priority = 0.9;
+    } else if (
+      route === "/central-government" ||
+      route === "/state-government" ||
+      route === "/government-jobs/notifications" ||
+      route === "/government-jobs/guides"
+    ) {
+      changeFrequency = "weekly";
+      priority = 0.9;
+    } else if (
+      route.startsWith("/updates/") ||
+      route.endsWith("/da") ||
+      route.endsWith("/pay-commission")
+    ) {
+      changeFrequency = "weekly";
+      priority = 0.8;
+    } else if (
+      route.startsWith("/state-government/")
+    ) {
+      changeFrequency = "monthly";
+      priority = 0.8;
+    }
+
+    return {
+      url: `${baseUrl}${route}`,
+      changeFrequency,
+      priority,
+    };
+  });
+
+  /* =========================================
+     SUPABASE ARTICLES
+  ========================================= */
+
   const { data: articles, error } = await supabase
     .from("articles")
-    .select("slug, published_at")
+    .select(
+      "slug, published_at, updated_at"
+    )
     .eq("published", true)
-    .order("published_at", { ascending: false });
+    .order("published_at", {
+      ascending: false,
+    });
 
   if (error) {
-    console.error("Sitemap article fetch error:", error.message);
+    console.error(
+      "Sitemap article fetch error:",
+      error.message
+    );
   }
 
-  // Static sitemap URLs
-  const staticUrls: MetadataRoute.Sitemap = routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency:
-      route === "" || route === "/updates"
-        ? "daily"
-        : route.includes("/updates/") ||
-          route.endsWith("/da") ||
-          route.endsWith("/pay-commission")
-        ? "weekly"
-        : "monthly",
-    priority:
-      route === ""
-        ? 1
-        : route === "/updates" ||
-          route === "/central-government" ||
-          route === "/state-government"
-        ? 0.9
-        : route.startsWith("/state-government/")
-        ? 0.8
-        : 0.7,
-  }));
-
-  // Dynamic Supabase article URLs
   const articleUrls: MetadataRoute.Sitemap =
-    articles?.map((article) => ({
-      url: `${baseUrl}/updates/${article.slug}`,
-      lastModified: article.published_at
-        ? new Date(article.published_at)
-        : new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    })) ?? [];
+    articles
+      ?.filter(
+        (article) =>
+          typeof article.slug === "string" &&
+          article.slug.trim().length > 0
+      )
+      .map((article) => ({
+        url: `${baseUrl}/updates/${article.slug.trim()}`,
 
-  // Prevent duplicate URLs
-  const combinedUrls = [...staticUrls, ...articleUrls];
+        lastModified: article.updated_at
+          ? new Date(article.updated_at)
+          : article.published_at
+          ? new Date(article.published_at)
+          : undefined,
+
+        changeFrequency: "weekly" as const,
+        priority: 0.8,
+      })) ?? [];
+
+  /* =========================================
+     REMOVE DUPLICATES
+  ========================================= */
+
+  const combinedUrls = [
+    ...staticUrls,
+    ...articleUrls,
+  ];
 
   const uniqueUrls = Array.from(
-    new Map(combinedUrls.map((item) => [item.url, item])).values()
+    new Map(
+      combinedUrls.map((item) => [
+        item.url,
+        item,
+      ])
+    ).values()
   );
 
   return uniqueUrls;
