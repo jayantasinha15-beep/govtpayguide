@@ -240,206 +240,6 @@ const latestUpdates = sortedUpdates
 </section>
 
       {/* =====================================
-          QUICK LINKS
-      ====================================== */}
-
-      <section className="home-section">
-        <div className="container">
-          <div className="home-section-heading">
-            <div>
-              <span className="section-label">
-                Explore
-              </span>
-
-              <h2>
-                Popular Government Pay Topics
-              </h2>
-            </div>
-          </div>
-
-          <div className="home-quick-grid">
-            <Link
-              href="/central-government"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                🏛️
-              </span>
-
-              <h3>
-                Central Government
-              </h3>
-
-              <p>
-                Salary, DA, Pay Matrix and
-                Central Government employee
-                information.
-              </p>
-
-              <span>
-                Explore →
-              </span>
-            </Link>
-
-            <Link
-              href="/da"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                📈
-              </span>
-
-              <h3>
-                DA Updates
-              </h3>
-
-              <p>
-                Latest Dearness Allowance
-                rates, revisions and effective
-                dates.
-              </p>
-
-              <span>
-                View DA →
-              </span>
-            </Link>
-
-            <Link
-              href="/pay-commission"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                📊
-              </span>
-
-              <h3>
-                Pay Commission
-              </h3>
-
-              <p>
-                Pay Commission news,
-                recommendations and salary
-                revision guides.
-              </p>
-
-              <span>
-                Learn More →
-              </span>
-            </Link>
-
-            <Link
-              href="/state-government"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                🇮🇳
-              </span>
-
-              <h3>
-                State Governments
-              </h3>
-
-              <p>
-                State-wise Government salary,
-                DA, pension and Pay Commission
-                information.
-              </p>
-
-              <span>
-                Browse States →
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================
-          GOVERNMENT JOBS
-      ====================================== */}
-
-      <section className="home-section home-state-section">
-        <div className="container">
-          <div className="home-section-heading">
-            <div>
-              <span className="section-label">
-                Government Jobs
-              </span>
-
-              <h2>
-                Recruitment Notifications & Job Guides
-              </h2>
-
-              <p>
-                Explore active recruitment notifications, upcoming vacancy
-                news, post-wise salary information and practical job guides.
-              </p>
-            </div>
-
-            <Link
-              href="/government-jobs"
-              className="home-view-all-link"
-            >
-              View Government Jobs →
-            </Link>
-          </div>
-
-          <div className="home-quick-grid">
-            <Link
-              href="/government-jobs/notifications"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                📢
-              </span>
-
-              <h3>Recruitment Notifications</h3>
-
-              <p>
-                Check published vacancies, eligibility, important dates and
-                official application links.
-              </p>
-
-              <span>View Notifications →</span>
-            </Link>
-
-            <Link
-              href="/government-jobs/guides"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                📘
-              </span>
-
-              <h3>Government Job Guides</h3>
-
-              <p>
-                Understand salary, pay level, allowances, selection process
-                and career growth for government posts.
-              </p>
-
-              <span>Browse Job Guides →</span>
-            </Link>
-
-            <Link
-              href="/government-jobs"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                📰
-              </span>
-
-              <h3>Recruitment News</h3>
-
-              <p>
-                Follow upcoming vacancies, recruitment developments and
-                important updates for candidates.
-              </p>
-
-              <span>Read Job News →</span>
-            </Link>
-          </div>
-        </div>
-      </section>
       {/* =====================================
     FEATURED UPDATES
 ====================================== */}
@@ -649,7 +449,207 @@ const latestUpdates = sortedUpdates
       </section>
 
       {/* =====================================
-          CALCULATORS
+          QUICK LINKS
+      ====================================== */}
+
+      <section className="home-section">
+        <div className="container">
+          <div className="home-section-heading">
+            <div>
+              <span className="section-label">
+                Explore
+              </span>
+
+              <h2>
+                Popular Government Pay Topics
+              </h2>
+            </div>
+          </div>
+
+          <div className="home-quick-grid">
+            <Link
+              href="/central-government"
+              className="home-quick-card"
+            >
+              <span className="home-quick-icon">
+                🏛️
+              </span>
+
+              <h3>
+                Central Government
+              </h3>
+
+              <p>
+                Salary, DA, Pay Matrix and
+                Central Government employee
+                information.
+              </p>
+
+              <span>
+                Explore →
+              </span>
+            </Link>
+
+            <Link
+              href="/da"
+              className="home-quick-card"
+            >
+              <span className="home-quick-icon">
+                📈
+              </span>
+
+              <h3>
+                DA Updates
+              </h3>
+
+              <p>
+                Latest Dearness Allowance
+                rates, revisions and effective
+                dates.
+              </p>
+
+              <span>
+                View DA →
+              </span>
+            </Link>
+
+            <Link
+              href="/pay-commission"
+              className="home-quick-card"
+            >
+              <span className="home-quick-icon">
+                📊
+              </span>
+
+              <h3>
+                Pay Commission
+              </h3>
+
+              <p>
+                Pay Commission news,
+                recommendations and salary
+                revision guides.
+              </p>
+
+              <span>
+                Learn More →
+              </span>
+            </Link>
+
+            <Link
+              href="/state-government"
+              className="home-quick-card"
+            >
+              <span className="home-quick-icon">
+                🇮🇳
+              </span>
+
+              <h3>
+                State Governments
+              </h3>
+
+              <p>
+                State-wise Government salary,
+                DA, pension and Pay Commission
+                information.
+              </p>
+
+              <span>
+                Browse States →
+              </span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* =====================================
+          GOVERNMENT JOBS
+      ====================================== */}
+
+      <section className="home-section home-state-section">
+        <div className="container">
+          <div className="home-section-heading">
+            <div>
+              <span className="section-label">
+                Government Jobs
+              </span>
+
+              <h2>
+                Recruitment Notifications & Job Guides
+              </h2>
+
+              <p>
+                Explore active recruitment notifications, upcoming vacancy
+                news, post-wise salary information and practical job guides.
+              </p>
+            </div>
+
+            <Link
+              href="/government-jobs"
+              className="home-view-all-link"
+            >
+              View Government Jobs →
+            </Link>
+          </div>
+
+          <div className="home-quick-grid">
+            <Link
+              href="/government-jobs/notifications"
+              className="home-quick-card"
+            >
+              <span className="home-quick-icon">
+                📢
+              </span>
+
+              <h3>Recruitment Notifications</h3>
+
+              <p>
+                Check published vacancies, eligibility, important dates and
+                official application links.
+              </p>
+
+              <span>View Notifications →</span>
+            </Link>
+
+            <Link
+              href="/government-jobs/guides"
+              className="home-quick-card"
+            >
+              <span className="home-quick-icon">
+                📘
+              </span>
+
+              <h3>Government Job Guides</h3>
+
+              <p>
+                Understand salary, pay level, allowances, selection process
+                and career growth for government posts.
+              </p>
+
+              <span>Browse Job Guides →</span>
+            </Link>
+
+            <Link
+              href="/government-jobs"
+              className="home-quick-card"
+            >
+              <span className="home-quick-icon">
+                📰
+              </span>
+
+              <h3>Recruitment News</h3>
+
+              <p>
+                Follow upcoming vacancies, recruitment developments and
+                important updates for candidates.
+              </p>
+
+              <span>Read Job News →</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+          {/*CALCULATORS
       ====================================== */}
 
       <section className="home-section">
