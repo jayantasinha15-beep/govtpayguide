@@ -87,11 +87,17 @@ export default function Header() {
             >
               <div className="header-notice-track">
                 <span>
-                  Independent website — always verify information from official sources.
+                  <span>
+                    Independent informational website • Always verify salary and job
+                    information from official sources
+</span>
                 </span>
 
                 <span aria-hidden="true">
-                  Independent website — always verify information from official sources.
+                  <span>
+                    Independent informational website • Always verify salary and job
+                    information from official sources
+                  </span>
                 </span>
               </div>
             </div>

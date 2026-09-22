@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Disclaimer",
   description:
-    "Read the GovtPayGuide disclaimer regarding government salary, pension, calculators, government job guides, recruitment notifications and independent website status.",
+  "Important information about GovtPayGuide content, salary and pension guides, calculators, recruitment notifications, external sources and website usage.",
   alternates: {
     canonical: "/disclaimer",
   },
@@ -30,6 +30,9 @@ export default function DisclaimerPage() {
       <div className="container legal-content-container">
         <div className="contact-page-grid">
           <article className="legal-content">
+            <p className="legal-updated-date">
+                Last updated: September 22, 2026
+            </p>
             <section>
               <h2>General Information</h2>
 
@@ -387,23 +390,27 @@ export default function DisclaimerPage() {
 
             <section>
               <h2>Limitation of Liability</h2>
+                <p>
+                  GovtPayGuide makes reasonable efforts to provide useful and
+                  up-to-date information. However, information, external links and
+                  calculator results may contain delays, omissions or differences
+                  from the latest official records.
+                </p>
 
-              <p>
-                GovtPayGuide and its operators will not be responsible for any
-                direct or indirect loss, financial difference, missed benefit,
-                incorrect payment, missed application deadline, rejected
-                application, loss of an employment opportunity, administrative
-                decision or other consequence resulting from reliance on
-                information, examples, external links or calculator results
-                available on this website.
-              </p>
+                <p>
+                  To the extent permitted by applicable law, GovtPayGuide and its
+                  operators will not be responsible for losses or consequences
+                  arising solely from reliance on website content, including missed
+                  deadlines, rejected applications, payment differences or
+                  employment-related decisions.
+                </p>
 
-              <p>
-                Use of the website and its calculators is at the user&apos;s own
-                discretion.
-              </p>
+                <p>
+                  Users should verify important information with the relevant
+                  official authority before making financial, employment, pension
+                  or service-related decisions.
+                </p>
             </section>
-
             <section>
               <h2>Changes to This Disclaimer</h2>
 

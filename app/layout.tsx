@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Government salary, DA, Pay Commission, pay matrix, pension, recruitment notifications, job guides and salary calculators for Central and State Government employees.",
+  "Independent guides on government salary, DA, Pay Commission, pension, recruitment notifications, job preparation and useful calculators in India.",
 
   applicationName: "GovtPayGuide",
 
@@ -68,22 +68,21 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    type: "website",
-    locale: "en_IN",
-    url: siteUrl,
-    siteName: "GovtPayGuide",
-    title: "Government Salary, Pension & Job Updates | GovtPayGuide",
-    description:
-      "Independent information about government salary, DA, Pay Commission, pension, recruitment notifications, job guides and salary calculators.",
-  },
+  type: "website",
+  locale: "en_IN",
+  url: siteUrl,
+  siteName: "GovtPayGuide",
+  title: "GovtPayGuide | Salary, Pension & Government Job Guides",
+  description:
+    "Independent guides on government salary, DA, pension, recruitment notifications, job preparation and calculators in India.",
+},
 
   twitter: {
-    card: "summary_large_image",
-    title: "Government Salary, Pension & Job Updates | GovtPayGuide",
-    description:
-      "Government salary, DA, Pay Commission, pension, recruitment notifications, job guides and calculators.",
-  },
-
+  card: "summary_large_image",
+  title: "GovtPayGuide | Salary, Pension & Government Job Guides",
+  description:
+    "Independent guides on government salary, DA, pension, recruitment notifications, job preparation and calculators in India.",
+},
   robots: {
     index: true,
     follow: true,

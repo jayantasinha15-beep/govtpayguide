@@ -220,11 +220,10 @@ const latestUpdates = sortedUpdates
     </p>
 
     <p>
-      We are not affiliated with the Government of India, any State Government,
-      department, commission or official government payment portal. GovtPayGuide
-      does not process government payments or collect money on behalf of any
-      government authority, and it is not a recruiting agency.
+        GovtPayGuide is an independent informational website. Please verify
+        important details from the relevant official authority.
     </p>
+
   </div>
 </section>
 
@@ -847,12 +846,8 @@ const latestUpdates = sortedUpdates
             </h2>
 
             <p>
-              GovtPayGuide is an independent
-              informational website and is
-              not affiliated with the
-              Government of India, any State
-              Government or any Government
-              department.
+              GovtPayGuide is an independent informational website. Please verify
+              important details from the relevant official authority.
             </p>
 
             <p>

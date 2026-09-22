@@ -13,14 +13,14 @@ export default function Footer() {
           </Link>
 
           <p>
-            Independent information, calculators, Government job guides and
-            recruitment updates covering salary, Dearness Allowance, Pay
-            Commission, pension and related topics.
+            Independent guides on government salary, DA, Pay Commission,
+            pension, recruitment notifications, job preparation and useful
+            calculators in India.
           </p>
 
           <div className="footer-trust-note">
-            Not affiliated with the Government of India, any State Government,
-            department or recruitment authority.
+            Independent informational website. Always verify details from
+            official sources.
           </div>
         </div>
 

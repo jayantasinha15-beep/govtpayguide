@@ -194,18 +194,28 @@ export default function AboutPage() {
             </section>
 
             <section>
-              <h2>Our Source Approach</h2>
+              
+              <h2>How We Prepare and Verify Our Content</h2>
 
-              <p>
-                Government salary and pension information can change through
-                official notifications, office memoranda, circulars,
-                resolutions, Gazette publications and departmental orders.
-              </p>
+                <p>
+                  GovtPayGuide independently prepares its articles using publicly
+                  available information. Government salary, pension and recruitment
+                  information can change through official notifications, office
+                  memoranda, circulars, resolutions, Gazette publications,
+                  departmental orders and recruitment advertisements.
+                </p>
 
-              <p>
-                Wherever applicable, GovtPayGuide aims to verify information
-                using authoritative primary sources such as:
-              </p>
+                <p>
+                  Information is reviewed and explained in a simpler format for
+                  employees, pensioners and job aspirants. We do not copy official
+                  documents in full, and we aim to clearly identify estimates,
+                  analysis and officially confirmed information.
+                </p>
+
+                <p>
+                   Wherever applicable, GovtPayGuide aims to verify information
+                    using authoritative primary sources such as:
+                </p>
 
               <ul className="legal-list">
                 <li>Ministry of Finance</li>
