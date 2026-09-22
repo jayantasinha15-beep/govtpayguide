@@ -143,6 +143,23 @@ export default function AdminPage() {
     Add or remove article categories.
   </p>
 </Link>
+<Link
+  href="/admin/subcategories"
+  className="admin-dashboard-card"
+>
+  <span className="admin-card-icon">🗂️</span>
+
+  <h2>Manage Subcategories</h2>
+
+  <p>
+    Add or remove subcategories under an existing article
+    category.
+  </p>
+
+  <span className="admin-card-link">
+    Manage Subcategories →
+  </span>
+</Link>
         </section>
       </div>
     </main>

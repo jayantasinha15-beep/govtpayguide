@@ -2,15 +2,24 @@ import { unstable_cache } from "next/cache";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Government Salary, DA & Pay Commission Updates",
+
   description:
-    "Latest government salary, DA, Pay Commission, pension and pay revision updates for Central Government and State Government employees.",
+    "Latest government salary, DA, Pay Commission, pension, recruitment and pay revision updates for Central and State Government employees.",
+
   alternates: {
     canonical: "/updates",
   },
+};
+
+type ArticleSubcategory = {
+  id: string;
+  name: string;
+  slug: string;
 };
 
 type Article = {
@@ -21,6 +30,7 @@ type Article = {
   category: string;
   status: string;
   published_at: string | null;
+  subcategory: ArticleSubcategory | null;
 };
 
 function formatDate(date: string | null) {
@@ -32,8 +42,9 @@ function formatDate(date: string | null) {
     year: "numeric",
   }).format(new Date(date));
 }
+
 const getPublishedArticles = unstable_cache(
-  async () => {
+  async (): Promise<Article[]> => {
     const { data, error } = await supabase
       .from("articles")
       .select(`
@@ -43,39 +54,54 @@ const getPublishedArticles = unstable_cache(
         description,
         category,
         status,
-        published_at
+        published_at,
+        subcategory:subcategories!articles_subcategory_id_fkey (
+          id,
+          name,
+          slug
+        )
       `)
       .eq("published", true)
-      .order("published_at", { ascending: false });
+      .order("published_at", {
+        ascending: false,
+      });
 
     if (error) {
-      console.error("Error loading articles:", error);
+      console.error(
+        "Error loading articles:",
+        error
+      );
+
       return [];
     }
 
-    return data ?? [];
+    return (data ?? []) as unknown as Article[];
   },
-  ["published-updates"],
+  ["published-updates-with-subcategories"],
   {
     revalidate: 60,
   }
 );
 
 export default async function UpdatesPage() {
-  const updates: Article[] =
-  await getPublishedArticles();
+  const updates = await getPublishedArticles();
 
   return (
     <main>
       <section className="updates-page-hero">
         <div className="container">
-          <span className="page-badge">GovtPayGuide Updates</span>
+          <span className="page-badge">
+            GovtPayGuide Updates
+          </span>
 
-          <h1>Government Updates, Jobs & Pay News</h1>
+          <h1>
+            Government Updates, Jobs & Pay News
+          </h1>
 
           <p>
-            Follow the latest government recruitment notifications, job guides,
-            salary revisions, Dearness Allowance, Pay Commissions, pension and
+            Follow the latest government recruitment
+            notifications, job guides, salary revisions,
+            Dearness Allowance, Pay Commissions, pension and
             employee benefit updates.
           </p>
         </div>
@@ -88,12 +114,15 @@ export default async function UpdatesPage() {
               Latest Updates
             </span>
 
-            <h2>Government Updates, Jobs & Pay News</h2>
+            <h2>
+              Government Updates, Jobs & Pay News
+            </h2>
           </div>
 
           <p>
-            Latest government salary, DA, Pay Commission, pension, recruitment
-            notifications and job guides—all in one place.
+            Latest government salary, DA, Pay Commission,
+            pension, recruitment notifications and job
+            guides—all in one place.
           </p>
         </section>
 
@@ -109,13 +138,21 @@ export default async function UpdatesPage() {
                     {article.category}
                   </span>
 
+                  {article.subcategory && (
+                    <span className="updates-subcategory">
+                      {article.subcategory.name}
+                    </span>
+                  )}
+
                   <span className="updates-status">
                     {article.status}
                   </span>
                 </div>
 
                 <h2>
-                  <Link href={`/updates/${article.slug}`}>
+                  <Link
+                    href={`/updates/${article.slug}`}
+                  >
                     {article.title}
                   </Link>
                 </h2>
@@ -126,14 +163,26 @@ export default async function UpdatesPage() {
                   {article.published_at && (
                     <span>
                       Published:{" "}
-                      {formatDate(article.published_at)}
+                      {formatDate(
+                        article.published_at
+                      )}
                     </span>
                   )}
 
-                  <Link href={`/updates/${article.slug}`}>
+                  <Link
+                    href={`/updates/${article.slug}`}
+                  >
                     {article.status === "Analysis"
                       ? "Read Analysis →"
-                      : "Read Update →"}
+                      : article.status === "Guide"
+                        ? "Read Guide →"
+                        : article.status ===
+                            "Recruitment Notification"
+                          ? "View Notification →"
+                          : article.status ===
+                              "Recruitment News"
+                            ? "Read Recruitment News →"
+                            : "Read Update →"}
                   </Link>
                 </div>
               </article>
@@ -144,7 +193,8 @@ export default async function UpdatesPage() {
             <h2>No published updates yet</h2>
 
             <p>
-              Published articles will appear here automatically.
+              Published articles will appear here
+              automatically.
             </p>
           </div>
         )}
@@ -155,7 +205,9 @@ export default async function UpdatesPage() {
               How We Label Updates
             </span>
 
-            <h2>Official Information vs Analysis</h2>
+            <h2>
+              Official Information vs Analysis
+            </h2>
           </div>
 
           <div className="updates-label-grid">
@@ -163,8 +215,9 @@ export default async function UpdatesPage() {
               <strong>Official Update</strong>
 
               <p>
-                Information supported by Government resolutions,
-                notifications, orders or official portals.
+                Information supported by Government
+                resolutions, notifications, orders or
+                official portals.
               </p>
             </div>
 
@@ -172,9 +225,9 @@ export default async function UpdatesPage() {
               <strong>Analysis</strong>
 
               <p>
-                Explanations, calculations and scenarios based on
-                available information. These are not Government
-                decisions.
+                Explanations, calculations and scenarios
+                based on available information. These are
+                not Government decisions.
               </p>
             </div>
 
@@ -182,19 +235,30 @@ export default async function UpdatesPage() {
               <strong>DA Update</strong>
 
               <p>
-                Updates related to Dearness Allowance rates,
-                revisions and effective dates.
+                Updates related to Dearness Allowance
+                rates, revisions and effective dates.
+              </p>
+            </div>
+
+            <div>
+              <strong>Recruitment News</strong>
+
+              <p>
+                Recruitment-related developments,
+                expected notifications and important
+                candidate updates.
               </p>
             </div>
           </div>
         </section>
 
         <div className="calculator-disclaimer">
-          <strong>Disclaimer:</strong> GovtPayGuide is an independent
-          informational website and is not affiliated with any
-          Government department or Pay Commission. Always verify
-          important information from official Government
-          notifications.
+          <strong>Disclaimer:</strong>{" "}
+          GovtPayGuide is an independent informational
+          website and is not affiliated with any Government
+          department, recruitment body, bank or Pay
+          Commission. Always verify important information
+          from the relevant official source.
         </div>
       </div>
     </main>

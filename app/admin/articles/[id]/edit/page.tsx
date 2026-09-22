@@ -19,6 +19,7 @@ type Article = {
   slug: string;
   description: string;
   category: string;
+  subcategory_id: string | null;
   status: string;
   content: string;
   meta_title: string | null;
@@ -31,6 +32,13 @@ type Article = {
 
 type Category = {
   id: string;
+  name: string;
+  slug: string;
+};
+
+type Subcategory = {
+  id: string;
+  category_id: string;
   name: string;
   slug: string;
 };
@@ -83,6 +91,15 @@ export default function EditArticlePage() {
 
   const [category, setCategory] =
     useState("");
+
+  const [subcategories, setSubcategories] =
+    useState<Subcategory[]>([]);
+
+  const [subcategoryId, setSubcategoryId] =
+    useState("");
+
+  const [loadingSubcategories, setLoadingSubcategories] =
+    useState(false);
 
   const [status, setStatus] =
     useState("");
@@ -219,6 +236,10 @@ export default function EditArticlePage() {
         data.category
       );
 
+      setSubcategoryId(
+        data.subcategory_id ?? ""
+      );
+
       setStatus(
         data.status
       );
@@ -256,6 +277,67 @@ export default function EditArticlePage() {
 
     loadPage();
   }, [articleId, router]);
+
+  /* =========================================
+     LOAD SUBCATEGORIES
+  ========================================= */
+
+  useEffect(() => {
+    const loadSubcategories = async () => {
+      setSubcategories([]);
+
+      if (!category || categories.length === 0) {
+        return;
+      }
+
+      const selectedCategory = categories.find(
+        (item) => item.name === category
+      );
+
+      if (!selectedCategory) {
+        return;
+      }
+
+      setLoadingSubcategories(true);
+
+      const {
+        data: subcategoryData,
+        error: subcategoryError,
+      } = await supabase
+        .from("subcategories")
+        .select(`
+          id,
+          category_id,
+          name,
+          slug
+        `)
+        .eq("category_id", selectedCategory.id)
+        .order("name", {
+          ascending: true,
+        });
+
+      setLoadingSubcategories(false);
+
+      if (subcategoryError) {
+        console.error(
+          "Subcategory load error:",
+          subcategoryError
+        );
+
+        setError(
+          "Failed to load subcategories."
+        );
+
+        return;
+      }
+
+      setSubcategories(
+        subcategoryData ?? []
+      );
+    };
+
+    loadSubcategories();
+  }, [category, categories]);
 
   /* =========================================
      UPDATE ARTICLE
@@ -323,6 +405,9 @@ export default function EditArticlePage() {
             description.trim(),
 
           category,
+
+          subcategory_id:
+            subcategoryId || null,
 
           status,
 
@@ -562,7 +647,7 @@ export default function EditArticlePage() {
               />
             </div>
 
-            {/* CATEGORY + STATUS */}
+            {/* CATEGORY + SUBCATEGORY */}
 
             <div className="admin-form-row">
               <div className="admin-field">
@@ -575,11 +660,13 @@ export default function EditArticlePage() {
                   value={
                     category
                   }
-                  onChange={(e) =>
+                  onChange={(e) => {
                     setCategory(
                       e.target.value
-                    )
-                  }
+                    );
+
+                    setSubcategoryId("");
+                  }}
                 >
                   {/*
                     If an old article has a
@@ -641,6 +728,62 @@ export default function EditArticlePage() {
               </div>
 
               <div className="admin-field">
+                <label htmlFor="subcategory">
+                  Subcategory{" "}
+
+                  <span
+                    style={{
+                      color: "#64748b",
+                      fontWeight: 500,
+                    }}
+                  >
+                    (Optional)
+                  </span>
+                </label>
+
+                <select
+                  id="subcategory"
+                  value={subcategoryId}
+                  onChange={(e) =>
+                    setSubcategoryId(
+                      e.target.value
+                    )
+                  }
+                  disabled={
+                    loadingSubcategories ||
+                    subcategories.length === 0
+                  }
+                >
+                  <option value="">
+                    {loadingSubcategories
+                      ? "Loading subcategories..."
+                      : subcategories.length > 0
+                        ? "No Subcategory"
+                        : "No subcategories available"}
+                  </option>
+
+                  {subcategories.map(
+                    (item) => (
+                      <option
+                        key={item.id}
+                        value={item.id}
+                      >
+                        {item.name}
+                      </option>
+                    )
+                  )}
+                </select>
+
+                <small>
+                  Optional. Select a subcategory only when
+                  it applies to this article.
+                </small>
+              </div>
+            </div>
+
+            {/* ARTICLE TYPE */}
+
+            <div className="admin-field">
                 <label htmlFor="status">
                   Article Type
                 </label>
@@ -678,7 +821,6 @@ export default function EditArticlePage() {
                   </option>
                 </select>
               </div>
-            </div>
 
             {/* CONTENT */}
 
