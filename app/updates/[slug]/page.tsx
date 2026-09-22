@@ -1,5 +1,6 @@
 import { unstable_cache } from "next/cache";
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
@@ -510,6 +511,16 @@ export async function generateMetadata({
 
     description,
 
+    authors: [
+      {
+        name: "Jayanta Singha",
+        url: "https://www.govtpayindia.com/author/jayanta-singha",
+      },
+    ],
+
+    creator: "Jayanta Singha",
+    publisher: "GovtPayGuide",
+
     keywords: article.keywords
       ? article.keywords
           .split(",")
@@ -549,7 +560,7 @@ export async function generateMetadata({
         article.updated_at || undefined,
 
       authors: [
-        "https://www.govtpayindia.com/about",
+        "https://www.govtpayindia.com/author/jayanta-singha",
       ],
 
       images,
@@ -602,8 +613,64 @@ export default async function ArticlePage({
   const contentBlocks =
     parseContent(article.content);
 
+  const articleUrl =
+    `https://www.govtpayindia.com/updates/${article.slug}`;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+
+    headline: article.title,
+    description: article.description,
+
+    image: article.featured_image
+      ? [article.featured_image]
+      : undefined,
+
+    datePublished:
+      article.published_at || undefined,
+
+    dateModified:
+      article.updated_at ||
+      article.published_at ||
+      undefined,
+
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
+
+    author: {
+      "@type": "Person",
+      name: "Jayanta Singha",
+      url: "https://www.govtpayindia.com/author/jayanta-singha",
+      jobTitle: "Author and Web Developer",
+    },
+
+    publisher: {
+      "@type": "Organization",
+      name: "GovtPayGuide",
+      url: "https://www.govtpayindia.com",
+
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.govtpayindia.com/icon.png",
+      },
+    },
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleJsonLd).replace(
+            /</g,
+            "\\u003c"
+          ),
+        }}
+      />
+
       {/* =====================================
           ARTICLE HERO
       ====================================== */}
@@ -643,6 +710,16 @@ export default async function ArticlePage({
                 Published {publishedDate}
               </span>
             )}
+
+            <span>
+              Written by{" "}
+              <Link
+                href="/author/jayanta-singha"
+                className="article-author-link"
+              >
+                Jayanta Singha
+              </Link>
+            </span>
           </div>
 
           {/* FEATURED IMAGE */}

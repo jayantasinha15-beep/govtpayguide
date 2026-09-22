@@ -47,14 +47,14 @@ export const metadata: Metadata = {
   ],
 
   authors: [
-    {
-      name: "GovtPayGuide",
-      url: siteUrl,
-    },
-  ],
+  {
+    name: "Jayanta Singha",
+    url: `${siteUrl}/author/jayanta-singha`,
+  },
+],
 
-  creator: "GovtPayGuide",
-  publisher: "GovtPayGuide",
+creator: "Jayanta Singha",
+publisher: "GovtPayGuide",
 
   icons: {
     icon: [

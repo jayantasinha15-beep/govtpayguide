@@ -15767,3 +15767,12 @@ section {
     max-height: calc(100dvh - 126px);
   }
 }
+.article-author-link {
+  color: #1d4ed8;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.article-author-link:hover {
+  text-decoration: underline;
+}

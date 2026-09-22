@@ -127,7 +127,15 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p>© {year} GovtPayGuide. All rights reserved.</p>
+          <p>
+  © {year} GovtPayGuide. All rights reserved.{" "}
+  <Link
+    href="/author/jayanta-singha"
+    className="footer-developer"
+  >
+    Developed by Jayanta Singha.
+  </Link>
+</p>
 
           <p>
             Information, recruitment updates and calculator results are for
