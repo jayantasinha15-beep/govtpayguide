@@ -71,6 +71,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/updates/andhra-pradesh-da-pension-12th-pay-revision-commission-2026",
     "/updates/west-bengal-7th-pay-commission-fitment-factor",
     "/updates/west-bengal-7th-pay-commission-latest-news",
+    // Author
+    "/author/jayanta-singha",
 
     // Legal / Information
     "/about",
