@@ -23,6 +23,11 @@ type DbArticle = {
   published_at: string | null;
   featured: boolean;
   featured_image: string | null;
+  subcategory: {
+    id: string;
+    name: string;
+    slug: string;
+  } | null;
 };
 
 type LatestUpdate = {
@@ -30,6 +35,7 @@ type LatestUpdate = {
   description: string;
   category: string;
   status: string;
+  subcategory: string | null;
   publishedAt: string;
   href: string;
   featured?: boolean;
@@ -69,7 +75,12 @@ async function getPublishedArticles() {
       status,
       published_at,
       featured,
-      featured_image
+      featured_image,
+      subcategory:subcategories!articles_subcategory_id_fkey (
+        id,
+        name,
+        slug
+      )
     `)
     .eq("published", true)
     .order("published_at", {
@@ -85,7 +96,7 @@ async function getPublishedArticles() {
     return [];
   }
 
-  return (data ?? []) as DbArticle[];
+  return (data ?? []) as unknown as DbArticle[];
 }
 
 export default async function Home() {
@@ -98,6 +109,7 @@ export default async function Home() {
       description: article.description,
       category: article.category,
       status: article.status,
+      subcategory: article.subcategory?.name ?? null,
       publishedAt:
         article.published_at ??
         new Date(0).toISOString(),
@@ -503,6 +515,12 @@ const latestUpdates = sortedUpdates
                   {item.category}
                 </span>
 
+                {item.subcategory && (
+                  <span className="latest-news-subcategory">
+                    {item.subcategory}
+                  </span>
+                )}
+
                 <span className="latest-news-status">
                   {item.status}
                 </span>
@@ -586,6 +604,12 @@ const latestUpdates = sortedUpdates
                       <span className="latest-news-category">
                         {item.category}
                       </span>
+
+                      {item.subcategory && (
+                        <span className="latest-news-subcategory">
+                          {item.subcategory}
+                        </span>
+                      )}
 
                       <span className="latest-news-status">
                         {item.status}
