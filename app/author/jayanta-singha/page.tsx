@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+
 
 export const metadata: Metadata = {
   title: "Jayanta Singha – Author and Developer",
@@ -16,6 +18,8 @@ export default function JayantaSinghaPage() {
     "@type": "Person",
     name: "Jayanta Singha",
     url: "https://www.govtpayindia.com/author/jayanta-singha",
+    image:
+    "https://www.govtpayindia.com/images/authors/jayanta-singha.png",
     jobTitle: "Author and Web Developer",
     worksFor: {
       "@type": "Organization",
@@ -34,16 +38,27 @@ export default function JayantaSinghaPage() {
       />
 
       <section className="legal-hero">
-        <div className="container">
-          <span className="page-badge">Author</span>
+  <div className="container author-profile-header">
+    <Image
+      src="/images/authors/jayanta-singha.png"
+      alt="Jayanta Singha, author and developer of GovtPayGuide"
+      width={180}
+      height={180}
+      className="author-profile-image"
+      priority
+    />
 
-          <h1>Jayanta Singha</h1>
+    <div>
+      <span className="page-badge">Author</span>
 
-          <p>
-            Author and developer of GovtPayGuide.
-          </p>
-        </div>
-      </section>
+      <h1>Jayanta Singha</h1>
+
+      <p>
+        Author and developer of GovtPayGuide.
+      </p>
+    </div>
+  </div>
+</section>
 
       <div className="container legal-content-container">
         <article className="legal-content">

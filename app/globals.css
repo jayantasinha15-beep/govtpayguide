@@ -15776,3 +15776,29 @@ section {
 .article-author-link:hover {
   text-decoration: underline;
 }
+.author-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.author-profile-image {
+  flex-shrink: 0;
+  border: 5px solid #ffffff;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+}
+
+@media (max-width: 640px) {
+  .author-profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .author-profile-image {
+    width: 130px;
+    height: 130px;
+  }
+}
