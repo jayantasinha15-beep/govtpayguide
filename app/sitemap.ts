@@ -70,13 +70,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/updates/punjab-da-hike-60-percent-government-employees-2026",
     "/updates/andhra-pradesh-da-pension-12th-pay-revision-commission-2026",
     "/updates/west-bengal-7th-pay-commission-fitment-factor",
-    "/updates/west-bengal-7th-pay-commission-latest-news",
+
     // Author
     "/author/jayanta-singha",
 
     // Legal / Information
     "/about",
     "/contact",
+    "/editorial-policy",
     "/privacy-policy",
     "/disclaimer",
   ];
@@ -122,6 +123,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ) {
       changeFrequency = "monthly";
       priority = 0.8;
+    } else if (
+      route === "/about" ||
+      route === "/author/jayanta-singha" ||
+      route === "/editorial-policy"
+    ) {
+      changeFrequency = "monthly";
+      priority = 0.7;
+    } else if (
+      route === "/contact" ||
+      route === "/privacy-policy" ||
+      route === "/disclaimer"
+    ) {
+      changeFrequency = "monthly";
+      priority = 0.6;
     }
 
     return {
@@ -137,9 +152,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const { data: articles, error } = await supabase
     .from("articles")
-    .select(
-      "slug, published_at, updated_at"
-    )
+    .select("slug, published_at, updated_at")
     .eq("published", true)
     .order("published_at", {
       ascending: false,
