@@ -355,6 +355,14 @@ function parseContent(
 
       continue;
     }
+    /* Ignore H1 inside article content.
+   The page already displays article.title as H1. */
+
+if (line.startsWith("# ")) {
+  flushLists();
+  i++;
+  continue;
+}
 
     /* =====================================
        H3
@@ -454,7 +462,14 @@ function parseContent(
 
   return contentBlocks;
 }
-
+function cleanMetaTitle(value: string) {
+  return value
+    .replace(
+      /(\s*\|\s*GovtPayGuide)+\s*$/gi,
+      ""
+    )
+    .trim();
+}
 /* =========================================
    SEO METADATA
 ========================================= */
@@ -480,9 +495,10 @@ export async function generateMetadata({
     };
   }
 
-  const title =
-    article.meta_title?.trim() ||
-    article.title;
+  const title = cleanMetaTitle(
+  article.meta_title?.trim() ||
+    article.title
+);
 
   const description =
     article.meta_description?.trim() ||
