@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "West Bengal 7th Pay Commission 2026 | Latest Updates",
+  title: "West Bengal Pay Commission Guide",
   description:
-    "West Bengal 7th State Pay Commission 2026 updates, official resolutions, Terms of Reference, memorandum submission, composition and latest developments.",
+    "Explore West Bengal Pay Commission updates, ROPA 2019, 7th State Pay Commission developments, fitment factor analysis, pay matrix and salary resources.",
   alternates: {
     canonical: "/state-government/west-bengal/pay-commission",
   },
@@ -15,35 +16,31 @@ export default function WestBengalPayCommissionPage() {
       {/* HERO */}
       <section className="wb-7pc-hero">
         <div className="container">
-          <span className="page-badge">
-            West Bengal 7th State Pay Commission
-          </span>
+          <span className="page-badge">West Bengal</span>
 
-          <h1>West Bengal 7th Pay Commission 2026</h1>
+          <h1>West Bengal Pay Commission Guide</h1>
 
           <p>
-            Follow official developments of the West Bengal 7th State Pay
-            Commission, including resolutions, Terms of Reference, memoranda,
-            Commission composition and future pay revision updates.
+            Explore the current West Bengal pay structure, ROPA 2019,
+            official 7th State Pay Commission developments, fitment factor
+            analysis, Pay Matrix and related salary resources.
           </p>
 
           <div className="wb-7pc-hero-actions">
+            <Link
+              href="/updates/west-bengal-7th-pay-commission-latest-update-2026"
+              className="primary-content-button"
+            >
+              View Latest Update →
+            </Link>
+
             <a
               href="https://7spc.wb.gov.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="primary-content-button"
-            >
-              Official 7th SPC Portal ↗
-            </a>
-
-            <a
-              href="https://finance.wb.gov.in/Fin_New/Pages/publication.aspx?type=36"
-              target="_blank"
-              rel="noopener noreferrer"
               className="secondary-content-button"
             >
-              Finance Department Orders ↗
+              Official 7th SPC Portal ↗
             </a>
           </div>
         </div>
@@ -51,58 +48,255 @@ export default function WestBengalPayCommissionPage() {
 
       <div className="container wb-7pc-page">
         {/* CURRENT STATUS */}
-        <section className="wb-7pc-status">
-          <span className="section-kicker">Current Status</span>
+        <section className="wb-7pc-section">
+          <div className="wb-7pc-section-heading">
+            <span className="section-kicker">Current Status</span>
 
-          <h2>7th State Pay Commission Has Been Constituted</h2>
+            <h2>West Bengal 7th State Pay Commission</h2>
 
-          <p>
-            The Government of West Bengal constituted the 7th State Pay
-            Commission through Resolution No. 2657-F(P1) dated 22 July 2026.
-          </p>
+            <p>
+              The Government of West Bengal constituted the 7th State Pay
+              Commission in July 2026. The Commission is currently carrying
+              out its review and consultation-related work.
+            </p>
+          </div>
 
-          <p>
-            The resolution was partially modified through Resolution No.
-            2760-F(P1) dated 29 July 2026.
-          </p>
+          <div className="wb-7pc-warning">
+            <h3>What Employees Should Know</h3>
 
-          <div className="wb-7pc-status-note">
-            <strong>Important:</strong> Constitution of the Commission does not
-            itself mean that a new pay matrix, fitment factor or revised salary
-            has already been implemented.
+            <p>
+              A final fitment factor, revised Pay Matrix, revised minimum
+              Basic Pay, pension revision method and implementation date have
+              not yet been officially announced.
+            </p>
+
+            <p>
+              Any salary figures or fitment-factor claims circulating without
+              an official Commission recommendation and Government order
+              should be treated only as estimates or speculation.
+            </p>
           </div>
         </section>
 
-        {/* TIMELINE */}
+        {/* MAIN RESOURCES */}
         <section className="wb-7pc-section">
-  <div className="wb-7pc-section-heading">
-    <span className="section-kicker">Official Timeline</span>
+          <div className="wb-7pc-section-heading">
+            <span className="section-kicker">Pay Commission Resources</span>
 
-    <h2>West Bengal 7th Pay Commission Timeline</h2>
+            <h2>Choose the Information You Need</h2>
 
-    <p>
-      Follow the major official developments of the West Bengal 7th State
-      Pay Commission from its constitution to consultation and submission
-      stages.
-    </p>
-  </div>
+            <p>
+              Use these dedicated pages for the latest official status,
+              fitment-factor analysis, existing Pay Matrix and salary
+              calculation.
+            </p>
+          </div>
+
+          <div className="wb-7pc-related-grid">
+            <Link href="/updates/west-bengal-7th-pay-commission-latest-update-2026">
+              <span>Latest Update</span>
+              <strong>
+                7th Pay Commission Current Status →
+              </strong>
+            </Link>
+
+            <Link href="/updates/west-bengal-7th-pay-commission-fitment-factor">
+              <span>Analysis</span>
+              <strong>
+                Fitment Factor Explained →
+              </strong>
+            </Link>
+
+            <Link href="/state-government/west-bengal/pay-matrix">
+              <span>Pay Structure</span>
+              <strong>
+                West Bengal Pay Matrix →
+              </strong>
+            </Link>
+
+            <Link href="/state-government/west-bengal/salary-calculator">
+              <span>Calculator</span>
+              <strong>
+                West Bengal Salary Calculator →
+              </strong>
+            </Link>
+          </div>
+        </section>
+
+        {/* CONFIRMED VS AWAITED */}
+        <section className="wb-7pc-section">
+          <div className="wb-7pc-section-heading">
+            <span className="section-kicker">Status Check</span>
+
+            <h2>Confirmed Information and Details Still Awaited</h2>
+
+            <p>
+              This distinction is important because the constitution of a Pay
+              Commission does not automatically implement a new salary
+              structure.
+            </p>
+          </div>
+
+          <div className="wb-7pc-scope-grid">
+            <div>
+              <span>Confirmed</span>
+
+              <h3>Commission Constituted</h3>
+
+              <p>
+                The West Bengal 7th State Pay Commission was officially
+                constituted in July 2026.
+              </p>
+            </div>
+
+            <div>
+              <span>Confirmed</span>
+
+              <h3>Members Appointed</h3>
+
+              <p>
+                A Chairperson, two members and a Member Secretary have been
+                appointed to the Commission.
+              </p>
+            </div>
+
+            <div>
+              <span>Confirmed</span>
+
+              <h3>Official Portal Available</h3>
+
+              <p>
+                A dedicated official portal is available for notices,
+                documents, questionnaires and Commission-related information.
+              </p>
+            </div>
+
+            <div>
+              <span>Confirmed</span>
+
+              <h3>Consultation Underway</h3>
+
+              <p>
+                The Commission has started its review and stakeholder
+                consultation-related process.
+              </p>
+            </div>
+
+            <div>
+              <span>Awaited</span>
+
+              <h3>Final Fitment Factor</h3>
+
+              <p>
+                No final fitment factor should currently be treated as
+                officially announced.
+              </p>
+            </div>
+
+            <div>
+              <span>Awaited</span>
+
+              <h3>Revised Pay Matrix</h3>
+
+              <p>
+                A final revised Pay Matrix and minimum Basic Pay are still
+                awaited.
+              </p>
+            </div>
+
+            <div>
+              <span>Awaited</span>
+
+              <h3>Implementation Date</h3>
+
+              <p>
+                The final effective date and implementation schedule have not
+                yet been notified.
+              </p>
+            </div>
+
+            <div>
+              <span>Awaited</span>
+
+              <h3>Pension Revision</h3>
+
+              <p>
+                The final pension fitment method and revised pension structure
+                are yet to be decided.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* CURRENT PAY STRUCTURE */}
+        <section className="wb-7pc-section">
+          <div className="wb-7pc-section-heading">
+            <span className="section-kicker">Existing Structure</span>
+
+            <h2>ROPA 2019 Remains Relevant</h2>
+
+            <p>
+              Until revised pay rules are formally notified, the existing West
+              Bengal pay structure under the applicable ROPA 2019 rules
+              continues to remain relevant for current salary calculations.
+            </p>
+
+            <p>
+              The constitution of the 7th State Pay Commission does not
+              immediately replace ROPA 2019. A future revision will require
+              Commission recommendations, a Government decision and official
+              implementation orders.
+            </p>
+          </div>
+
+          <div className="wb-7pc-related-grid">
+            <Link href="/state-government/west-bengal/pay-structure">
+              ROPA 2019 Pay Structure →
+            </Link>
+
+            <Link href="/state-government/west-bengal/pay-matrix">
+              Existing Pay Matrix →
+            </Link>
+
+            <Link href="/state-government/west-bengal/da">
+              West Bengal DA Updates →
+            </Link>
+
+            <Link href="/state-government/west-bengal/pension">
+              Pension and DR Guide →
+            </Link>
+          </div>
+        </section>
+
+        {/* OFFICIAL TIMELINE */}
+        <section className="wb-7pc-section">
+          <div className="wb-7pc-section-heading">
+            <span className="section-kicker">Official Timeline</span>
+
+            <h2>Major 7th Pay Commission Developments</h2>
+
+            <p>
+              These are some of the major official developments connected with
+              the constitution and early work of the Commission.
+            </p>
+          </div>
 
           <div className="wb-7pc-timeline">
             <div className="wb-7pc-timeline-card">
               <span>22 July 2026</span>
 
-              <h3>7th Pay Commission Constituted</h3>
+              <h3>Commission Constituted</h3>
 
               <p>
-                Resolution No. 2657-F(P1) constituted the 7th Pay Commission
-                along with its Terms of Reference.
+                Resolution No. 2657-F(P1) constituted the 7th State Pay
+                Commission along with its Terms of Reference.
               </p>
             </div>
 
             <div className="wb-7pc-timeline-card">
               <span>29 July 2026</span>
 
-              <h3>Resolution Partially Modified</h3>
+              <h3>Resolution Modified</h3>
 
               <p>
                 Resolution No. 2760-F(P1) partially modified the earlier
@@ -111,24 +305,13 @@ export default function WestBengalPayCommissionPage() {
             </div>
 
             <div className="wb-7pc-timeline-card">
-              <span>10 August 2026</span>
+              <span>August 2026</span>
 
-              <h3>First Meeting</h3>
-
-              <p>
-                The official 7th SPC portal includes photographs and
-                information relating to the Commission's first meeting.
-              </p>
-            </div>
-
-            <div className="wb-7pc-timeline-card">
-              <span>11 August 2026</span>
-
-              <h3>Official Portal Launched</h3>
+              <h3>Commission Work Began</h3>
 
               <p>
-                The dedicated West Bengal 7th State Pay Commission portal was
-                launched for official information and submissions.
+                The Commission started its initial activities and the
+                dedicated official portal became available.
               </p>
             </div>
 
@@ -138,60 +321,8 @@ export default function WestBengalPayCommissionPage() {
               <h3>Memoranda Invited</h3>
 
               <p>
-                The Commission published a notice inviting memoranda from
-                organisations and individuals.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* WHAT COMMISSION WILL REVIEW */}
-        <section className="wb-7pc-section">
-  <div className="wb-7pc-section-heading">
-    <span className="section-kicker">Scope</span>
-
-    <h2>What the 7th State Pay Commission Will Review</h2>
-
-    <p>
-      The Commission will examine key areas relating to pay, allowances,
-      pensionary benefits and other service matters covered under its
-      Terms of Reference.
-    </p>
-  </div>
-
-          <div className="wb-7pc-scope-grid">
-            <div>
-              <span>01</span>
-              <h3>Pay Structure</h3>
-              <p>
-                Review of the existing salary and pay structure applicable to
-                covered employees.
-              </p>
-            </div>
-
-            <div>
-              <span>02</span>
-              <h3>Allowances</h3>
-              <p>
-                Examination of allowances and related service benefits.
-              </p>
-            </div>
-
-            <div>
-              <span>03</span>
-              <h3>Pensionary Benefits</h3>
-              <p>
-                Review of pension-related matters affecting eligible
-                pensioners.
-              </p>
-            </div>
-
-            <div>
-              <span>04</span>
-              <h3>Service Matters</h3>
-              <p>
-                Consideration of other service-related matters covered by the
-                Terms of Reference.
+                The Commission invited memoranda from organisations and
+                individuals as part of its consultation process.
               </p>
             </div>
           </div>
@@ -199,17 +330,16 @@ export default function WestBengalPayCommissionPage() {
 
         {/* COMMISSION MEMBERS */}
         <section className="wb-7pc-section">
-  <div className="wb-7pc-section-heading">
-    <span className="section-kicker">Composition</span>
+          <div className="wb-7pc-section-heading">
+            <span className="section-kicker">Composition</span>
 
-    <h2>7th State Pay Commission Members</h2>
+            <h2>7th State Pay Commission Members</h2>
 
-    <p>
-      The Commission has been constituted with a Chairperson, members and
-      a Member Secretary to examine the matters covered under its Terms of
-      Reference.
-    </p>
-  </div>
+            <p>
+              The Commission includes a Chairperson, two members and a Member
+              Secretary.
+            </p>
+          </div>
 
           <div className="wb-7pc-members-grid">
             <div className="wb-7pc-member-card">
@@ -234,123 +364,25 @@ export default function WestBengalPayCommissionPage() {
           </div>
         </section>
 
-        {/* OFFICIAL PORTAL */}
-        <section className="wb-7pc-portal">
-          <div>
-            <span className="section-kicker">Official Portal</span>
+        {/* PROCESS */}
+        <section className="wb-7pc-section">
+          <div className="wb-7pc-section-heading">
+            <span className="section-kicker">Process</span>
 
-            <h2>What Is Available on the 7th SPC Website?</h2>
+            <h2>What Happens Before Salary Revision?</h2>
 
             <p>
-              The dedicated portal provides official documents and facilities
-              related to the Commission.
+              A new salary structure can be implemented only after several
+              stages are completed.
             </p>
           </div>
-
-          <div className="wb-7pc-portal-grid">
-  <a
-    href="https://7spc.wb.gov.in/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <span>Terms of Reference</span>
-    <strong>Open Official Portal ↗</strong>
-  </a>
-
-  <a
-    href="https://7spc.wb.gov.in/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <span>State Pay Commission Repository</span>
-    <strong>Open Repository ↗</strong>
-  </a>
-
-  <a
-    href="https://7spc.wb.gov.in/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <span>7th SPC Questionnaire</span>
-    <strong>Open Questionnaire ↗</strong>
-  </a>
-
-  <a
-    href="https://7spc.wb.gov.in/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <span>Memorandum Submission</span>
-    <strong>Submit Memorandum ↗</strong>
-  </a>
-
-  <a
-    href="https://7spc.wb.gov.in/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <span>7th SPC Online Data Portal</span>
-    <strong>Open Data Portal ↗</strong>
-  </a>
-
-  <a
-    href="https://7spc.wb.gov.in/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <span>Notifications & Press Releases</span>
-    <strong>View Updates ↗</strong>
-  </a>
-</div>
-
-          <a
-            href="https://7spc.wb.gov.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="primary-content-button"
-          >
-            Visit Official 7th SPC Portal ↗
-          </a>
-        </section>
-
-        {/* WHAT IS NOT FINAL */}
-        <section className="wb-7pc-warning">
-          <span className="section-kicker">Not Yet Final</span>
-
-          <h2>Fitment Factor, New Pay Matrix & Revised Salary</h2>
-
-          <p>
-            At this stage, a final new fitment factor, revised pay matrix,
-            revised Basic Pay structure or implementation date should not be
-            treated as confirmed unless the Commission recommends it and the
-            Government of West Bengal formally accepts and notifies it.
-          </p>
-
-          <p>
-            Any figures circulating on social media, YouTube or unofficial
-            websites should therefore be treated as speculation unless
-            supported by an official document.
-          </p>
-        </section>
-
-        {/* HOW PROCESS WORKS */}
-        <section className="wb-7pc-section">
-  <div className="wb-7pc-section-heading">
-    <span className="section-kicker">Process</span>
-
-    <h2>What Happens Next?</h2>
-
-    <p>
-      The 7th State Pay Commission process moves through consultation,
-      review, recommendations and a final Government decision before any
-      revised pay structure can be implemented.
-    </p>
-  </div>
 
           <div className="wb-7pc-process">
             <div>
               <span>1</span>
+
               <h3>Consultation</h3>
+
               <p>
                 Employees, organisations and other stakeholders may submit
                 views and memoranda.
@@ -359,96 +391,130 @@ export default function WestBengalPayCommissionPage() {
 
             <div>
               <span>2</span>
+
               <h3>Review</h3>
+
               <p>
-                The Commission studies pay structures, allowances, pension and
-                service conditions.
+                The Commission examines pay, allowances, pension and related
+                service matters.
               </p>
             </div>
 
             <div>
               <span>3</span>
+
               <h3>Recommendations</h3>
+
               <p>
-                The Commission may submit recommendations to the State
-                Government.
+                The Commission may submit its report and recommendations to
+                the State Government.
               </p>
             </div>
 
             <div>
               <span>4</span>
+
               <h3>Government Decision</h3>
+
               <p>
-                Final implementation depends on acceptance and official orders
-                issued by the Government of West Bengal.
+                Implementation depends on the Government&apos;s decision and
+                subsequent official pay-revision orders.
               </p>
             </div>
           </div>
         </section>
 
-        {/* RELATED LINKS */}
-        <section className="wb-7pc-related">
-          <h2>Related West Bengal Resources</h2>
-
-          <div className="wb-7pc-related-grid">
-            <a href="/state-government/west-bengal/pay-structure">
-              ROPA 2019 Pay Structure →
-            </a>
-
-            <a href="/state-government/west-bengal/pay-matrix">
-              West Bengal Pay Matrix →
-            </a>
-
-            <a href="/state-government/west-bengal/da">
-              West Bengal DA Updates →
-            </a>
-
-            <a href="/state-government/west-bengal/pension">
-              West Bengal Pension & DR →
-            </a>
-          </div>
-        </section>
-
-        {/* OFFICIAL SOURCES */}
-        <section className="wb-7pc-official">
+        {/* OFFICIAL PORTAL */}
+        <section className="wb-7pc-portal">
           <div>
-            <span className="section-kicker">Official Sources</span>
+            <span className="section-kicker">Official Information</span>
 
-            <h2>Verify 7th Pay Commission Updates</h2>
+            <h2>Use Official Sources for Final Decisions</h2>
 
             <p>
-              GovtPayGuide tracks official developments, but Government
-              resolutions and notifications remain authoritative.
+              The Commission portal and West Bengal Finance Department should
+              be treated as the primary sources for resolutions, notices,
+              reports and implementation orders.
             </p>
           </div>
 
-          <div className="wb-7pc-official-actions">
+          <div className="wb-7pc-portal-grid">
             <a
               href="https://7spc.wb.gov.in/"
               target="_blank"
               rel="noopener noreferrer"
-              className="primary-content-button"
             >
-              7th SPC Official Website ↗
+              <span>7th State Pay Commission</span>
+              <strong>Open Official Portal ↗</strong>
             </a>
 
             <a
               href="https://finance.wb.gov.in/Fin_New/Pages/publication.aspx?type=36"
               target="_blank"
               rel="noopener noreferrer"
-              className="secondary-content-button"
             >
-              Finance Department ↗
+              <span>Pay Commission Orders</span>
+              <strong>View Finance Department Orders ↗</strong>
+            </a>
+
+            <a
+              href="https://finance.wb.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Finance Department</span>
+              <strong>Visit Official Website ↗</strong>
+            </a>
+
+            <a
+              href="https://7spc.wb.gov.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Commission Notices</span>
+              <strong>Check Latest Notices ↗</strong>
             </a>
           </div>
         </section>
 
+        {/* RELATED RESOURCES */}
+        <section className="wb-7pc-related">
+          <h2>Related West Bengal Resources</h2>
+
+          <div className="wb-7pc-related-grid">
+            <Link href="/updates/west-bengal-7th-pay-commission-latest-update-2026">
+              Latest 7th Pay Commission Update →
+            </Link>
+
+            <Link href="/updates/west-bengal-7th-pay-commission-fitment-factor">
+              Fitment Factor Analysis →
+            </Link>
+
+            <Link href="/state-government/west-bengal/pay-structure">
+              ROPA 2019 Pay Structure →
+            </Link>
+
+            <Link href="/state-government/west-bengal/pay-matrix">
+              West Bengal Pay Matrix →
+            </Link>
+
+            <Link href="/state-government/west-bengal/salary-calculator">
+              West Bengal Salary Calculator →
+            </Link>
+
+            <Link href="/state-government/west-bengal/pension">
+              West Bengal Pension Guide →
+            </Link>
+          </div>
+        </section>
+
+        {/* DISCLAIMER */}
         <div className="calculator-disclaimer">
           <strong>Disclaimer:</strong> GovtPayGuide is an independent
-          informational website and is not affiliated with the West Bengal 7th
-          State Pay Commission or the Government of West Bengal. Final pay
-          revision, fitment, allowances and implementation will depend on
-          official recommendations and Government orders.
+          informational website and is not affiliated with the Government of
+          West Bengal or the West Bengal 7th State Pay Commission. Final pay,
+          pension, fitment factor, Pay Matrix and implementation details must
+          be verified from official Government notifications.
         </div>
       </div>
     </main>
