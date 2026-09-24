@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 /* =========================================
    TYPES
@@ -129,7 +129,7 @@ const getArticle = unstable_cache(
   },
   ["published-article"],
   {
-    revalidate: 300,
+    revalidate: 60,
   }
 );
 
