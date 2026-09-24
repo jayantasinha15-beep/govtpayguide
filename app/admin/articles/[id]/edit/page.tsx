@@ -28,6 +28,8 @@ type Article = {
   featured_image: string | null;
   featured: boolean;
   published: boolean;
+  published_at: string | null;
+  updated_at: string | null;
 };
 
 type Category = {
@@ -128,6 +130,10 @@ export default function EditArticlePage() {
 
   const [published, setPublished] =
     useState(false);
+    const [
+  originalPublishedAt,
+  setOriginalPublishedAt,
+] = useState<string | null>(null);
 
   const [error, setError] =
     useState("");
@@ -271,6 +277,9 @@ export default function EditArticlePage() {
       setPublished(
         data.published
       );
+      setOriginalPublishedAt(
+  data.published_at ?? null
+);
 
       setLoading(false);
     };
@@ -393,6 +402,7 @@ export default function EditArticlePage() {
       await supabase
         .from("articles")
         .update({
+          
           title:
             title.trim(),
 
@@ -435,12 +445,13 @@ export default function EditArticlePage() {
           published,
 
           published_at:
-            published
-              ? new Date().toISOString()
-              : null,
+  published
+    ? originalPublishedAt ??
+      new Date().toISOString()
+    : null,
 
-          updated_at:
-            new Date().toISOString(),
+updated_at:
+  new Date().toISOString(),
         })
         .eq(
           "id",

@@ -25,7 +25,7 @@ type Article = {
   featured_image: string | null;
   published: boolean;
   published_at: string | null;
-  updated_at: string;
+  updated_at: string | null;
 };
 
 type PageProps = {
@@ -625,6 +625,28 @@ export default async function ArticlePage({
           }
         )
       : "";
+      const wasUpdated =
+  Boolean(
+    article.updated_at &&
+      article.published_at &&
+      new Date(article.updated_at).getTime() >
+        new Date(article.published_at).getTime() +
+          60000
+  );
+
+const updatedDate =
+  wasUpdated && article.updated_at
+    ? new Date(
+        article.updated_at
+      ).toLocaleDateString(
+        "en-IN",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }
+      )
+    : "";
 
   const contentBlocks =
     parseContent(article.content);
@@ -722,10 +744,16 @@ export default async function ArticlePage({
             </span>
 
             {publishedDate && (
-              <span>
-                Published {publishedDate}
-              </span>
-            )}
+  <span>
+    Published {publishedDate}
+  </span>
+)}
+
+{updatedDate && (
+  <span>
+    Updated {updatedDate}
+  </span>
+)}
 
             <span>
               Written by{" "}
