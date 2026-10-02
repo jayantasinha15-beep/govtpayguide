@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Image from "next/image";
-import { createClient } from "@supabase/supabase-js";
+import Link from "next/link";
 import type { Metadata } from "next";
+import { createClient } from "@supabase/supabase-js";
 
 export const metadata: Metadata = {
   title: "Government Pay, Pension & Job Updates",
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     canonical: "https://www.govtpayindia.com/",
   },
 };
+
 export const revalidate = 60;
 
 type DbArticle = {
@@ -30,7 +31,8 @@ type DbArticle = {
   } | null;
 };
 
-type LatestUpdate = {
+type HomeArticle = {
+  id: string;
   title: string;
   description: string;
   category: string;
@@ -38,30 +40,23 @@ type LatestUpdate = {
   subcategory: string | null;
   publishedAt: string;
   href: string;
-  featured?: boolean;
-  featuredImage?: string | null;
+  featured: boolean;
+  featuredImage: string | null;
 };
 
 function getSupabase() {
-  const supabaseUrl =
-    process.env.NEXT_PUBLIC_SUPABASE_URL;
-
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const supabaseKey =
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
   if (!supabaseUrl || !supabaseKey) {
-    throw new Error(
-      "Supabase environment variables are missing."
-    );
+    throw new Error("Supabase environment variables are missing.");
   }
 
-  return createClient(
-    supabaseUrl,
-    supabaseKey
-  );
+  return createClient(supabaseUrl, supabaseKey);
 }
 
-async function getPublishedArticles() {
+async function getPublishedArticles(): Promise<DbArticle[]> {
   const supabase = getSupabase();
 
   const { data, error } = await supabase
@@ -83,810 +78,343 @@ async function getPublishedArticles() {
       )
     `)
     .eq("published", true)
-    .order("published_at", {
-      ascending: false,
-    });
+    .order("published_at", { ascending: false });
 
   if (error) {
-    console.error(
-      "Failed to load homepage articles:",
-      error
-    );
-
+    console.error("Failed to load homepage articles:", error);
     return [];
   }
 
   return (data ?? []) as unknown as DbArticle[];
 }
 
+function formatDate(date: string) {
+  return new Intl.DateTimeFormat("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(new Date(date));
+}
+
 export default async function Home() {
-  const dbArticles =
-    await getPublishedArticles();
+  const dbArticles = await getPublishedArticles();
 
-  const supabaseUpdates: LatestUpdate[] =
-    dbArticles.map((article) => ({
-      title: article.title,
-      description: article.description,
-      category: article.category,
-      status: article.status,
-      subcategory: article.subcategory?.name ?? null,
-      publishedAt:
-        article.published_at ??
-        new Date(0).toISOString(),
-      href: `/updates/${article.slug}`,
-      featured: article.featured,
-      featuredImage: article.featured_image,
-    }));
+  const articles: HomeArticle[] = dbArticles.map((article) => ({
+    id: article.id,
+    title: article.title,
+    description: article.description,
+    category: article.category,
+    status: article.status,
+    subcategory: article.subcategory?.name ?? null,
+    publishedAt: article.published_at ?? new Date(0).toISOString(),
+    href: `/updates/${article.slug}`,
+    featured: article.featured === true,
+    featuredImage: article.featured_image,
+  }));
 
-  const sortedUpdates = [...supabaseUpdates].sort(
-  (a, b) =>
-    new Date(b.publishedAt).getTime() -
-    new Date(a.publishedAt).getTime()
-);
+  const featuredArticles = articles
+    .filter((article) => article.featured)
+    .slice(0, 2);
 
-// Admin থেকে "Feature on Homepage" ON করা articles
-const featuredUpdates = sortedUpdates
-  .filter((article) => article.featured === true)
-  .slice(0, 3);
+  const featuredIds = new Set(
+    featuredArticles.map((article) => article.id)
+  );
 
-// Featured articles বাদ দিয়ে normal latest articles
-const latestUpdates = sortedUpdates
-  .filter((article) => article.featured !== true)
-  .slice(0, 3);
+  const latestArticles = articles
+    .filter((article) => !featuredIds.has(article.id))
+    .slice(0, 4);
 
   return (
     <main>
-      {/* =====================================
-          HERO
-      ====================================== */}
+      <section className="home-v2-hero">
+        <div className="container home-v2-hero-inner">
+          <span className="page-badge">GovtPayGuide India</span>
 
-      <section className="home-hero">
-        <div className="container home-hero-inner">
-          <div className="home-hero-content">
-            <span className="page-badge">
-              Government Pay & Job Guide
-            </span>
-
-            <h1>
-              Government Pay, Pension
-              & Job Updates
-            </h1>
-
-            <p>
-              Get clear information about
-              Central and State Government
-              salary, Dearness Allowance,
-              Pay Commission, pension,
-              pay matrix, recruitment
-              notifications, job guides and
-              useful salary calculators.
-            </p>
-
-            <div className="home-hero-actions">
-              <Link
-                href="/updates"
-                className="home-primary-button"
-              >
-                Latest Updates →
-              </Link>
-
-              <Link
-                href="/government-jobs"
-                className="home-secondary-button"
-              >
-                Explore Government Jobs
-              </Link>
-            </div>
-          </div>
-
-          <div className="home-hero-card">
-            <span className="home-hero-card-label">
-              GovtPayGuide
-            </span>
-
-            <h2>
-              Your Government Information
-              Hub
-            </h2>
-
-            <p>
-              Salary guides, DA revisions,
-              Pay Commission updates,
-              calculators and government
-              job information in one place.
-            </p>
-
-            <div className="home-hero-points">
-              <span>
-                ✓ Central Government
-              </span>
-
-              <span>
-                ✓ State Government
-              </span>
-
-              <span>
-                ✓ Salary Calculators
-              </span>
-
-              <span>
-                ✓ Pension Guides
-              </span>
-
-              <span>
-                ✓ Government Jobs
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="trust-notice">
-  <div className="trust-notice-inner">
-    <h2>Independent Government Information Portal</h2>
-
-    <p>
-      GovtPayGuide is an independent informational website providing guides,
-      calculators and updates related to government salary, Dearness Allowance,
-      Pay Commission, pension, employee pay matters, recruitment notifications
-      and government job guides.
-    </p>
-
-    <p>
-        GovtPayGuide is an independent informational website. Please verify
-        important details from the relevant official authority.
-    </p>
-
-  </div>
-</section>
-
-      {/* =====================================
-      {/* =====================================
-    FEATURED UPDATES
-====================================== */}
-
-{featuredUpdates.length > 0 && (
-  <section className="home-section home-featured-section">
-    <div className="container">
-      <div className="home-section-heading">
-        <div>
-          <span className="section-label">
-            Featured
-          </span>
-
-          <h2>
-            Featured Government Updates & Job News
-          </h2>
+          <h1>Government Pay, Pension & Job Updates</h1>
 
           <p>
-            Important salary, DA, Pay Commission, pension and recruitment
-            updates selected for the homepage.
+            Find government recruitment news, salary and DA updates,
+            pension guides, Pay Commission information and useful
+            calculators without searching through multiple sections.
           </p>
-        </div>
-      </div>
 
-      <div className="featured-news-grid">
-        {featuredUpdates.map((item) => {
-          const formattedDate = new Date(
-            item.publishedAt
-          ).toLocaleDateString("en-IN", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          });
+          <div className="home-v2-hero-actions">
+            <Link href="/government-jobs" className="home-v2-primary-button">
+              Find Government Jobs
+            </Link>
 
-          return (
-            <article
-              className="featured-news-card"
-              key={item.href}
-            >
-              {item.featuredImage && (
-  <Link
-    href={item.href}
-    className="featured-news-image-link"
-  >
-    <div className="featured-news-image">
-      <Image
-  src={item.featuredImage}
-  alt={item.title}
-  fill
-  sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 33vw"
-  quality={75}
-  loading="lazy"
-  style={{
-  objectFit: "contain",
-  objectPosition: "center",
-}}
-/>
-    </div>
-  </Link>
-)}
-              <div className="featured-news-top">
-                <span className="featured-badge">
-                  Featured
-                </span>
+            <Link href="/updates" className="home-v2-secondary-button">
+              Read Latest Updates
+            </Link>
 
-                <span className="featured-news-date">
-                  {formattedDate}
-                </span>
-              </div>
-
-              <div className="latest-news-meta">
-                <span className="latest-news-category">
-                  {item.category}
-                </span>
-
-                {item.subcategory && (
-                  <span className="latest-news-subcategory">
-                    {item.subcategory}
-                  </span>
-                )}
-
-                <span className="latest-news-status">
-                  {item.status}
-                </span>
-              </div>
-
-              <Link href={item.href}>
-                <h3>
-                  {item.title}
-                </h3>
-              </Link>
-
-              <p>
-                {item.description}
-              </p>
-
-              <Link
-                href={item.href}
-                className="latest-news-link"
-              >
-                Read Featured Update →
-              </Link>
-            </article>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-)}
-
-      {/* =====================================
-          LATEST UPDATES
-      ====================================== */}
-
-      <section className="home-section home-news-section">
-        <div className="container">
-          <div className="home-section-heading">
-            <div>
-              <span className="section-label">
-                Latest Updates
-              </span>
-
-              <h2>
-                Latest Government Updates & Job News
-              </h2>
-
-              <p>
-                Recent salary, DA, Pay Commission, pension, recruitment
-                notifications and government job developments.
-              </p>
-            </div>
-
-            <Link
-              href="/updates"
-              className="home-view-all-link"
-            >
-              View All Updates →
+            <Link href="/calculators" className="home-v2-text-button">
+              Open Calculators →
             </Link>
           </div>
 
-          {latestUpdates.length > 0 ? (
-            <div className="latest-news-grid">
-              {latestUpdates.map((item) => {
-                const formattedDate =
-                  new Date(
-                    item.publishedAt
-                  ).toLocaleDateString(
-                    "en-IN",
-                    {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    }
-                  );
+          <div className="home-v2-trust-line">
+            Independent informational website · Always verify details from
+            the concerned official authority.
+          </div>
+        </div>
+      </section>
 
-                return (
-                  <article
-                    className="latest-news-card"
-                    key={item.href}
-                  >
-                    <div className="latest-news-meta">
-                      <span className="latest-news-category">
-                        {item.category}
-                      </span>
+      <section className="home-v2-services">
+        <div className="container">
+          <div className="home-v2-section-heading home-v2-section-heading-centered">
+            <span className="section-label">Choose a Section</span>
+            <h2>What are you looking for?</h2>
+            <p>Go directly to the information or tool you need.</p>
+          </div>
 
-                      {item.subcategory && (
-                        <span className="latest-news-subcategory">
-                          {item.subcategory}
+          <div className="home-v2-service-grid">
+            <Link href="/government-jobs" className="home-v2-service-card">
+              <span className="home-v2-service-icon">📢</span>
+              <div>
+                <h3>Jobs & Recruitment</h3>
+                <p>Notifications, vacancy news and practical job guides.</p>
+              </div>
+              <strong>Explore Jobs →</strong>
+            </Link>
+
+            <Link href="/central-government" className="home-v2-service-card">
+              <span className="home-v2-service-icon">📈</span>
+              <div>
+                <h3>Pay, DA & Pension</h3>
+                <p>Salary, allowances, Pay Commission and pension updates.</p>
+              </div>
+              <strong>View Pay Guides →</strong>
+            </Link>
+
+            <Link href="/calculators" className="home-v2-service-card">
+              <span className="home-v2-service-icon">🧮</span>
+              <div>
+                <h3>Calculators & Tools</h3>
+                <p>Estimate salary, DA, HRA, arrears and pension.</p>
+              </div>
+              <strong>Use Calculators →</strong>
+            </Link>
+
+            <Link href="/state-government" className="home-v2-service-card">
+              <span className="home-v2-service-icon">🇮🇳</span>
+              <div>
+                <h3>State Government</h3>
+                <p>State-wise pay, DA, pension and employee guides.</p>
+              </div>
+              <strong>Browse States →</strong>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {(featuredArticles.length > 0 || latestArticles.length > 0) && (
+        <section className="home-v2-updates">
+          <div className="container">
+            <div className="home-v2-section-heading home-v2-heading-row">
+              <div>
+                <span className="section-label">Latest Information</span>
+                <h2>Featured & Recent Updates</h2>
+                <p>
+                  Important recruitment, salary, DA, pension and employee
+                  updates.
+                </p>
+              </div>
+
+              <Link href="/updates" className="home-v2-view-all">
+                View All Updates →
+              </Link>
+            </div>
+
+            {featuredArticles.length > 0 && (
+              <div className="home-v2-featured-grid">
+                {featuredArticles.map((article) => (
+                  <article className="home-v2-featured-card" key={article.id}>
+                    {article.featuredImage && (
+                      <Link
+                        href={article.href}
+                        className="home-v2-featured-image"
+                        aria-label={article.title}
+                      >
+                        <Image
+                          src={article.featuredImage}
+                          alt={article.title}
+                          fill
+                          sizes="(max-width: 760px) 100vw, 50vw"
+                          quality={75}
+                          style={{ objectFit: "contain" }}
+                        />
+                      </Link>
+                    )}
+
+                    <div className="home-v2-featured-content">
+                      <div className="home-v2-meta">
+                        <span>{article.category}</span>
+                        {article.subcategory && (
+                          <span className="home-v2-subcategory">
+                            {article.subcategory}
+                          </span>
+                        )}
+                        <span className="home-v2-status">
+                          {article.status}
+                        </span>
+                      </div>
+
+                      <time dateTime={article.publishedAt}>
+                        {formatDate(article.publishedAt)}
+                      </time>
+
+                      <h3>
+                        <Link href={article.href}>{article.title}</Link>
+                      </h3>
+
+                      <p>{article.description}</p>
+
+                      <Link href={article.href} className="home-v2-read-link">
+                        Read Update →
+                      </Link>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+
+            {latestArticles.length > 0 && (
+              <div className="home-v2-recent-list">
+                {latestArticles.map((article) => (
+                  <article className="home-v2-recent-item" key={article.id}>
+                    <div className="home-v2-meta">
+                      <span>{article.category}</span>
+                      {article.subcategory && (
+                        <span className="home-v2-subcategory">
+                          {article.subcategory}
                         </span>
                       )}
-
-                      <span className="latest-news-status">
-                        {item.status}
-                      </span>
                     </div>
 
-                    <div className="latest-news-date">
-                      {formattedDate}
-                    </div>
-
-                    <Link href={item.href}>
+                    <div className="home-v2-recent-content">
                       <h3>
-                        {item.title}
+                        <Link href={article.href}>{article.title}</Link>
                       </h3>
-                    </Link>
+                      <p>{article.description}</p>
+                    </div>
 
-                    <p>
-                      {item.description}
-                    </p>
-
-                    <Link
-                      href={item.href}
-                      className="latest-news-link"
-                    >
-                      Read Full Update →
-                    </Link>
+                    <div className="home-v2-recent-side">
+                      <time dateTime={article.publishedAt}>
+                        {formatDate(article.publishedAt)}
+                      </time>
+                      <Link href={article.href}>Read →</Link>
+                    </div>
                   </article>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="admin-list-empty">
-              No latest updates available.
-            </div>
-          )}
-        </div>
-      </section>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
-      {/* =====================================
-          QUICK LINKS
-      ====================================== */}
-
-      <section className="home-section">
+      <section className="home-v2-tools">
         <div className="container">
-          <div className="home-section-heading">
+          <div className="home-v2-section-heading home-v2-heading-row">
             <div>
-              <span className="section-label">
-                Explore
-              </span>
-
-              <h2>
-                Popular Government Pay Topics
-              </h2>
-            </div>
-          </div>
-
-          <div className="home-quick-grid">
-            <Link
-              href="/central-government"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                🏛️
-              </span>
-
-              <h3>
-                Central Government
-              </h3>
-
-              <p>
-                Salary, DA, Pay Matrix and
-                Central Government employee
-                information.
-              </p>
-
-              <span>
-                Explore →
-              </span>
-            </Link>
-
-            <Link
-              href="/da"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                📈
-              </span>
-
-              <h3>
-                DA Updates
-              </h3>
-
-              <p>
-                Latest Dearness Allowance
-                rates, revisions and effective
-                dates.
-              </p>
-
-              <span>
-                View DA →
-              </span>
-            </Link>
-
-            <Link
-              href="/pay-commission"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                📊
-              </span>
-
-              <h3>
-                Pay Commission
-              </h3>
-
-              <p>
-                Pay Commission news,
-                recommendations and salary
-                revision guides.
-              </p>
-
-              <span>
-                Learn More →
-              </span>
-            </Link>
-
-            <Link
-              href="/state-government"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                🇮🇳
-              </span>
-
-              <h3>
-                State Governments
-              </h3>
-
-              <p>
-                State-wise Government salary,
-                DA, pension and Pay Commission
-                information.
-              </p>
-
-              <span>
-                Browse States →
-              </span>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* =====================================
-          GOVERNMENT JOBS
-      ====================================== */}
-
-      <section className="home-section home-state-section">
-        <div className="container">
-          <div className="home-section-heading">
-            <div>
-              <span className="section-label">
-                Government Jobs
-              </span>
-
-              <h2>
-                Recruitment Notifications & Job Guides
-              </h2>
-
-              <p>
-                Explore active recruitment notifications, upcoming vacancy
-                news, post-wise salary information and practical job guides.
-              </p>
+              <span className="section-label">Free Tools</span>
+              <h2>Popular Calculators</h2>
+              <p>Quick estimates for common government pay calculations.</p>
             </div>
 
-            <Link
-              href="/government-jobs"
-              className="home-view-all-link"
-            >
-              View Government Jobs →
-            </Link>
-          </div>
-
-          <div className="home-quick-grid">
-            <Link
-              href="/government-jobs/notifications"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                📢
-              </span>
-
-              <h3>Recruitment Notifications</h3>
-
-              <p>
-                Check published vacancies, eligibility, important dates and
-                official application links.
-              </p>
-
-              <span>View Notifications →</span>
-            </Link>
-
-            <Link
-              href="/government-jobs/guides"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                📘
-              </span>
-
-              <h3>Government Job Guides</h3>
-
-              <p>
-                Understand salary, pay level, allowances, selection process
-                and career growth for government posts.
-              </p>
-
-              <span>Browse Job Guides →</span>
-            </Link>
-
-            <Link
-              href="/government-jobs"
-              className="home-quick-card"
-            >
-              <span className="home-quick-icon">
-                📰
-              </span>
-
-              <h3>Recruitment News</h3>
-
-              <p>
-                Follow upcoming vacancies, recruitment developments and
-                important updates for candidates.
-              </p>
-
-              <span>Read Job News →</span>
-            </Link>
-          </div>
-        </div>
-      </section>
-          {/*CALCULATORS
-      ====================================== */}
-
-      <section className="home-section">
-        <div className="container">
-          <div className="home-section-heading">
-            <div>
-              <span className="section-label">
-                Free Tools
-              </span>
-
-              <h2>
-                Government Salary Calculators
-              </h2>
-
-              <p>
-                Estimate salary, DA, HRA
-                and arrears using simple
-                calculators.
-              </p>
-            </div>
-
-            <Link
-              href="/calculators"
-              className="home-view-all-link"
-            >
+            <Link href="/calculators" className="home-v2-view-all">
               All Calculators →
             </Link>
           </div>
 
-          <div className="home-calculator-grid">
-            <Link
-              href="/salary-calculator"
-              className="home-calculator-card"
-            >
-              <span>
-                🧮
-              </span>
-
-              <h3>
-                Salary Calculator
-              </h3>
-
-              <p>
-                Calculate Basic Pay, DA,
-                HRA, allowances and estimated
-                salary.
-              </p>
-
-              <strong>
-                Calculate →
-              </strong>
+          <div className="home-v2-tool-grid">
+            <Link href="/salary-calculator" className="home-v2-tool-card">
+              <span>🧮</span>
+              <h3>Salary Calculator</h3>
+              <p>Estimate gross and take-home salary.</p>
             </Link>
 
-            <Link
-              href="/da-calculator"
-              className="home-calculator-card"
-            >
-              <span>
-                %
-              </span>
-
-              <h3>
-                DA Calculator
-              </h3>
-
-              <p>
-                Calculate Dearness Allowance
-                from Basic Pay and DA rate.
-              </p>
-
-              <strong>
-                Calculate →
-              </strong>
+            <Link href="/da-calculator" className="home-v2-tool-card">
+              <span>%</span>
+              <h3>DA Calculator</h3>
+              <p>Calculate DA from Basic Pay and rate.</p>
             </Link>
 
-            <Link
-              href="/hra-calculator"
-              className="home-calculator-card"
-            >
-              <span>
-                🏠
-              </span>
-
-              <h3>
-                HRA Calculator
-              </h3>
-
-              <p>
-                Estimate House Rent Allowance
-                from Basic Pay and applicable
-                HRA percentage.
-              </p>
-
-              <strong>
-                Calculate →
-              </strong>
+            <Link href="/hra-calculator" className="home-v2-tool-card">
+              <span>🏠</span>
+              <h3>HRA Calculator</h3>
+              <p>Estimate House Rent Allowance.</p>
             </Link>
 
-            <Link
-              href="/arrears-calculator"
-              className="home-calculator-card"
-            >
-              <span>
-                ₹
-              </span>
-
-              <h3>
-                DA Arrears Calculator
-              </h3>
-
-              <p>
-                Estimate DA arrears after
-                an allowance revision.
-              </p>
-
-              <strong>
-                Calculate →
-              </strong>
+            <Link href="/arrears-calculator" className="home-v2-tool-card">
+              <span>₹</span>
+              <h3>DA Arrears Calculator</h3>
+              <p>Estimate arrears after a DA revision.</p>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* =====================================
-          STATE GOVERNMENT
-      ====================================== */}
-
-      <section className="home-section home-state-section">
+      <section className="home-v2-states">
         <div className="container">
-          <div className="home-section-heading">
+          <div className="home-v2-section-heading home-v2-heading-row">
             <div>
-              <span className="section-label">
-                State Guides
-              </span>
-
-              <h2>
-                State Government Employee
-                Information
-              </h2>
-
-              <p>
-                Explore State-specific DA,
-                salary, Pay Commission and
-                pension guides.
-              </p>
+              <span className="section-label">State Guides</span>
+              <h2>Browse by State</h2>
+              <p>State-specific salary, DA, pension and pay information.</p>
             </div>
+
+            <Link href="/state-government" className="home-v2-view-all">
+              View All States →
+            </Link>
           </div>
 
-          <div className="home-state-grid">
+          <div className="home-v2-state-grid">
             <Link
               href="/state-government/west-bengal"
-              className="home-state-card"
+              className="home-v2-state-card"
             >
-              <h3>
-                West Bengal
-              </h3>
-
-              <p>
-                DA, ROPA, Pay Commission,
-                salary and pension.
-              </p>
-
-              <span>
-                View Guide →
-              </span>
+              <h3>West Bengal</h3>
+              <p>DA, ROPA, Pay Commission, salary and pension.</p>
+              <span>View Guide →</span>
             </Link>
 
             <Link
               href="/state-government/bihar"
-              className="home-state-card"
+              className="home-v2-state-card"
             >
-              <h3>
-                Bihar
-              </h3>
-
-              <p>
-                DA, pay structure, pension
-                and Bihar Government salary
-                calculators.
-              </p>
-
-              <span>
-                View Guide →
-              </span>
+              <h3>Bihar</h3>
+              <p>Pay structure, DA, pension and salary calculators.</p>
+              <span>View Guide →</span>
             </Link>
 
             <Link
               href="/state-government/assam"
-              className="home-state-card"
+              className="home-v2-state-card"
             >
-              <h3>
-                Assam
-              </h3>
-
-              <p>
-                ROP, DA, Pay Commission,
-                pension and salary
-                information.
-              </p>
-
-              <span>
-                View Guide →
-              </span>
+              <h3>Assam</h3>
+              <p>ROP, DA, Pay Commission, pension and salary.</p>
+              <span>View Guide →</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* =====================================
-          DISCLAIMER
-      ====================================== */}
-
-      <section className="home-disclaimer-section">
+      <section className="home-v2-disclaimer">
         <div className="container">
-          <div className="home-disclaimer">
-            <h2>
-              Important Disclaimer
-            </h2>
+          <div className="home-v2-disclaimer-box">
+            <div>
+              <strong>Independent information, clearly explained</strong>
+              <p>
+                GovtPayGuide does not represent any government department.
+                Verify recruitment, salary, DA and pension information from
+                the relevant official notification before taking action.
+              </p>
+            </div>
 
-            <p>
-              GovtPayGuide is an independent informational website. Please verify
-              important details from the relevant official authority.
-            </p>
-
-            <p>
-              Salary figures, DA rates,
-              pension information,
-              Pay Commission developments,
-              recruitment details, job guides
-              and calculator results are
-              provided for informational
-              purposes only. Always verify
-              important information from the
-              relevant official Government
-              notification, recruiting authority
-              or department.
-            </p>
+            <div className="home-v2-disclaimer-links">
+              <Link href="/about">About Us</Link>
+              <Link href="/disclaimer">Disclaimer</Link>
+            </div>
           </div>
         </div>
       </section>
