@@ -22,11 +22,8 @@ type DbArticle = {
   category: string;
   status: string;
   published_at: string | null;
-  featured: boolean;
   featured_image: string | null;
-  
 };
-
 type HomeArticle = {
   id: string;
   title: string;
@@ -65,15 +62,15 @@ async function getPublishedArticles(): Promise<DbArticle[]> {
       category,
       status,
       published_at,
-      featured,
       featured_image
     `)
     .eq("published", true)
+    .not("slug", "is", null)
     .order("published_at", { ascending: false })
-    .limit(10);
+    .limit(6);
 
   if (error) {
-    console.error("Failed to load homepage articles:", error.message);
+    console.error("Homepage articles error:", error.message);
     return [];
   }
 
@@ -91,30 +88,21 @@ function formatDate(date: string) {
 export default async function Home() {
   const dbArticles = await getPublishedArticles();
 
-  const articles: HomeArticle[] = dbArticles.map((article) => ({
-    id: article.id,
-    title: article.title,
-    description: article.description,
-    category: article.category,
-    status: article.status,
-    subcategory: null,
-    publishedAt: article.published_at ?? new Date(0).toISOString(),
-    href: `/updates/${article.slug}`,
-    featured: article.featured === true,
-    featuredImage: article.featured_image,
-  }));
+  const articles: HomeArticle[] = dbArticles.map((article, index) => ({
+  id: article.id,
+  title: article.title,
+  description: article.description,
+  category: article.category,
+  status: article.status,
+  subcategory: null,
+  publishedAt: article.published_at ?? new Date().toISOString(),
+  href: `/updates/${article.slug}`,
+  featured: index < 2,
+  featuredImage: article.featured_image,
+}));
 
-  const featuredArticles = articles
-    .filter((article) => article.featured)
-    .slice(0, 2);
-
-  const featuredIds = new Set(
-    featuredArticles.map((article) => article.id)
-  );
-
-  const latestArticles = articles
-    .filter((article) => !featuredIds.has(article.id))
-    .slice(0, 4);
+  const featuredArticles = articles.slice(0, 2);
+const latestArticles = articles.slice(2, 6);
 
   return (
     <main>
