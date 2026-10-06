@@ -24,11 +24,7 @@ type DbArticle = {
   published_at: string | null;
   featured: boolean;
   featured_image: string | null;
-  subcategory: {
-    id: string;
-    name: string;
-    slug: string;
-  } | null;
+  
 };
 
 type HomeArticle = {
@@ -70,22 +66,18 @@ async function getPublishedArticles(): Promise<DbArticle[]> {
       status,
       published_at,
       featured,
-      featured_image,
-      subcategory:subcategories!articles_subcategory_id_fkey (
-        id,
-        name,
-        slug
-      )
+      featured_image
     `)
     .eq("published", true)
-    .order("published_at", { ascending: false });
+    .order("published_at", { ascending: false })
+    .limit(10);
 
   if (error) {
-    console.error("Failed to load homepage articles:", error);
+    console.error("Failed to load homepage articles:", error.message);
     return [];
   }
 
-  return (data ?? []) as unknown as DbArticle[];
+  return (data ?? []) as DbArticle[];
 }
 
 function formatDate(date: string) {
@@ -105,7 +97,7 @@ export default async function Home() {
     description: article.description,
     category: article.category,
     status: article.status,
-    subcategory: article.subcategory?.name ?? null,
+    subcategory: null,
     publishedAt: article.published_at ?? new Date(0).toISOString(),
     href: `/updates/${article.slug}`,
     featured: article.featured === true,
